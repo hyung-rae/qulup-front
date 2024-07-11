@@ -1,11 +1,5 @@
-import { Button } from '@mantine/core'
-
 const Home = () => {
-  return (
-    <div>
-      <Button>test</Button>
-    </div>
-  )
+  return <>Home</>
 }
 
 export default Home
