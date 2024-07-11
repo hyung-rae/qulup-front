@@ -1,5 +1,18 @@
-import "@/styles/globals.css";
+import '@mantine/core/styles.css'
+import '@mantine/carousel/styles.css'
+import '@mantine/dates/styles.css'
+import { MantineProvider } from '@mantine/core'
+import { theme } from '@/theme'
+import Layout from '@/src/components/layout/Layout'
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+const App = ({ Component, pageProps }) => {
+  return (
+    <MantineProvider theme={theme}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </MantineProvider>
+  )
 }
+
+export default App

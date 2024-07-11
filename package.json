@@ -9,8 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/carousel": "^7.11.1",
+    "@mantine/core": "^7.11.1",
+    "@mantine/dates": "^7.11.1",
+    "@mantine/form": "^7.11.1",
+    "@mantine/hooks": "^7.11.1",
+    "@mantinex/mantine-logo": "^1.0.1",
+    "dayjs": "^1.11.11",
+    "embla-carousel-react": "^8.1.6",
+    "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.5"
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "prettier": "3.3.2"
   }
 }
