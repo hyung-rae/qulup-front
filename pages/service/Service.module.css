@@ -1,0 +1,21 @@
+.tr {
+  cursor: pointer;
+  color: #232323;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  &:last-of-type {
+    border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--table-border-color);
+  }
+}
+
+.td {
+}
+
+.th {
+  color: #000000;
+}
+
+.thead {
+  background-color: red;
+}
