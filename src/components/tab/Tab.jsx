@@ -3,10 +3,10 @@ import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react'
 import classes from './Tab.module.css'
 
 const Tab = props => {
-  const { contents = [], setTabValue, style } = props
+  const { contents = [], defaultValue = '', setTabValue, style } = props
 
   return (
-    <Tabs variant="unstyled" defaultValue="email" classNames={classes} style={style}>
+    <Tabs variant="unstyled" defaultValue={defaultValue} classNames={classes} style={style}>
       <Tabs.List grow>
         {contents.map((tab, index) => (
           <Tabs.Tab
