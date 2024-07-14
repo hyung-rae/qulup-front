@@ -1,27 +1,9 @@
 import React from 'react'
-import { useDisclosure } from '@mantine/hooks'
 
-import { useToggle, upperFirst } from '@mantine/hooks'
 import { useForm } from '@mantine/form'
-import {
-  TextInput,
-  PasswordInput,
-  Text,
-  Paper,
-  Group,
-  PaperProps,
-  Button,
-  Divider,
-  Flex,
-  Checkbox,
-  Anchor,
-  Stack,
-  Modal,
-} from '@mantine/core'
+import { TextInput, PasswordInput, Paper, Group, Button, Flex, Anchor, Stack } from '@mantine/core'
 
-const SignIn = props => {
-  const { signInOpened, handleSignIn, signInClose } = props
-
+const SignIn = () => {
   const form = useForm({
     initialValues: {
       email: '',
@@ -65,11 +47,19 @@ const SignIn = props => {
 
           <Flex direction={'column'} justify="space-between" mt="xl">
             <Button type="submit" radius="md">
-              회원가입
+              로그인
             </Button>
             <Group justify="space-between" pt={10}>
+              <Group justify="flex-start" gap={5}>
+                <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+                  아이디 찾기
+                </Anchor>
+                <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+                  비밀번호 찾기
+                </Anchor>
+              </Group>
               <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
-                로그인
+                회원가입
               </Anchor>
             </Group>
           </Flex>
