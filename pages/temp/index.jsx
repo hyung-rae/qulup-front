@@ -2,9 +2,9 @@ import React from 'react'
 import { useDisclosure } from '@mantine/hooks'
 
 import { Group, Button, Modal } from '@mantine/core'
-import SignIn from '../../src/components/account/SignIn'
-import SignUp from '../../src/components/account/SignUp'
-import FindAccount from '../../src/components/account/FindAccount'
+import SignIn from '@/src/components/account/SignIn'
+import SignUp from '@/src/components/account/SignUp'
+import FindAccount from '@/src/components/account/FindAccount'
 
 const Service = ({ props }) => {
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
@@ -24,16 +24,16 @@ const Service = ({ props }) => {
   return (
     <>
       {/* 로그인 모달 */}
-      <Modal opened={signInOpened} onClose={signInClose} title={'로그인'}>
+      <Modal opened={signInOpened} onClose={signInClose} title={'로그인'} centered>
         <SignIn signInOpened={signInOpened} signInClose={signInClose} handleSignIn={handleSignIn} />
       </Modal>
       {/* 회원가입 모달 */}
-      <Modal opened={signUpOpened} size={'lg'} onClose={signUpClose} title={'QULUP 회원가입'}>
+      <Modal opened={signUpOpened} size={'lg'} onClose={signUpClose} title={'QULUP 회원가입'} centered>
         <SignUp signUpOpened={signUpOpened} signUpClose={signUpClose} handleSignUp={handleSignUp} />
       </Modal>
 
       {/* 찾기 모달 */}
-      <Modal opened={findAccountOpened} onClose={findAccountClose} title={'아이디 / 비밀번호 찾기'}>
+      <Modal opened={findAccountOpened} onClose={findAccountClose} title={'아이디 / 비밀번호 찾기'} centered>
         <FindAccount signInOpened={signInOpened} signInClose={signInClose} handleSignIn={handleSignIn} />
       </Modal>
 
