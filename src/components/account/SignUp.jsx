@@ -1,30 +1,10 @@
 import React from 'react'
-import { useDisclosure } from '@mantine/hooks'
 
-import { useToggle, upperFirst } from '@mantine/hooks'
 import { useForm } from '@mantine/form'
-import {
-  TextInput,
-  PasswordInput,
-  Text,
-  Paper,
-  Group,
-  PaperProps,
-  Button,
-  Divider,
-  Flex,
-  Checkbox,
-  Anchor,
-  Stack,
-  Modal,
-  ScrollArea,
-} from '@mantine/core'
+import { TextInput, PasswordInput, Text, Paper, Button, Flex, Checkbox, Stack } from '@mantine/core'
+import Terms from './Terms'
 
 const SignUp = ({ props }) => {
-  const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
-  const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
-
-  const [type, toggle] = useToggle(['signIn', 'signUp'])
   const form = useForm({
     initialValues: {
       email: '',
@@ -39,12 +19,6 @@ const SignUp = ({ props }) => {
     },
   })
 
-  const handleSignIn = () => {
-    signInOpen()
-  }
-  const handleSignUp = () => {
-    signUpOpen()
-  }
   return (
     <>
       {/* 로그인 모달 */}
@@ -74,10 +48,11 @@ const SignUp = ({ props }) => {
               />
               <Button radius="md">확인</Button>
             </Flex>
+            {true && <Text>상태값 표시 (인증 / 미인증 문구)</Text>}
 
             <PasswordInput
               required
-              label="Password"
+              label="비밀번호"
               placeholder="비밀번호 입력"
               value={form.values.password}
               onChange={event => form.setFieldValue('password', event.currentTarget.value)}
@@ -88,11 +63,12 @@ const SignUp = ({ props }) => {
             <PasswordInput
               required
               placeholder="비밀번호 확인"
-              value={form.values.password}
-              onChange={event => form.setFieldValue('password', event.currentTarget.value)}
+              value={form.values.verify}
+              onChange={event => form.setFieldValue('verify', event.currentTarget.value)}
               error={form.errors.password && 'Password should include at least 6 characters'}
               radius="md"
             />
+            {true && <Text>비밀번호 일치인지 확인 문구</Text>}
 
             <TextInput
               label="소속"
@@ -113,14 +89,15 @@ const SignUp = ({ props }) => {
                 value={form.values.validate}
                 onChange={event => form.setFieldValue('validate', event.currentTarget.value)}
                 radius="md"
-                w={'75%'}
+                w={'80%'}
               />
               <Button radius="md">중복 확인</Button>
             </Flex>
+            {true && <Text>닉네임 중복체크</Text>}
 
             <Flex align="center" justify={'space-between'}>
               <TextInput
-                placeholder="아이디 (이메일) 입력"
+                placeholder="휴대폰번호"
                 value={form.values.email}
                 onChange={event => form.setFieldValue('email', event.currentTarget.value)}
                 error={form.errors.email && '이메일이 올바르지 않습니다.'}
@@ -140,8 +117,8 @@ const SignUp = ({ props }) => {
               />
               <Button radius="md">확인</Button>
             </Flex>
-            <ScrollArea offsetScrollbars="y">asd</ScrollArea>
-
+            {true && <Text>휴대폰번호 인증/미인증 문구</Text>}
+            <Terms />
             <Checkbox
               label="개인정보 수집 이용 동의"
               checked={form.values.terms}
@@ -151,21 +128,8 @@ const SignUp = ({ props }) => {
 
           <Flex direction={'column'} justify="space-between" mt="xl">
             <Button type="submit" radius="md">
-              {type === 'signUp' ? '회원가입' : '로그인'}
+              회원가입
             </Button>
-            <Group justify="space-between" pt={10}>
-              <Group justify="flex-start" gap={5}>
-                <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
-                  아이디 찾기
-                </Anchor>
-                <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
-                  비밀번호 찾기
-                </Anchor>
-              </Group>
-              <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
-                회원가입
-              </Anchor>
-            </Group>
           </Flex>
         </form>
       </Paper>
