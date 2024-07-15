@@ -3,7 +3,7 @@ import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react'
 import classes from './Tab.module.css'
 
 const Tab = props => {
-  const { contents = [], defaultValue = '', setTabValue, style } = props
+  const { contents = [], defaultValue = '', setTabValue, additionalData = null, style } = props
 
   return (
     <Tabs variant="unstyled" defaultValue={defaultValue} classNames={classes} style={style}>
@@ -15,7 +15,7 @@ const Tab = props => {
             onClick={() => setTabValue(tab.value)}
             key={`${tab.value}_${index}`}
           >
-            {tab.title}
+            {tab.title} {additionalData ? `(${additionalData[tab.value]})` : null}
           </Tabs.Tab>
         ))}
       </Tabs.List>
