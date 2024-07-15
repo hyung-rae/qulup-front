@@ -2,7 +2,7 @@ import { Box, Checkbox, Flex, Group, Image, NumberInput, Paper, Text, Title } fr
 
 const CartItem = () => {
   return (
-    <Paper radius={'md'} shadow="lg" p="sm" bg={'white'}>
+    <Paper radius={'md'} shadow="xs" p="sm" bg={'white'}>
       <Group align="center" gap={30}>
         <Checkbox defaultChecked size="sm" style={{ alignSelf: 'flex-start' }} />
         <Image
@@ -12,7 +12,7 @@ const CartItem = () => {
           fit="fill"
           src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-9.png"
         />
-        <Flex direction={'column'}>
+        <Flex direction={'column'} gap={10}>
           <Box maw={400}>
             <Title order={4} lineClamp={1}>
               상품 문제 이름
@@ -28,7 +28,7 @@ const CartItem = () => {
               판매 가격
             </Title>
           </Box>
-          <NumberInput w={100} step={1} min={0} max={20} defaultValue={1} size="xs" />
+          {/* <NumberInput w={100} step={1} min={0} max={20} defaultValue={1} size="xs" /> */}
         </Flex>
       </Group>
     </Paper>
