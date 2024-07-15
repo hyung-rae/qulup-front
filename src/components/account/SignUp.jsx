@@ -22,7 +22,6 @@ const SignUp = ({ props }) => {
   return (
     <>
       {/* 로그인 모달 */}
-
       <Paper radius="md" p="sm" {...props}>
         <form onSubmit={form.onSubmit(() => {})}>
           <Stack>
