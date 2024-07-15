@@ -8,7 +8,7 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(true)
 
   return (
-    <Mantine.Group h="100%" px="xl" justify="space-around" gap={5}>
+    <Mantine.Group h="100%" justify="space-between" align="center" p={'md'} px={150}>
       <Mantine.Group>
         <Mantine.Image
           radius="md"
@@ -22,36 +22,25 @@ const Header = () => {
 
       <Mantine.Group>
         {isLogin ? (
-          <Mantine.Group gap={5}>
-            <Mantine.Button
-              rightSection={<IconArrowRight style={{ width: '70%', height: '70%' }} stroke={2} />}
-              size="sm"
-              variant="gradient"
-              gradient={{ from: 'black', to: 'dark', deg: 10 }}
-              c={'white'}
-              mr={'xl'}
-            >
-              Math Gemstone
-            </Mantine.Button>
-
-            <Mantine.ActionIcon variant="subtle" size="lg" radius={'xl'} c={'white'}>
+          <Mantine.Group gap={15}>
+            <Mantine.ActionIcon variant="outline" size="md">
               <IconUser style={{ width: '70%', height: '70%' }} stroke={1.5} />
             </Mantine.ActionIcon>
 
-            <Mantine.ActionIcon variant="subtle" size="lg" radius={'xl'} c={'white'}>
-              <IconShoppingBag style={{ width: '70%', height: '70%' }} stroke={1.5} />
+            <Mantine.ActionIcon variant="outline" size="md">
+              <IconShoppingBag style={{ width: '70%', height: '70%' }} stroke={1.5} onClick={() => push('/cart')} />
             </Mantine.ActionIcon>
 
-            <Mantine.ActionIcon variant="subtle" size="lg" radius={'xl'} c={'white'} onClick={() => setIsLogin(false)}>
+            <Mantine.ActionIcon variant="outline" size="md" onClick={() => setIsLogin(false)}>
               <IconLogout style={{ width: '70%', height: '70%' }} stroke={1.5} />
             </Mantine.ActionIcon>
           </Mantine.Group>
         ) : (
           <>
-            <Mantine.Button variant="subtle" c={'white'} size="sm" onClick={() => setIsLogin(true)}>
+            <Mantine.Button variant="subtle" size="compact-sm" onClick={() => setIsLogin(true)}>
               로그인
             </Mantine.Button>
-            <Mantine.Button variant="filled" size="sm">
+            <Mantine.Button variant="outline" size="compact-sm">
               회원가입
             </Mantine.Button>
           </>

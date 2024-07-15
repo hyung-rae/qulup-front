@@ -7,7 +7,7 @@ import Layout from '@/src/components/layout/Layout'
 
 const App = ({ Component, pageProps }) => {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} defaultColorScheme="dark">
       <Layout>
         <Component {...pageProps} />
       </Layout>
