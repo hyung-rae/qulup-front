@@ -1,21 +1,17 @@
-import { AppShell, Group, Image, rem } from '@mantine/core'
+import { AppShell, rem } from '@mantine/core'
 import { useHeadroom } from '@mantine/hooks'
-import Header from './header/Header'
 import Footer from './footer/Footer'
-import { useRouter } from 'next/router'
+import Header from './header/Header'
 
 const Layout = ({ children }) => {
-  const { pathname } = useRouter()
   const pinned = useHeadroom({ fixedAt: 120 })
 
   return (
-    <AppShell header={{ height: 70, collapsed: !pinned, offset: false }} padding="md">
-      <AppShell.Header bg={'black'} withBorder={false}>
+    <AppShell header={{ height: 60, collapsed: !pinned, offset: false }}>
+      <AppShell.Header>
         <Header />
       </AppShell.Header>
-      <AppShell.Main bg={pathname === '/' ? '#191919' : 'white'} pt={`calc(${rem(70)} + var(--mantine-spacing-md))`}>
-        {children}
-      </AppShell.Main>
+      <AppShell.Main pt={`calc(${rem(60)}`}>{children}</AppShell.Main>
       <Footer />
     </AppShell>
   )
