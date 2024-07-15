@@ -1,83 +1,161 @@
-import React, { useState, useRef } from 'react'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
+'use client'
+import { useEffect, useRef } from 'react'
 
-const MyEditor = props => {
-  const { editorHtml, setEditorHtml } = props
+// style
+import '@mantine/tiptap/styles.css'
 
-  const quillRef = useRef(null)
+// lib
+import { useEditor } from '@tiptap/react'
+import { RichTextEditor, Link } from '@mantine/tiptap'
+import Highlight from '@tiptap/extension-highlight'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+import TextAlign from '@tiptap/extension-text-align'
+import Superscript from '@tiptap/extension-superscript'
+import SubScript from '@tiptap/extension-subscript'
+import Image from '@tiptap/extension-image'
 
-  const handleChange = (content, delta, source, editor) => {
-    setEditorHtml(editor.getHTML())
+// icon
+import { IconPhoto } from '@tabler/icons-react'
+
+const content = ''
+
+const TextEditor = ({ setEditorHtml }) => {
+  const fileInputRef = useRef(null)
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Underline,
+      Link,
+      Superscript,
+      SubScript,
+      Highlight,
+      TextAlign.configure({ types: ['heading', 'paragraph'] }),
+      Image,
+    ],
+    content,
+    onUpdate: ({ editor }) => {
+      setEditorHtml(editor.getHTML())
+    },
+  })
+
+  useEffect(() => {
+    if (editor) {
+      setEditorHtml(editor.getHTML())
+    }
+  }, [editor, setEditorHtml])
+
+  const addImage = () => {
+    fileInputRef.current.click()
   }
 
-  const insertImage = event => {
+  const handleFileChange = async event => {
     const file = event.target.files[0]
-    const reader = new FileReader()
-    reader.onload = e => {
-      const quill = quillRef.current.getEditor()
-      const range = quill.getSelection()
-      quill.insertEmbed(range.index, 'image', e.target.result)
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        // TODO: 서버에 이미지를 업로드하고 URL을 받아오는 로직
+        // const formData = new FormData();
+        // formData.append('file', file);
+        // const response = await fetch('/upload', {
+        //   method: 'POST',
+        //   body: formData,
+        // });
+        // const data = await response.json();
+        // const imageUrl = data.url;
+
+        // 임시로, Base64 형식을 사용하여 이미지를 에디터에 추가
+        const base64 = reader.result
+        editor.chain().focus().setImage({ src: base64 }).run()
+
+        // TODO: 추후 imageURL을 받아와서, 위 base64버전을 제거하고 아래 주석을 해제
+        // editor.chain().focus().setImage({ src: imageUrl }).run()
+      }
+      reader.readAsDataURL(file)
     }
-    reader.readAsDataURL(file)
   }
 
   return (
     <>
-      <div>
-        <ReactQuill
-          ref={quillRef}
-          value={editorHtml}
-          onChange={handleChange}
-          modules={MyEditor.modules}
-          formats={MyEditor.formats}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={insertImage}
-          style={{ display: 'none' }}
-          ref={input => input && (quillRef.current = input)}
-        />
-      </div>
+      <RichTextEditor editor={editor}>
+        <RichTextEditor.Toolbar sticky stickyOffset={60}>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Bold />
+            <RichTextEditor.Italic />
+            <RichTextEditor.Underline />
+            <RichTextEditor.Strikethrough />
+            <RichTextEditor.ClearFormatting />
+            <button type="button" className="imageUploadButton" onClick={addImage}>
+              <IconPhoto width={16} height={16} />
+            </button>
+            <RichTextEditor.Highlight />
+            {/* <RichTextEditor.Code /> */}
+          </RichTextEditor.ControlsGroup>
+
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.H1 />
+            <RichTextEditor.H2 />
+            <RichTextEditor.H3 />
+            <RichTextEditor.H4 />
+          </RichTextEditor.ControlsGroup>
+
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Blockquote />
+            <RichTextEditor.Hr />
+            <RichTextEditor.BulletList />
+            <RichTextEditor.OrderedList />
+            <RichTextEditor.Subscript />
+            <RichTextEditor.Superscript />
+          </RichTextEditor.ControlsGroup>
+
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Link />
+            <RichTextEditor.Unlink />
+          </RichTextEditor.ControlsGroup>
+
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.AlignLeft />
+            <RichTextEditor.AlignCenter />
+            <RichTextEditor.AlignJustify />
+            <RichTextEditor.AlignRight />
+          </RichTextEditor.ControlsGroup>
+
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Undo />
+            <RichTextEditor.Redo />
+          </RichTextEditor.ControlsGroup>
+        </RichTextEditor.Toolbar>
+
+        <RichTextEditor.Content />
+        <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
+      </RichTextEditor>
       <style>
-        {`.ql-container {
-            min-height: 200px;
-            max-height: 200px;
-            overflow: scroll;
-          }`}
+        {`
+        .ProseMirror {
+          min-height: 200px;
+          max-height: 400px;
+          overflow: scroll;
+        }
+        .imageUploadButton {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: var(--mantine-color-white);
+          min-width: calc(1.625rem* var(--mantine-scale));
+          height: calc(1.625rem* var(--mantine-scale));
+          border: calc(0.0625rem* var(--mantine-scale)) solid;
+          border-color: var(--mantine-color-gray-4);
+          border-right: none;
+          cursor: pointer;
+        }
+        .imageUploadButton:hover {
+          background-color: var(--mantine-color-gray-0);
+        }
+      `}
       </style>
     </>
   )
 }
 
-MyEditor.modules = {
-  toolbar: {
-    container: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-      ['link', 'image'],
-      ['clean'],
-    ],
-  },
-}
-
-MyEditor.formats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'indent',
-  'link',
-  'image',
-]
-
-export default MyEditor
+export default TextEditor

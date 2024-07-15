@@ -10,18 +10,28 @@
   },
   "dependencies": {
     "@mantine/carousel": "^7.11.1",
-    "@mantine/core": "^7.11.1",
+    "@mantine/core": "^7.11.2",
     "@mantine/dates": "^7.11.1",
     "@mantine/form": "^7.11.1",
-    "@mantine/hooks": "^7.11.1",
+    "@mantine/hooks": "^7.11.2",
+    "@mantine/tiptap": "^7.11.2",
     "@mantinex/mantine-logo": "^1.0.1",
     "@tabler/icons-react": "^3.10.0",
+    "@tiptap/extension-highlight": "^2.5.0",
+    "@tiptap/extension-image": "^2.5.0",
+    "@tiptap/extension-link": "^2.5.0",
+    "@tiptap/extension-subscript": "^2.5.0",
+    "@tiptap/extension-superscript": "^2.5.0",
+    "@tiptap/extension-text-align": "^2.5.0",
+    "@tiptap/extension-underline": "^2.5.0",
+    "@tiptap/pm": "^2.5.0",
+    "@tiptap/react": "^2.5.0",
+    "@tiptap/starter-kit": "^2.5.0",
     "dayjs": "^1.11.11",
     "embla-carousel-react": "^8.1.6",
     "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18",
-    "react-quill": "^2.0.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "prettier": "3.3.2"
