@@ -125,7 +125,7 @@ const Service = ({ props }) => {
             <FileInput w={'100%'} label="파일 업로드" placeholder="클릭하여 파일을 업로드" multiple />
           </Group>
           <Box>
-            <TextEditor editorHtml={editorHtml} setEditorHtml={setEditorHtml} />
+            <TextEditor setEditorHtml={setEditorHtml} />
           </Box>
           <Group w={'100%'} justify="center">
             <Button w={'240px'} onClick={handlePostData}>
