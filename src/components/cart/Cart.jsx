@@ -1,50 +1,75 @@
-import { useState } from 'react'
-import {
-  Container,
-  Table,
-  Checkbox,
-  ScrollArea,
-  Group,
-  Avatar,
-  Text,
-  rem,
-  Box,
-  Flex,
-  Title,
-  Paper,
-} from '@mantine/core'
-
-import { data } from './dummy'
-import CartReceipt from './CartReceipt'
+import { Box, Button, Checkbox, Container, Divider, Flex, Group, Paper, Text, Title } from '@mantine/core'
+import { IconPlus, IconMinus, IconEqual } from '@tabler/icons-react'
 import CartItem from './CartItem'
+import { useDisclosure } from '@mantine/hooks'
+import Order from '../order/Order'
 
 const Cart = () => {
-  const [selection, setSelection] = useState(['1'])
-  const toggleRow = id =>
-    setSelection(current => (current.includes(id) ? current.filter(item => item !== id) : [...current, id]))
-  const toggleAll = () => setSelection(current => (current.length === data.length ? [] : data.map(item => item.id)))
-
+  const [opened, { open, close }] = useDisclosure(false)
   return (
-    <Container fluid bg={'gray.1'} p={'lg'}>
-      <Group w={'100%'} h={'100%'} gap={50} align="flex-start" maw={'1200px'} mx={'auto'} mih={'100vh'}>
-        <Flex direction={'column'} gap={30} style={{ flex: 1 }}>
-          <Paper radius={'md'} shadow="xs" p="sm" bg={'white'}>
-            <Group align="center" gap={30}>
-              <Checkbox defaultChecked size="sm" />
-              <Title order={4} lineClamp={1}>
-                총 3 상품
-              </Title>
-            </Group>
-          </Paper>
+    <Container bg="gray.3" fluid mih={'100vh'} p="xl">
+      {/* 주문서 모달 */}
+      <Order opened={opened} onClose={close} />
+      <Paper maw={1000} m="auto" shadow="xs" withBorder p="xl">
+        <Box>
+          <Divider
+            my="xs"
+            label={
+              <Group>
+                <Checkbox defaultChecked indeterminate color="dark" />
+                <Title order={4}>총 5개의 상품</Title>
+                <Button size="sm" color="dark" onClick={open}>
+                  구매하기
+                </Button>
+              </Group>
+            }
+            labelPosition="left"
+          />
+          <Group p="xl" justify="center" gap={30}>
+            <Flex direction="column" align="center">
+              <Text fw={700}>선택상품금액</Text>
+              <Text>
+                <Text component="span" fw={700} c="dark" mr={5}>
+                  5,000
+                </Text>
+                원
+              </Text>
+            </Flex>
+            <IconPlus size={20} color="gray" />
+            <Flex direction="column" align="center">
+              <Text fw={700}>총 배송비</Text>
+              <Text>
+                <Text component="span" fw={700} c="dark" mr={5}>
+                  3,000
+                </Text>
+                원
+              </Text>
+            </Flex>
+            <IconMinus size={20} color="red" />
+            <Flex direction="column" align="center">
+              <Text fw={700}>할인금액</Text>
+              <Text>
+                <Text component="span" fw={700} c="red" mr={5}>
+                  1,000
+                </Text>
+                원
+              </Text>
+            </Flex>
+            <IconEqual size={20} color="gray" />
+            <Title order={3} c="teal">
+              7,000 원
+            </Title>
+          </Group>
+        </Box>
 
-          {/* 장바구니 리스트 */}
-          {new Array(3).fill(1).map((_, i) => (
-            <CartItem key={i} />
-          ))}
+        <Flex direction="column">
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
         </Flex>
-        {/* 영수증 */}
-        <CartReceipt />
-      </Group>
+      </Paper>
     </Container>
   )
 }

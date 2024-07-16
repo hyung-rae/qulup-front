@@ -4,6 +4,7 @@ import {
   Center,
   CloseButton,
   Container,
+  Divider,
   Flex,
   Group,
   Image,
@@ -28,11 +29,15 @@ const Notice = () => {
         </Modal.Content>
       </Modal.Root>
 
-      <Center mb={20}>
-        <Title order={3} c="white" fw={700}>
-          공지사항 / 이벤트
-        </Title>
-      </Center>
+      <Divider
+        my="lg"
+        label={
+          <Title order={3} c="white" fw={700}>
+            공지사항 / 이벤트
+          </Title>
+        }
+        labelPosition="center"
+      />
       <ScrollArea maw={800} h={250} m="auto" offsetScrollbars scrollbarSize={8}>
         <Flex direction="column" p="xl" gap={10}>
           {new Array(5).fill(1).map((_, i) => (
