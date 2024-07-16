@@ -1,62 +1,72 @@
-import { ActionIcon, Container, Group, rem, Text } from '@mantine/core'
-import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons-react'
-import classes from './Footer.module.css'
-
-const data = [
-  {
-    title: 'About',
-    links: [
-      { label: 'Features', link: '#' },
-      { label: 'Pricing', link: '#' },
-      { label: 'Support', link: '#' },
-      { label: 'Forums', link: '#' },
-    ],
-  },
-  {
-    title: 'Project',
-    links: [
-      { label: 'Contribute', link: '#' },
-      { label: 'Media assets', link: '#' },
-      { label: 'Changelog', link: '#' },
-      { label: 'Releases', link: '#' },
-    ],
-  },
-  {
-    title: 'Community',
-    links: [
-      { label: 'Join Discord', link: '#' },
-      { label: 'Follow on Twitter', link: '#' },
-      { label: 'Email newsletter', link: '#' },
-      { label: 'GitHub discussions', link: '#' },
-    ],
-  },
-]
+import { Box, Center, Container, Flex, Group, Image, Text } from '@mantine/core'
 
 const Footer = () => {
   return (
-    <footer className={classes.footer}>
-      <Container className={classes.inner}>
-        <div className={classes.logo}>
-          <Text size="xs" c="dimmed" className={classes.description}>
-            Build fully functional accessible web applications faster than ever
-          </Text>
-        </div>
-      </Container>
-      <Container className={classes.afterFooter}>
-        <Text c="dimmed" size="sm">
-          © 2020 QULUP All rights reserved.
-        </Text>
-
-        <Group gap={0} className={classes.social} justify="flex-end" wrap="nowrap">
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandTwitter style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandYoutube style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandInstagram style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-          </ActionIcon>
+    <footer>
+      <Container fluid bg={'dark.7'} p="xl">
+        <Group align="flex-start" justify="space-around">
+          <Flex direction="column" gap={5}>
+            <Image radius="md" w={80} src="/logo.png" alt={'logo'} />
+            <Text c="white" fw={700} size="sm" mt={15}>
+              (주)퀄럽
+            </Text>
+            <Text c="gray.5" size="xs">
+              Specialized in Mathematical contents
+            </Text>
+            <Text c="gray.5" fw={700} size="xs" mt={10}>
+              © 2024 QULUP All rights reserved.
+            </Text>
+          </Flex>
+          <Flex direction="column" gap={5}>
+            <Group justify="space-between">
+              <Text c="gray.5" size="xs">
+                대표자
+              </Text>
+              <Text c="white" fw={700} size="xs">
+                진주환
+              </Text>
+            </Group>
+            <Group justify="space-between">
+              <Text c="gray.5" size="xs">
+                개인정보 보호 책임자
+              </Text>
+              <Text c="white" fw={700} size="xs">
+                진주환
+              </Text>
+            </Group>
+            <Group justify="space-between">
+              <Text c="gray.5" size="xs">
+                사업자등록번호
+              </Text>
+              <Text c="white" fw={700} size="xs">
+                285-88-02854
+              </Text>
+            </Group>
+            <Group justify="space-between">
+              <Text c="gray.5" size="xs">
+                전화번호
+              </Text>
+              <Text c="white" fw={700} size="xs">
+                010-6600-2694
+              </Text>
+            </Group>
+            <Group justify="space-between">
+              <Text c="gray.5" size="xs">
+                통신판매업
+              </Text>
+              <Text c="white" fw={700} size="xs">
+                2022-서울강남-03692
+              </Text>
+            </Group>
+            <Group justify="space-between">
+              <Text c="gray.5" size="xs">
+                E-mail
+              </Text>
+              <Text c="white" fw={700} size="xs">
+                ceo@qulup.co.kr
+              </Text>
+            </Group>
+          </Flex>
         </Group>
       </Container>
     </footer>

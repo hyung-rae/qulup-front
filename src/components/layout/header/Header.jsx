@@ -1,52 +1,108 @@
 import * as Mantine from '@mantine/core'
+import { IconShoppingCart, IconUserCog, IconNews } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { IconShoppingBag, IconLogout, IconArrowRight, IconUser } from '@tabler/icons-react'
+import classes from './Header.module.css'
 
 const Header = () => {
   const { push } = useRouter()
-  const [isLogin, setIsLogin] = useState(true)
+  const [isLogin, setIsLogin] = useState(false)
 
   return (
-    <Mantine.Group h="100%" justify="space-between" align="center" p={'md'} px={150}>
-      <Mantine.Group>
+    <Mantine.Container fluid h={'100%'} bg={'dark'}>
+      <Mantine.Group justify="space-around" h={'100%'}>
         <Mantine.Image
           radius="md"
+          w={'auto'}
           h={20}
           src="/logo.png"
           style={{ cursor: 'pointer' }}
           onClick={() => push('/')}
           alt={'logo'}
         />
-      </Mantine.Group>
 
-      <Mantine.Group>
+        {/* 로그인/유저 정보 */}
         {isLogin ? (
-          <Mantine.Group gap={15}>
-            <Mantine.ActionIcon variant="outline" size="md">
-              <IconUser style={{ width: '70%', height: '70%' }} stroke={1.5} />
-            </Mantine.ActionIcon>
+          <Mantine.Flex direction="column" gap={15} pt="sm">
+            <Mantine.Group gap={30}>
+              <Mantine.Group gap={10}>
+                <Mantine.Text fz="sm" fw="bolder" c="white">
+                  우형래 님
+                </Mantine.Text>
+                <Mantine.Text fz="sm" fw="bolder" c="white">
+                  280 P
+                </Mantine.Text>
+              </Mantine.Group>
 
-            <Mantine.ActionIcon variant="outline" size="md">
-              <IconShoppingBag style={{ width: '70%', height: '70%' }} stroke={1.5} onClick={() => push('/cart')} />
-            </Mantine.ActionIcon>
+              <Mantine.Group gap={5}>
+                <Mantine.Button color="dark" size="compact-xs">
+                  고객센터
+                </Mantine.Button>
+                <Mantine.Button variant="default" size="compact-xs" onClick={() => setIsLogin(false)}>
+                  로그아웃
+                </Mantine.Button>
+              </Mantine.Group>
+            </Mantine.Group>
 
-            <Mantine.ActionIcon variant="outline" size="md" onClick={() => setIsLogin(false)}>
-              <IconLogout style={{ width: '70%', height: '70%' }} stroke={1.5} />
-            </Mantine.ActionIcon>
-          </Mantine.Group>
+            <Mantine.Group justify="flex-end" gap={10}>
+              <Mantine.Tooltip
+                label={<Mantine.Text fz={10}>Math Gemstone</Mantine.Text>}
+                position="bottom"
+                offset={0}
+                color="dark.9"
+              >
+                <Mantine.Indicator disabled>
+                  <Mantine.ActionIcon variant="transparent" color="dark.9" c="white" size="md" radius="md">
+                    <IconNews style={{ width: '80%', height: '80%' }} stroke={2} />
+                  </Mantine.ActionIcon>
+                </Mantine.Indicator>
+              </Mantine.Tooltip>
+
+              <Mantine.Tooltip
+                label={<Mantine.Text fz={10}>마이페이지</Mantine.Text>}
+                position="bottom"
+                offset={0}
+                color="dark.9"
+              >
+                <Mantine.Indicator disabled>
+                  <Mantine.ActionIcon variant="transparent" color="dark.9" c="white" size="md" radius="md">
+                    <IconUserCog style={{ width: '80%', height: '80%' }} stroke={2} />
+                  </Mantine.ActionIcon>
+                </Mantine.Indicator>
+              </Mantine.Tooltip>
+
+              <Mantine.Tooltip
+                label={<Mantine.Text fz={10}>장바구니</Mantine.Text>}
+                position="bottom"
+                offset={0}
+                color="dark.9"
+                onClick={() => push('/cart')}
+              >
+                <Mantine.Indicator color="red" size={5} offset={4}>
+                  <Mantine.ActionIcon variant="transparent" color="dark.9" c="white" size="md" radius="md">
+                    <IconShoppingCart style={{ width: '80%', height: '80%' }} stroke={2} />
+                  </Mantine.ActionIcon>
+                </Mantine.Indicator>
+              </Mantine.Tooltip>
+            </Mantine.Group>
+          </Mantine.Flex>
         ) : (
-          <>
-            <Mantine.Button variant="subtle" size="compact-sm" onClick={() => setIsLogin(true)}>
+          <Mantine.Group gap={15}>
+            <Mantine.Button
+              size="compact-md"
+              variant="transparent"
+              className={classes.label}
+              onClick={() => setIsLogin(true)}
+            >
               로그인
             </Mantine.Button>
-            <Mantine.Button variant="outline" size="compact-sm">
+            <Mantine.Button size="compact-md" variant="default">
               회원가입
             </Mantine.Button>
-          </>
+          </Mantine.Group>
         )}
       </Mantine.Group>
-    </Mantine.Group>
+    </Mantine.Container>
   )
 }
 

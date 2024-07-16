@@ -7,11 +7,11 @@ const Layout = ({ children }) => {
   const pinned = useHeadroom({ fixedAt: 120 })
 
   return (
-    <AppShell header={{ height: 60, collapsed: !pinned, offset: false }}>
-      <AppShell.Header>
+    <AppShell header={{ height: 90, collapsed: !pinned, offset: false }}>
+      <AppShell.Header withBorder={false}>
         <Header />
       </AppShell.Header>
-      <AppShell.Main pt={`calc(${rem(60)}`}>{children}</AppShell.Main>
+      <AppShell.Main pt={90}>{children}</AppShell.Main>
       <Footer />
     </AppShell>
   )
