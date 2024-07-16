@@ -45,7 +45,7 @@ const CartItem = () => {
         </Text>
       </Flex>
 
-      <NumberInput size="xs" min={1} max={100} defaultValue={1} m="auto" style={{ alignSelf: 'center' }} />
+      <NumberInput size="xs" min={1} max={100} defaultValue={1} m="auto" style={{ alignSelf: 'center' }} suffix="개" />
 
       <CloseButton variant="transparent" size="lg" pos="absolute" top={5} right={5} />
     </div>

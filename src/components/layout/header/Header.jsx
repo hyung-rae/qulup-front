@@ -52,7 +52,14 @@ const Header = () => {
                 color="dark.9"
               >
                 <Mantine.Indicator disabled>
-                  <Mantine.ActionIcon variant="transparent" color="dark.9" c="white" size="md" radius="md">
+                  <Mantine.ActionIcon
+                    variant="transparent"
+                    color="dark.9"
+                    c="white"
+                    size="md"
+                    radius="md"
+                    onClick={() => push('/gemstone')}
+                  >
                     <IconNews style={{ width: '80%', height: '80%' }} stroke={2} />
                   </Mantine.ActionIcon>
                 </Mantine.Indicator>
@@ -76,10 +83,16 @@ const Header = () => {
                 position="bottom"
                 offset={0}
                 color="dark.9"
-                onClick={() => push('/cart')}
               >
                 <Mantine.Indicator color="red" size={5} offset={4}>
-                  <Mantine.ActionIcon variant="transparent" color="dark.9" c="white" size="md" radius="md">
+                  <Mantine.ActionIcon
+                    variant="transparent"
+                    color="dark.9"
+                    c="white"
+                    size="md"
+                    radius="md"
+                    onClick={() => push('/cart')}
+                  >
                     <IconShoppingCart style={{ width: '80%', height: '80%' }} stroke={2} />
                   </Mantine.ActionIcon>
                 </Mantine.Indicator>
