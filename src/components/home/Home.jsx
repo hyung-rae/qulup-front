@@ -1,14 +1,18 @@
 import { Container } from '@mantine/core'
-import HeroSection from './hero/HeroSection'
-import ProductSection from './product/ProductSection'
-import AboutSection from './about/AboutSection'
+import Hero from './hero-section/Hero'
+import About from './about-section/About'
+import OrderSection from './order-section/OrderSection'
+import Project from './project-section/Project'
+import Notice from './notice-section/Notice'
 
 const Home = () => {
   return (
-    <Container fluid p={0}>
-      <HeroSection />
-      <AboutSection />
-      <ProductSection />
+    <Container fluid p={0} bg="dark">
+      <Hero />
+      <About />
+      <OrderSection />
+      <Project />
+      <Notice />
     </Container>
   )
 }

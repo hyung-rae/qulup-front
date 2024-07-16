@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  background-image: url('/hero-section.jpg');
+  background-size: cover;
+}
+
+.title {
+  position: absolute;
+  z-index: 99;
+  top: 30%;
+  color: white;
+  font-size: 60px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.sub_title {
+  position: absolute;
+  z-index: 99;
+  top: 45%;
+}
