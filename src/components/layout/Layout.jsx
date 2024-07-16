@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
 
   return (
     <AppShell header={{ height: 90, collapsed: !pinned, offset: false }}>
-      <AppShell.Header withBorder={false}>
+      <AppShell.Header withBorder={true}>
         <Header />
       </AppShell.Header>
       <AppShell.Main pt={90}>{children}</AppShell.Main>

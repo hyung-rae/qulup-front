@@ -1,37 +1,54 @@
-import { Box, Checkbox, Flex, Group, Image, NumberInput, Paper, Text, Title } from '@mantine/core'
+import { useState } from 'react'
+import {
+  UnstyledButton,
+  Checkbox,
+  Text,
+  Image,
+  AspectRatio,
+  Flex,
+  CloseButton,
+  Button,
+  NumberInput,
+} from '@mantine/core'
+import classes from './Cart.module.css'
 
 const CartItem = () => {
+  const [value, onChange] = useState(true)
+
   return (
-    <Paper radius={'md'} shadow="xs" p="sm" bg={'white'}>
-      <Group align="center" gap={30}>
-        <Checkbox defaultChecked size="sm" style={{ alignSelf: 'flex-start' }} />
-        <Image
-          radius="md"
-          w={100}
-          h={100}
-          fit="fill"
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-9.png"
-        />
-        <Flex direction={'column'} gap={10}>
-          <Box maw={400}>
-            <Title order={4} lineClamp={1}>
-              상품 문제 이름
-            </Title>
-          </Box>
-          <Box maw={400}>
-            <Title order={6} lineClamp={1}>
-              가격
-            </Title>
-          </Box>
-          <Box maw={400}>
-            <Title order={6} lineClamp={1}>
-              판매 가격
-            </Title>
-          </Box>
-          {/* <NumberInput w={100} step={1} min={0} max={20} defaultValue={1} size="xs" /> */}
-        </Flex>
-      </Group>
-    </Paper>
+    <div className={classes.button}>
+      <Checkbox
+        color="dark"
+        checked={value}
+        onClick={() => onChange(!value)}
+        tabIndex={-1}
+        mr="xl"
+        styles={{ input: { cursor: 'pointer' } }}
+      />
+
+      <AspectRatio ratio={100 / 100} maw={100} mr="md">
+        <img src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-5.png" alt="Panda" />
+      </AspectRatio>
+
+      <Flex h={100} direction="column" justify="space-between">
+        <div>
+          <Text fw={700} mb={7} lh={1}>
+            확률과 통계 & 미적분
+          </Text>
+          <Text fz="sm" c="dimmed">
+            모의고사 1세트 (미적분 & 확통) 제작 핵심문항 세트제작
+          </Text>
+        </div>
+
+        <Text fw={700} fz="md" c="dark">
+          30,000 원
+        </Text>
+      </Flex>
+
+      <NumberInput size="xs" min={1} max={100} defaultValue={1} m="auto" style={{ alignSelf: 'center' }} />
+
+      <CloseButton variant="transparent" size="lg" pos="absolute" top={5} right={5} />
+    </div>
   )
 }
 
