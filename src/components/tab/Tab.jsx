@@ -10,6 +10,7 @@ const Tab = props => {
       <Tabs.List grow>
         {contents.map((tab, index) => (
           <Tabs.Tab
+            mih={50}
             value={tab.value}
             leftSection={tab.icon}
             onClick={() => setTabValue(tab.value)}

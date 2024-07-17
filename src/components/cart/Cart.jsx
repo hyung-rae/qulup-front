@@ -7,7 +7,7 @@ import Order from '../order/Order'
 const Cart = () => {
   const [opened, { open, close }] = useDisclosure(false)
   return (
-    <Container bg="gray.3" fluid mih={'100vh'} p="xl">
+    <Container bg="dark.9" fluid mih={'100vh'} p="xl">
       {/* 주문서 모달 */}
       <Order opened={opened} onClose={close} />
       <Paper maw={1000} m="auto" shadow="xs" withBorder p="xl">
@@ -29,7 +29,7 @@ const Cart = () => {
             <Flex direction="column" align="center">
               <Text fw={700}>선택상품금액</Text>
               <Text>
-                <Text component="span" fw={700} c="dark" mr={5}>
+                <Text component="span" fw={700} c="dark.1" mr={5}>
                   5,000
                 </Text>
                 원
@@ -39,7 +39,7 @@ const Cart = () => {
             <Flex direction="column" align="center">
               <Text fw={700}>총 배송비</Text>
               <Text>
-                <Text component="span" fw={700} c="dark" mr={5}>
+                <Text component="span" fw={700} c="dark.1" mr={5}>
                   3,000
                 </Text>
                 원

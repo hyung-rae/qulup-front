@@ -35,12 +35,12 @@ const CartItem = () => {
           <Text fw={700} mb={7} lh={1}>
             확률과 통계 & 미적분
           </Text>
-          <Text fz="sm" c="dimmed">
+          <Text fz="sm" c="white">
             모의고사 1세트 (미적분 & 확통) 제작 핵심문항 세트제작
           </Text>
         </div>
 
-        <Text fw={700} fz="md" c="dark">
+        <Text fw={700} fz="md" c="white">
           30,000 원
         </Text>
       </Flex>

@@ -3,12 +3,12 @@ import React from 'react'
 import { useForm } from '@mantine/form'
 import { TextInput, PasswordInput, Paper, Group, Button, Flex, Anchor, Stack } from '@mantine/core'
 
-const SignIn = () => {
+const SignIn = ({ setIsLogin, signInClose, signUpOpen, findAccountOpen }) => {
   const form = useForm({
     initialValues: {
-      email: '',
+      email: 'qul@up.com',
       name: '',
-      password: '',
+      password: '12341234',
       terms: true,
     },
 
@@ -46,19 +46,26 @@ const SignIn = () => {
           </Stack>
 
           <Flex direction={'column'} justify="space-between" mt="xl">
-            <Button type="submit" radius="md">
+            <Button
+              type="submit"
+              radius="md"
+              onClick={() => {
+                signInClose()
+                setIsLogin(true)
+              }}
+            >
               로그인
             </Button>
             <Group justify="space-between" pt={10}>
               <Group justify="flex-start" gap={5}>
-                <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+                <Anchor component="button" type="button" c="dimmed" onClick={() => findAccountOpen()} size="xs">
                   아이디 찾기
                 </Anchor>
-                <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+                <Anchor component="button" type="button" c="dimmed" onClick={() => findAccountOpen()} size="xs">
                   비밀번호 찾기
                 </Anchor>
               </Group>
-              <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+              <Anchor component="button" type="button" c="dimmed" onClick={() => signUpOpen()} size="xs">
                 회원가입
               </Anchor>
             </Group>

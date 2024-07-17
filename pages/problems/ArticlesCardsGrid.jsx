@@ -1,4 +1,16 @@
-import { ActionIcon, Badge, SimpleGrid, Card, Image, Text, Container, AspectRatio, Flex, Group } from '@mantine/core'
+import {
+  ActionIcon,
+  Badge,
+  SimpleGrid,
+  Card,
+  Image,
+  Text,
+  Container,
+  AspectRatio,
+  Flex,
+  Group,
+  Box,
+} from '@mantine/core'
 import classes from './ArticlesCardsGrid.module.css'
 import { IconHeart } from '@tabler/icons-react'
 
@@ -9,6 +21,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'easy',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
   {
     id: 2,
@@ -16,6 +31,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'normal',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
   {
     id: 3,
@@ -23,6 +41,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'hard',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
   {
     id: 4,
@@ -30,6 +51,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'normal',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
   {
     id: 5,
@@ -37,6 +61,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'normal',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
   {
     id: 6,
@@ -44,6 +71,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'normal',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
   {
     id: 7,
@@ -51,6 +81,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'normal',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
   {
     id: 8,
@@ -58,6 +91,9 @@ const mockdata = [
     image:
       'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
     price: 58000,
+    difficulty: 'normal',
+    tag: ['#태그1', '#태그2'],
+    code: 'C0Q1X',
   },
 ]
 const problemCodeStyleProps = {
@@ -70,8 +106,15 @@ const problemCodeStyleProps = {
   backgroundColor: '#fff',
   width: 'fit-content',
   textWrap: 'nowrap',
-  borderRadius: '4px 0 0 0',
+  borderRadius: '3px 0 3px 0',
+  border: '1px solid #555',
   color: '#000',
+}
+
+const difficultyOption = {
+  easy: { color: 'green', title: '쉬움' },
+  normal: { color: 'yellow', title: '보통' },
+  hard: { color: 'red', title: '어려움' },
 }
 
 const ArticlesCardsGrid = ({ checkedList, heartList, handleProblemClick, handleDetailClick, handleHeartClick }) => {
@@ -88,10 +131,16 @@ const ArticlesCardsGrid = ({ checkedList, heartList, handleProblemClick, handleD
       }}
     >
       <Flex justify={'space-between'} mb={20}>
-        <Text size="md">문제번호: {article.id}</Text>
+        <Box>
+          <Text size="md">문제번호: {article.id}</Text>
+        </Box>
         <Group gap={5}>
-          <Badge bg={'red'}>#태그</Badge>
-          <Badge bg={'red'}>난이도</Badge>
+          {article.tag.map(tag => (
+            <Badge color="dark.3" key={tag}>
+              {tag}
+            </Badge>
+          ))}
+          <Badge bg={difficultyOption[article.difficulty].color}>{difficultyOption[article.difficulty].title}</Badge>
           <ActionIcon
             className={classes.action}
             onClick={e => {
@@ -109,12 +158,13 @@ const ArticlesCardsGrid = ({ checkedList, heartList, handleProblemClick, handleD
         </Group>
       </Flex>
       <AspectRatio ratio={1920 / 1080}>
-        <Text size="xs" style={problemCodeStyleProps}>
-          문제코드
+        <Text size="xs" bg={'dark.6'} c={'white'} style={problemCodeStyleProps}>
+          {article.code}
         </Text>
         <Image
           src={article.image}
           radius={4}
+          bd={'1px solid #555'}
           onClick={e => {
             e.stopPropagation()
             handleDetailClick(article.id)

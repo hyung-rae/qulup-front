@@ -38,19 +38,19 @@ const Order = ({ opened, onClose }) => {
               <Table withTableBorder withColumnBorders>
                 <Table.Tbody>
                   <Table.Tr>
-                    <Table.Td bg={'gray.1'}>이름</Table.Td>
+                    <Table.Td bg={'dark.6'}>이름</Table.Td>
                     <Table.Td>
                       <Input w={150} size="compact-sm" defaultValue={'홍길동'} />
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
-                    <Table.Td bg={'gray.1'}>휴대폰 번호</Table.Td>
+                    <Table.Td bg={'dark.6'}>휴대폰 번호</Table.Td>
                     <Table.Td>
                       <Input w={150} size="compact-sm" defaultValue={'010-1234-5678'} />
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
-                    <Table.Td bg={'gray.1'}>Email</Table.Td>
+                    <Table.Td bg={'dark.6'}>Email</Table.Td>
                     <Table.Td>
                       <Input w={150} size="compact-sm" defaultValue={'SbI3M@example.com'} />
                     </Table.Td>
@@ -72,23 +72,23 @@ const Order = ({ opened, onClose }) => {
               <Table withTableBorder withColumnBorders>
                 <Table.Tbody>
                   <Table.Tr>
-                    <Table.Td bg={'gray.1'}>수령인</Table.Td>
+                    <Table.Td bg={'dark.6'}>수령인</Table.Td>
                     <Table.Td>
                       <Input w={150} size="compact-sm" defaultValue={'홍길동'} />
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
-                    <Table.Td bg={'gray.1'}>수령인 휴대폰 번호</Table.Td>
+                    <Table.Td bg={'dark.6'}>수령인 휴대폰 번호</Table.Td>
                     <Table.Td>
                       <Input w={150} size="compact-sm" defaultValue={'010-1234-5678'} />
                     </Table.Td>
                   </Table.Tr>
                   <Table.Tr>
-                    <Table.Td bg={'gray.1'}>배송지</Table.Td>
+                    <Table.Td bg={'dark.6'}>배송지</Table.Td>
                     <Table.Td></Table.Td>
                   </Table.Tr>
                   <Table.Tr>
-                    <Table.Td bg={'gray.1'}>배송메모</Table.Td>
+                    <Table.Td bg={'dark.6'}>배송메모</Table.Td>
                     <Table.Td></Table.Td>
                   </Table.Tr>
                 </Table.Tbody>

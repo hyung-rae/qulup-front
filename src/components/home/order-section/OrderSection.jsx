@@ -1,8 +1,10 @@
 import { Button, Flex, Group, Image, Title } from '@mantine/core'
 import { IconArrowRight } from '@tabler/icons-react'
 import classes from './OrderSection.module.css'
+import { useRouter } from 'next/router'
 
 const OrderSection = () => {
+  const { push } = useRouter()
   return (
     <Flex direction="column" align="center" maw={800} m="auto" mt={140} gap={50}>
       <Title fz={40} c="white">
@@ -38,6 +40,7 @@ const OrderSection = () => {
         leftSection={<span />}
         variant="subtle"
         radius={'lg'}
+        onClick={() => push('/problems')}
       >
         구매하러 가기
       </Button>
