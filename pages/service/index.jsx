@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import dynamic from 'next/dynamic'
 
-import classes from './Service.module.css'
+import classes from '@/src/components/service/Service.module.css'
 import {
   Pagination,
   Table,
@@ -22,7 +22,7 @@ import {
 } from '@mantine/core'
 import Tab from '@/src/components/tab/Tab'
 import { useDisclosure } from '@mantine/hooks'
-import { FAQ_DEFAULT, INQUIRY_DEFAULT } from './dummy'
+import { FAQ_DEFAULT, INQUIRY_DEFAULT } from '../../src/mock-data/dummy'
 import { IconSearch } from '@tabler/icons-react'
 import GlobalModal from '@/src/components/globalModal'
 const TextEditor = dynamic(() => import('@/src/components/textEditor'), { ssr: false })

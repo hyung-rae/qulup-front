@@ -1,8 +1,8 @@
 import { Button, Container, Flex, Group, Modal, Pagination, Select, MultiSelect, TextInput, Text } from '@mantine/core'
-import ArticlesCardsGrid from './ArticlesCardsGrid'
+import ArticlesCardsGrid from '../../src/components/problem-mange/ArticlesCardsGrid'
 import { useDisclosure } from '@mantine/hooks'
 import { useState } from 'react'
-import Request from './Request'
+import Request from '../../src/components/problem-mange/Request'
 
 import Tab from '@/src/components/tab/Tab'
 
