@@ -77,7 +77,7 @@ const Problems = () => {
     <>
       <Modal opened={detailOpened} size={'lg'} onClose={detailClose} title={'문제 상세보기'} centered></Modal>
 
-      <Container bg="dark.9" fluid p="xl" mih={'100vh'}>
+      <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
         <Flex direction="column" maw={1920} m="auto" gap={20}>
           <Group m={16} justify="space-between" align="flex-end">
             <Group>

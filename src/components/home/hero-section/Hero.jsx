@@ -9,7 +9,7 @@ const Hero = () => {
         고등수학 컨텐츠의 자존심
       </Title>
       <Group justify="center" w="100%" className={classes.sub_title}>
-        <Title order={2} c="gray.7">
+        <Title order={2} c="gray.6">
           퀄럽은 수학/수학교육 전공자로 구성된
           <Text span c="white" inherit order={1} mx={20}>
             수능수학컨텐츠 제작

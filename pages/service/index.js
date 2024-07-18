@@ -151,7 +151,7 @@ const Service = ({ props }) => {
         </Stack>
       </Modal>
 
-      <Container bg="dark.9" fluid p="xl" mih={'100vh'}>
+      <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
         <Flex direction="column" w={1200} m="auto" gap={20}>
           <Tab contents={temp} defaultValue={'faq'} setTabValue={setTabValue} style={{ padding: '20px 0' }} />
           <Table.ScrollContainer minWidth={800}>

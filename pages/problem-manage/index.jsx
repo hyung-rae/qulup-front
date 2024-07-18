@@ -55,7 +55,7 @@ const Problems = () => {
         <Request reQuestClose={reQuestClose} />
       </Modal>
 
-      <Container bg="dark.9" fluid p="xl" mih={'100vh'}>
+      <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
         <Flex direction="column" maw={1920} m="auto" gap={20}>
           <Tab
             contents={TAB}
