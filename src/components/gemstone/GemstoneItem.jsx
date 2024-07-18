@@ -1,11 +1,14 @@
-import { Card, Image, Avatar, Text, Group, Flex, Button, Badge } from '@mantine/core'
+import { Card, Image, Avatar, Text, Group, Flex, Button, Badge, ActionIcon } from '@mantine/core'
 import classes from './Gemstone.module.css'
-import { IconShoppingBag, IconArrowRight, IconSparkles, IconStar } from '@tabler/icons-react'
+import { IconShoppingBag, IconArrowRight, IconStar, IconStarFilled, IconShoppingCart } from '@tabler/icons-react'
 import { useDisclosure } from '@mantine/hooks'
 import GemstoneModal from './GemstoneModal'
+import { useState } from 'react'
 
 const GemstoneItem = () => {
   const [opened, { open, close }] = useDisclosure(false)
+  const [isLiked, setIsLiked] = useState(false)
+
   return (
     <>
       {/* 상세 모달 */}
@@ -44,18 +47,28 @@ const GemstoneItem = () => {
             </Group>
           </div>
           <Flex direction="column" ml="auto" p="lg" gap={20}>
-            <Button leftSection={<IconStar size={14} />} variant="default">
+            <Button
+              size="sm"
+              leftSection={isLiked ? <IconStarFilled size={14} fill="gold" /> : <IconStar size={14} />}
+              variant="default"
+              onClick={() => setIsLiked(!isLiked)}
+            >
               1,239
             </Button>
-
-            <Button
-              color="dark"
-              leftSection={<IconShoppingBag size={14} />}
-              rightSection={<IconArrowRight size={14} />}
-              onClick={() => alert('구매모달 연동')}
-            >
-              구매하기
-            </Button>
+            <Group gap={5}>
+              <Button
+                size="sm"
+                color="dark"
+                leftSection={<IconShoppingBag size={14} />}
+                rightSection={<IconArrowRight size={14} />}
+                onClick={() => alert('구매모달 연동')}
+              >
+                구매하기
+              </Button>
+              <ActionIcon color="gray.8" size="lg" variant="light">
+                <IconShoppingCart style={{ width: '70%', height: '70%' }} stroke={1.5} />
+              </ActionIcon>
+            </Group>
           </Flex>
         </Group>
       </Card>

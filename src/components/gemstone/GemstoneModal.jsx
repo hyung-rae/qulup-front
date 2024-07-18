@@ -7,7 +7,7 @@ const GemstoneModal = ({ opened, onClose }) => {
     <Modal.Root opened={opened} onClose={onClose} size="lg">
       <Modal.Overlay />
       <Modal.Content pos="relative">
-        <CloseButton size="lg" variant="transparent" c="dark" pos="absolute" top={10} right={10} onClick={onClose} />
+        <CloseButton size="xl" variant="transparent" c="dark" pos="absolute" top={10} right={10} onClick={onClose} />
         <Modal.Body p={0}>
           <Image w="100%" fit="contain" src={null} fallbackSrc="https://placehold.co/600x400?text=Placeholder" />
           <Flex direction="column" p="xl" gap={30}>

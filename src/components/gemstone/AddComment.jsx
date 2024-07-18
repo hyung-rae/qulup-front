@@ -10,7 +10,7 @@ const AddComment = () => {
           radius="xl"
         />
         <Text size="sm">우형래</Text>
-        <Button w={60} size="compact-xs" variant="filled" color="dark" ml="auto">
+        <Button w={60} size="xs" variant="filled" color="dark" ml="auto">
           등록
         </Button>
       </Group>
