@@ -18,11 +18,13 @@ import {
   Group,
   Text,
   Box,
+  Paper,
 } from '@mantine/core'
 import Tab from '@/src/components/tab/Tab'
 import { useDisclosure } from '@mantine/hooks'
 import { FAQ_DEFAULT, INQUIRY_DEFAULT } from './dummy'
 import { IconSearch } from '@tabler/icons-react'
+import GlobalModal from '@/src/components/globalModal'
 const TextEditor = dynamic(() => import('@/src/components/textEditor'), { ssr: false })
 
 const temp = [
@@ -92,19 +94,22 @@ const Service = ({ props }) => {
         size={'xl'}
       >
         <Flex direction={'column'}>
-          <Flex justify={'center'}>
-            <Text>작성제목</Text>
-          </Flex>
-          <Flex justify={'space-between'}>
-            <Text>첨부파일</Text>
-            <Text>작성날짜</Text>
+          <Flex justify={'space-between'} bd={'1px solid dark.4'} p={10} style={{ borderRadius: 4 }} mb={10}>
+            <Text>첨부파일: </Text>
+            <Text>작성일: 2024-07-18</Text>
           </Flex>
           <Flex direction={'column'}>
-            <Box w={'100%'} h={'300px'} bg={'gray'}>
-              내용
+            <Text fw={600}>Question.</Text>
+            <Box w={'100%'} h={'300px'} p={10} bg={'dark.4'} style={{ borderRadius: 4, border: '1px solid #555' }}>
+              <p>14번 문제가 이해가 잘 안갑니다.</p>
+              <p>어떻게하면 수학 고수가 되나요?</p>
+              <p>퀄럽처럼 되고싶어요</p>
             </Box>
-            <Box w={'100%'} h={'300px'}>
-              답변
+            <Text fw={600} mt={20}>
+              Answer.
+            </Text>
+            <Box w={'100%'} h={'300px'} p={10} style={{ borderRadius: 4, border: '1px solid #555' }}>
+              <p>하하 열심히 해보세요</p>
             </Box>
           </Flex>
         </Flex>
@@ -146,40 +151,44 @@ const Service = ({ props }) => {
         </Stack>
       </Modal>
 
-      <Container>
-        <Tab contents={temp} defaultValue={'faq'} setTabValue={setTabValue} style={{ paddingBottom: '20px' }} />
-        <Table.ScrollContainer minWidth={800}>
-          <Flex justify="end" w={'100%'} gap={10} mb={20}>
-            {tabValue === 'inquiry' && <Button onClick={writingOpen}>글쓰기</Button>}
-            <TextInput
-              value={searchText}
-              placeholder="검색어를 입력해주세요"
-              onChange={e => setSearchText(e.target.value)}
-              rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
-            />
+      <Container bg="dark.9" fluid p="xl" mih={'100vh'}>
+        <Flex direction="column" w={1200} m="auto" gap={20}>
+          <Tab contents={temp} defaultValue={'faq'} setTabValue={setTabValue} style={{ padding: '20px 0' }} />
+          <Table.ScrollContainer minWidth={800}>
+            <Flex justify="end" w={'100%'} gap={10} mb={20}>
+              {tabValue === 'inquiry' && <Button onClick={writingOpen}>글쓰기</Button>}
+              <TextInput
+                value={searchText}
+                placeholder="검색어를 입력해주세요"
+                onChange={e => setSearchText(e.target.value)}
+                rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
+              />
+            </Flex>
+            <Paper m="auto" shadow="xs" withBorder p="xl">
+              <Table verticalSpacing="xs">
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th style={{ textAlign: 'center' }} width={50}>
+                      No.
+                    </Table.Th>
+                    <Table.Th style={{ textAlign: 'center' }}>제목</Table.Th>
+                    {tabValue === 'inquiry' && (
+                      <Table.Th width={100} style={{ textAlign: 'center' }}>
+                        답변 상태
+                      </Table.Th>
+                    )}
+                    <Table.Th style={{ textAlign: 'center' }} width={100}>
+                      작성일
+                    </Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>{tabValue === 'faq' ? FAQ_ROWS : INQUIRY_ROWS}</Table.Tbody>
+              </Table>
+            </Paper>
+          </Table.ScrollContainer>
+          <Flex w={'100%'} mt={20} justify="center">
+            <Pagination total={10} color="dark.3" />
           </Flex>
-          <Table verticalSpacing="xs">
-            <Table.Thead>
-              <Table.Tr style={{ color: '#000000' }}>
-                <Table.Th style={{ textAlign: 'center' }} width={50}>
-                  No.
-                </Table.Th>
-                <Table.Th style={{ textAlign: 'center' }}>제목</Table.Th>
-                {tabValue === 'inquiry' && (
-                  <Table.Th width={100} style={{ textAlign: 'center' }}>
-                    답변 상태
-                  </Table.Th>
-                )}
-                <Table.Th style={{ textAlign: 'center' }} width={100}>
-                  작성일
-                </Table.Th>
-              </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>{tabValue === 'faq' ? FAQ_ROWS : INQUIRY_ROWS}</Table.Tbody>
-          </Table>
-        </Table.ScrollContainer>
-        <Flex w={'100%'} mt={20} justify="center">
-          <Pagination total={10} color="red" />
         </Flex>
       </Container>
     </>

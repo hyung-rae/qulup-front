@@ -55,34 +55,36 @@ const Problems = () => {
         <Request reQuestClose={reQuestClose} />
       </Modal>
 
-      <Container size={1600}>
-        <Tab
-          contents={TAB}
-          defaultValue={'buy'}
-          setTabValue={setTabValue}
-          style={{ width: '100%', padding: '32px 16px 0' }}
-          additionalData={additionalData}
-        />
-        <ArticlesCardsGrid
-          heartList={heartList}
-          handleProblemClick={handleProblemClick}
-          handleDetailClick={handleDetailClick}
-          handleHeartClick={handleHeartClick}
-          checkedList={checkedList}
-          setCheckedList={setCheckedList}
-        />
-        <Flex justify={'space-between'} p={16}>
-          <Button w={120} style={{ cursor: 'default' }} opacity={0}></Button>
-          <Pagination total={10} color="red" />
-          {tabValue === 'buy' ? (
-            <Button w={120} onClick={handleReQuest}>
-              문제 재요청
-            </Button>
-          ) : (
-            <Button w={120} onClick={handleBuy}>
-              구매
-            </Button>
-          )}
+      <Container bg="dark.9" fluid p="xl" mih={'100vh'}>
+        <Flex direction="column" maw={1920} m="auto" gap={20}>
+          <Tab
+            contents={TAB}
+            defaultValue={'buy'}
+            setTabValue={setTabValue}
+            style={{ width: '100%', padding: '32px 16px 0' }}
+            additionalData={additionalData}
+          />
+          <ArticlesCardsGrid
+            heartList={heartList}
+            handleProblemClick={handleProblemClick}
+            handleDetailClick={handleDetailClick}
+            handleHeartClick={handleHeartClick}
+            checkedList={checkedList}
+            setCheckedList={setCheckedList}
+          />
+          <Flex justify={'space-between'} p={16}>
+            <Button w={120} style={{ cursor: 'default' }} opacity={0}></Button>
+            <Pagination total={10} color="dark.3" />
+            {tabValue === 'buy' ? (
+              <Button w={120} onClick={handleReQuest}>
+                문제 재요청
+              </Button>
+            ) : (
+              <Button w={120} onClick={handleBuy}>
+                구매
+              </Button>
+            )}
+          </Flex>
         </Flex>
       </Container>
     </>

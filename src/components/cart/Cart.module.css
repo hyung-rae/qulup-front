@@ -6,7 +6,7 @@
   border-bottom: 1px solid #d3d3d3; /* 대체할 색상 값을 명시적으로 지정 */
   border-radius: 4px 4px 0px 0px;
   padding: 15px; /* 예시로 큰 패딩 값 지정 */
-  background-color: #ffffff; /* 예시로 밝은 배경 색상 지정 */
+  background-color: var(--mantine-color-dark-6); /* 예시로 밝은 배경 색상 지정 */
 }
 
 .button img {
@@ -15,5 +15,5 @@
 
 /* 호버 상태 */
 .button:hover {
-  background-color: #f0f0f0; /* 예시로 밝은 회색 배경 색상 지정 */
+  background-color: var(--mantine-color-dark-4); /* 예시로 밝은 회색 배경 색상 지정 */
 }

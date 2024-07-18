@@ -133,24 +133,27 @@ const TextEditor = ({ setEditorHtml }) => {
       <style>
         {`
         .ProseMirror {
-          min-height: 200px;
-          max-height: 400px;
+          height: 400px;
+
           overflow: scroll;
         }
         .imageUploadButton {
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: var(--mantine-color-white);
+          background-color: var(--mantine-color-dark-6);
           min-width: calc(1.625rem* var(--mantine-scale));
           height: calc(1.625rem* var(--mantine-scale));
           border: calc(0.0625rem* var(--mantine-scale)) solid;
-          border-color: var(--mantine-color-gray-4);
+          border-color: var(--mantine-color-dark-4);
           border-right: none;
           cursor: pointer;
+          svg {
+            stroke: var(--mantine-color-dark-1);
+          }
         }
         .imageUploadButton:hover {
-          background-color: var(--mantine-color-gray-0);
+          background-color: var(--mantine-color-dark-5);
         }
       `}
       </style>

@@ -9,6 +9,16 @@ export const theme = createTheme({
   defaultRadius: 'sm',
   primaryColor: 'gray',
   components: {
+    Button: {
+      styles: theme => ({
+        root: {
+          backgroundColor: 'var(--mantine-color-dark-4)',
+          '&:hover': {
+            // backgroundColor: '#00b288',
+          },
+        },
+      }),
+    },
     // TextInput: {
     //   styles: theme => ({
     //     input: {

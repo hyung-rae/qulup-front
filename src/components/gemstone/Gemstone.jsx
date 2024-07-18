@@ -3,7 +3,7 @@ import GemstoneItem from './GemstoneItem'
 
 const Gemstone = () => {
   return (
-    <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
+    <Container bg="dark.9" fluid p="xl" mih={'100vh'}>
       <Flex direction="column" w={1200} m="auto" gap={20}>
         <Group align="flex-start" justify="space-between">
           <Title>Math Gemstone</Title>

@@ -8,6 +8,7 @@ import { IconUser, IconLock } from '@tabler/icons-react'
 const FindAccount = () => {
   const form = useForm({
     initialValues: {
+      id: '',
       email: '',
       name: '',
       password: '',
@@ -86,7 +87,12 @@ const FindAccount = () => {
           </>
         ) : (
           <>
-            <Tab contents={TabContents} setTabValue={setTabValue} style={{ paddingBottom: '20px' }} />
+            <Tab
+              contents={TabContents}
+              defaultValue="email"
+              setTabValue={setTabValue}
+              style={{ paddingBottom: '20px' }}
+            />
             <form onSubmit={form.onSubmit(() => {})}>
               <Stack>
                 {tabValue === 'email' && (
@@ -109,10 +115,10 @@ const FindAccount = () => {
                   <>
                     <TextInput
                       required
-                      label="이메일"
-                      placeholder="이메일을 입력"
-                      value={form.values.email}
-                      onChange={event => form.setFieldValue('email', event.currentTarget.value)}
+                      label="이메일(아이디)"
+                      placeholder="이메일(아이디) 입력"
+                      value={form.values.id}
+                      onChange={event => form.setFieldValue('id', event.currentTarget.value)}
                       error={form.errors.email && '이메일이 올바르지 않습니다.'}
                       radius="md"
                     />

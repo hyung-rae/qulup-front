@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useForm } from '@mantine/form'
 import { TextInput, PasswordInput, Text, Paper, Button, Flex, Checkbox, Stack } from '@mantine/core'
@@ -8,8 +8,11 @@ const SignUp = ({ props }) => {
   const form = useForm({
     initialValues: {
       email: '',
-      name: '',
       password: '',
+      belong: '',
+      realName: '',
+      nickName: '',
+      phoneNumber: '',
       terms: true,
     },
 
@@ -19,10 +22,14 @@ const SignUp = ({ props }) => {
     },
   })
 
+  const [emailCert, setEmailCert] = useState(null)
+  const [phoneCert, setPhoneCert] = useState(null)
+  const [validatePassword, setValidatePassword] = useState(null)
+
   return (
     <>
       {/* 로그인 모달 */}
-      <Paper radius="md" p="sm" {...props}>
+      <Paper radius="md" pl="sm" pr={'sm'} {...props}>
         <form onSubmit={form.onSubmit(() => {})}>
           <Stack>
             <Flex align="center" justify={'space-between'}>
@@ -30,22 +37,27 @@ const SignUp = ({ props }) => {
                 placeholder="아이디 (이메일) 입력"
                 value={form.values.email}
                 onChange={event => form.setFieldValue('email', event.currentTarget.value)}
-                error={form.errors.email && '이메일이 올바르지 않습니다.'}
                 radius="md"
                 w={'80%'}
               />
-              <Button radius="md">인증</Button>
+              <Button radius="md" w={100}>
+                인증
+              </Button>
             </Flex>
 
             <Flex align="center" justify={'space-between'}>
               <TextInput
                 placeholder="인증번호 입력"
-                value={form.values.validate}
-                onChange={event => form.setFieldValue('validate', event.currentTarget.value)}
+                value={emailCert}
+                onChange={e => {
+                  setEmailCert(e.target.value)
+                }}
                 radius="md"
                 w={'80%'}
               />
-              <Button radius="md">확인</Button>
+              <Button radius="md" w={100}>
+                확인
+              </Button>
             </Flex>
             {true && <Text>상태값 표시 (인증 / 미인증 문구)</Text>}
 
@@ -62,8 +74,10 @@ const SignUp = ({ props }) => {
             <PasswordInput
               required
               placeholder="비밀번호 확인"
-              value={form.values.verify}
-              onChange={event => form.setFieldValue('verify', event.currentTarget.value)}
+              value={validatePassword}
+              onChange={e => {
+                setValidatePassword(e.target.value)
+              }}
               error={form.errors.password && 'Password should include at least 6 characters'}
               radius="md"
             />
@@ -72,49 +86,57 @@ const SignUp = ({ props }) => {
             <TextInput
               label="소속"
               placeholder="학원 소속"
-              value={form.values.validate}
-              onChange={event => form.setFieldValue('validate', event.currentTarget.value)}
+              value={form.values.belong}
+              onChange={event => form.setFieldValue('belong', event.currentTarget.value)}
               radius="md"
             />
             <TextInput
               placeholder="강사명"
-              value={form.values.validate}
-              onChange={event => form.setFieldValue('validate', event.currentTarget.value)}
+              value={form.values.realName}
+              onChange={event => form.setFieldValue('realName', event.currentTarget.value)}
               radius="md"
             />
             <Flex align="center" justify={'space-between'}>
               <TextInput
                 placeholder="닉네임"
-                value={form.values.validate}
-                onChange={event => form.setFieldValue('validate', event.currentTarget.value)}
+                value={form.values.nickName}
+                onChange={event => form.setFieldValue('nickName', event.currentTarget.value)}
                 radius="md"
                 w={'80%'}
               />
-              <Button radius="md">중복 확인</Button>
+              <Button radius="md" w={100}>
+                중복 확인
+              </Button>
             </Flex>
             {true && <Text>닉네임 중복체크</Text>}
 
             <Flex align="center" justify={'space-between'}>
               <TextInput
                 placeholder="휴대폰번호"
-                value={form.values.email}
-                onChange={event => form.setFieldValue('email', event.currentTarget.value)}
+                value={form.values.phoneNumber}
+                onChange={event => form.setFieldValue('phoneNumber', event.currentTarget.value)}
                 error={form.errors.email && '이메일이 올바르지 않습니다.'}
                 radius="md"
                 w={'80%'}
               />
-              <Button radius="md">인증</Button>
+              <Button radius="md" w={100}>
+                인증
+              </Button>
             </Flex>
 
             <Flex align="center" justify={'space-between'}>
               <TextInput
                 placeholder="인증번호 입력"
-                value={form.values.validate}
-                onChange={event => form.setFieldValue('validate', event.currentTarget.value)}
+                value={phoneCert}
+                onChange={e => {
+                  setPhoneCert(e.target.value)
+                }}
                 radius="md"
                 w={'80%'}
               />
-              <Button radius="md">확인</Button>
+              <Button radius="md" w={100}>
+                확인
+              </Button>
             </Flex>
             {true && <Text>휴대폰번호 인증/미인증 문구</Text>}
             <Terms />
