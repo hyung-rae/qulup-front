@@ -6,30 +6,26 @@ import classes from './Header.module.css'
 
 import React from 'react'
 import { useDisclosure } from '@mantine/hooks'
-import Sign from '../../sign/Sign'
+import SignIn from '../../sign/SignIn'
+import SignUp from '../../sign/SignUp'
 
 const Header = () => {
   const { push, basePath } = useRouter()
   const [isLogin, setIsLogin] = useState(false)
 
-  const [opened, { open, close }] = useDisclosure(false)
+  const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
+  const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
 
-  const handleSignIn = () => {
-    signInOpen()
+  const handleLogin = () => {
+    setIsLogin(true)
+    signInClose()
   }
-  const handleSignUp = () => {
-    signUpOpen()
-  }
-
-  const handleFindAccount = () => {
-    findAccountOpen()
-  }
-
   return (
     <>
-      {/* 로그인 회원가입 모달 */}
-      <Sign opened={opened} onClose={close} />
-
+      {/* 로그인  모달 */}
+      <SignIn opened={signInOpened} onClose={signInClose} open={signUpOpen} handleLogin={handleLogin} />
+      {/* 회원가입 모달 */}
+      <SignUp opened={signUpOpened} onClose={signUpClose} />
       <Mantine.Group bg={'dark.7'} justify="space-around" h={'100%'} w={'100%'}>
         <Mantine.Image
           radius="md"
@@ -128,7 +124,7 @@ const Header = () => {
           </Mantine.Flex>
         ) : (
           <Mantine.Group gap={15}>
-            <Mantine.Button size="compact-md" variant="transparent" className={classes.label} onClick={open}>
+            <Mantine.Button size="compact-md" variant="transparent" className={classes.label} onClick={signInOpen}>
               로그인
             </Mantine.Button>
             {/* <Mantine.Button size="compact-md" variant="default" onClick={open}>
