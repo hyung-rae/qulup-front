@@ -6,18 +6,13 @@ import classes from './Header.module.css'
 
 import React from 'react'
 import { useDisclosure } from '@mantine/hooks'
-
-import { Group, Button, Modal } from '@mantine/core'
-import SignIn from '@/src/components/account/SignIn'
-import SignUp from '@/src/components/account/SignUp'
-import FindAccount from '@/src/components/account/FindAccount'
+import Sign from '../../sign/Sign'
 
 const Header = () => {
   const { push, basePath } = useRouter()
   const [isLogin, setIsLogin] = useState(false)
-  const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
-  const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
-  const [findAccountOpened, { open: findAccountOpen, close: findAccountClose }] = useDisclosure(false)
+
+  const [opened, { open, close }] = useDisclosure(false)
 
   const handleSignIn = () => {
     signInOpen()
@@ -32,6 +27,9 @@ const Header = () => {
 
   return (
     <>
+      {/* 로그인 회원가입 모달 */}
+      <Sign opened={opened} onClose={close} />
+
       <Mantine.Group bg={'dark.7'} justify="space-around" h={'100%'} w={'100%'}>
         <Mantine.Image
           radius="md"
@@ -130,36 +128,15 @@ const Header = () => {
           </Mantine.Flex>
         ) : (
           <Mantine.Group gap={15}>
-            <Mantine.Button size="compact-md" variant="transparent" className={classes.label} onClick={handleSignIn}>
+            <Mantine.Button size="compact-md" variant="transparent" className={classes.label} onClick={open}>
               로그인
             </Mantine.Button>
-            <Mantine.Button size="compact-md" variant="default" onClick={handleSignUp}>
+            {/* <Mantine.Button size="compact-md" variant="default" onClick={open}>
               회원가입
-            </Mantine.Button>
+            </Mantine.Button> */}
           </Mantine.Group>
         )}
       </Mantine.Group>
-
-      {/* 로그인 모달 */}
-      <Mantine.Modal opened={signInOpened} onClose={signInClose} title={'로그인'} centered>
-        <SignIn
-          setIsLogin={setIsLogin}
-          signInOpened={signInOpened}
-          signInClose={signInClose}
-          handleSignIn={handleSignIn}
-          signUpOpen={signUpOpen}
-          findAccountOpen={findAccountOpen}
-        />
-      </Mantine.Modal>
-      {/* 회원가입 모달 */}
-      <Mantine.Modal opened={signUpOpened} size={'lg'} onClose={signUpClose} title={'QULUP 회원가입'} centered>
-        <SignUp signUpOpened={signUpOpened} signUpClose={signUpClose} handleSignUp={handleSignUp} />
-      </Mantine.Modal>
-
-      {/* 찾기 모달 */}
-      <Mantine.Modal opened={findAccountOpened} onClose={findAccountClose} title={'아이디 / 비밀번호 찾기'} centered>
-        <FindAccount signInOpened={signInOpened} signInClose={signInClose} handleSignIn={handleSignIn} />
-      </Mantine.Modal>
     </>
   )
 }

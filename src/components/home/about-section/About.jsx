@@ -1,10 +1,12 @@
 import { Flex, Group, Image, Text, Title } from '@mantine/core'
+import { useRouter } from 'next/router'
 
 const About = () => {
+  const { basePath } = useRouter()
   return (
     <Flex direction="column" justify="space-evenly" w={'100%'} h={'80vh'}>
       <Flex direction="column" align="center" w="100%">
-        <Image radius="md" w={'auto'} h={50} my={100} src="/images/logo.png" alt={'logo'} />
+        <Image radius="md" w={'auto'} h={50} my={100} src={`${basePath}/images/logo.png`} alt={'logo'} />
         <Title order={3} c="gray.5" mb={30}>
           컨텐츠 연구팀
         </Title>

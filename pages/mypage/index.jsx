@@ -1,7 +1,7 @@
-import MypageContainer from '@/src/components/mypage/MypageContainer'
+import MyPageContainer from '@/src/components/mypage/MyPageContainer'
 
 const MyPage = () => {
-  return <MypageContainer />
+  return <MyPageContainer />
 }
 
 export default MyPage
