@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  background-image: url('/hero-section.jpg');
+  background-image: url('/images/hero-section.jpg');
   background-size: cover;
 }
 

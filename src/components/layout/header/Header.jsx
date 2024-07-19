@@ -37,7 +37,7 @@ const Header = () => {
           radius="md"
           w={'auto'}
           h={20}
-          src="/logo.png"
+          src="/images/logo.png"
           style={{ cursor: 'pointer' }}
           onClick={() => push('/')}
           alt={'logo'}

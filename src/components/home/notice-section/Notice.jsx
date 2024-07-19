@@ -24,7 +24,7 @@ const Notice = () => {
         <Modal.Content pos="relative">
           <CloseButton size="xl" variant="transparent" c="white" pos="absolute" top={10} right={10} onClick={close} />
           <Modal.Body p={0}>
-            <Image w={'100%'} h={'100%'} src={'./popup.webp'} />
+            <Image w={'100%'} h={'100%'} src={'/images/popup.webp'} />
           </Modal.Body>
         </Modal.Content>
       </Modal.Root>
