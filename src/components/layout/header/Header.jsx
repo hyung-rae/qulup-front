@@ -92,7 +92,7 @@ const Header = () => {
                 position="bottom"
                 offset={0}
                 color="dark.9"
-                onClick={() => push('/mypage')}
+                onClick={() => push('/user-info')}
               >
                 <Mantine.Indicator disabled>
                   <Mantine.ActionIcon variant="transparent" color="dark.9" c="white" size="md" radius="md">
