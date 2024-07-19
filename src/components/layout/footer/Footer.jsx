@@ -1,12 +1,14 @@
 import { Box, Center, Container, Flex, Group, Image, Text } from '@mantine/core'
+import { useRouter } from 'next/router'
 
 const Footer = () => {
+  const { basePath } = useRouter()
   return (
     <footer>
       <Container fluid bg={'dark.7'} p="xl">
         <Group align="flex-start" justify="space-around">
           <Flex direction="column" gap={5}>
-            <Image radius="md" w={80} src="/images/logo.png" alt={'logo'} />
+            <Image radius="md" w={80} src={`${basePath}/images/logo.png`} alt={'logo'} />
             <Text c="white" fw={700} size="sm" mt={15}>
               (주)퀄럽
             </Text>

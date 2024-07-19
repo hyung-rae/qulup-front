@@ -1,9 +1,18 @@
 import { Box, Flex, Group, Overlay, Text, Title } from '@mantine/core'
 import classes from './Hero.module.css'
+import { useRouter } from 'next/router'
 
 const Hero = () => {
+  const { basePath } = useRouter()
   return (
-    <Flex align="center" justify="center" w={'100%'} h={'100vh'} className={classes.container}>
+    <Flex
+      align="center"
+      justify="center"
+      w={'100%'}
+      h={'100vh'}
+      className={classes.container}
+      style={{ backgroundImage: `url(${basePath}/images/hero-section.jpg)` }}
+    >
       <Overlay color="#000" backgroundOpacity={0.8} zIndex={98} />
       <Title order={1} className={classes.title}>
         고등수학 컨텐츠의 자존심

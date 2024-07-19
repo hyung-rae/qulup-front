@@ -13,7 +13,7 @@ import SignUp from '@/src/components/account/SignUp'
 import FindAccount from '@/src/components/account/FindAccount'
 
 const Header = () => {
-  const { push } = useRouter()
+  const { push, basePath } = useRouter()
   const [isLogin, setIsLogin] = useState(false)
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
   const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
@@ -37,7 +37,7 @@ const Header = () => {
           radius="md"
           w={'auto'}
           h={20}
-          src="/images/logo.png"
+          src={`${basePath}/images/logo.png`}
           style={{ cursor: 'pointer' }}
           onClick={() => push('/')}
           alt={'logo'}
