@@ -1,5 +1,5 @@
-const MypageContainer = () => {
-  return <div>MypageContainer</div>
+const MyPageContainer = () => {
+  return <div>MyPageContainer</div>
 }
 
-export default MypageContainer
+export default MyPageContainer

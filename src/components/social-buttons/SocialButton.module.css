@@ -1,0 +1,51 @@
+.section {
+  margin: 0;
+}
+
+/* Facebook 버튼 */
+.facebookButton {
+  background-color: #4267b2;
+  color: #fff;
+}
+
+.facebookButton:hover {
+  background-color: #3a5a9b;
+}
+
+/* 네이버 버튼 */
+.naverButton {
+  background-color: #06be34;
+}
+
+.naverButton:hover {
+  background-color: #06be34;
+}
+
+/* 카카오 버튼 */
+.kakaoButton {
+  background-color: #fae100;
+}
+
+.kakaoButton:hover {
+  background-color: #fae100;
+}
+
+/* Discord 버튼 */
+.discordButton {
+  background-color: #5865f2;
+  color: #fff;
+}
+
+.discordButton:hover {
+  background-color: #525ee0;
+}
+
+/* GitHub 버튼 */
+.githubButton {
+  background-color: var(--mantine-color-dark-6, #333); /* CSS 변수 또는 기본 색상 */
+  color: #fff;
+}
+
+.githubButton:hover {
+  background-color: var(--mantine-color-dark-9, #000); /* CSS 변수 또는 기본 색상 */
+}
