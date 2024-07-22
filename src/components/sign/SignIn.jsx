@@ -24,7 +24,7 @@ const SignIn = ({ opened, onClose, open, handleLogin }) => {
       <Modal.Overlay />
       <Modal.Content pos="relative">
         {/* <CloseButton size="xl" variant="transparent" c="dark" pos="absolute" top={10} right={10} onClick={onClose} /> */}
-        <Modal.Body p={'xl'} bg={'gray.7'}>
+        <Modal.Body p={'xl'} bg={'white'}>
           <Image radius="md" w={120} src={`${basePath}/images/logo.png`} alt={'logo'} m="auto" mt={30} />
           <Flex direction={'column'} mt={50} gap={30}>
             <div>

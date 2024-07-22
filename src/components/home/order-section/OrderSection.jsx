@@ -1,50 +1,48 @@
-import { Button, Flex, Group, Image, Title } from '@mantine/core'
-import { IconArrowRight } from '@tabler/icons-react'
-import classes from './OrderSection.module.css'
+import { Box, Button, Container, Group, Image, SimpleGrid, Text, Title } from '@mantine/core'
+import { IconArrowRight, IconShoppingBag } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
+import classes from './OrderSection.module.css'
+import { productList } from './product-mock'
+
+const Item = ({ title, description, src, ...props }) => {
+  return (
+    <div className={classes.feature} {...props}>
+      <div className={classes.overlay} />
+      <div className={classes.content}>
+        <Box className={classes.img_section}>
+          <Image src={src} />
+        </Box>
+        <Text fw={700} fz="lg" mb="xs" mt={5} className={classes.title}>
+          {title}
+        </Text>
+        <Text c="dimmed" fz="sm">
+          {description}
+        </Text>
+      </div>
+    </div>
+  )
+}
 
 const OrderSection = () => {
   const { push } = useRouter()
-  return (
-    <Flex direction="column" align="center" maw={800} m="auto" mt={140} gap={50}>
-      <Title fz={40} c="white">
-        Order and Purchase
-      </Title>
 
-      <Group justify="space-between" w={'100%'}>
-        <Flex direction="column" align="center" gap={10}>
-          <Title order={5} c="white">
-            난이도 A
-          </Title>
-          <Image radius="md" w={200} h={200} src={'https://cdn.imweb.me/thumbnail/20240310/8c1d94afae0fa.jpg'} />
-        </Flex>
-        <Flex direction="column" align="center" gap={10}>
-          <Title order={5} c="white">
-            난이도 B
-          </Title>
-          <Image radius="md" w={200} h={200} src={'https://cdn.imweb.me/thumbnail/20240310/3010ee7957042.jpg'} />
-        </Flex>
-        <Flex direction="column" align="center" gap={10}>
-          <Title order={5} c="white">
-            난이도 C
-          </Title>
-          <Image radius="md" w={200} h={200} src={'https://cdn.imweb.me/thumbnail/20240310/92304bbea9b77.jpg'} />
-        </Flex>
+  const items = productList.map(item => <Item {...item} key={item.title} />)
+
+  return (
+    <Container my={100} size="lg">
+      <Group w={'100%'} maw={1000} justify="flex-start" m={'auto'}>
+        <Title order={1} c="white" fw={700}>
+          Order & Purchase
+        </Title>
+        <Button size="sm" color="gray.9" rightSection={<IconArrowRight size={14} />} onClick={() => push('/problems')}>
+          구매하기
+        </Button>
       </Group>
 
-      <Button
-        size="lg"
-        justify="center"
-        fullWidth
-        rightSection={<IconArrowRight size={20} />}
-        leftSection={<span />}
-        variant="subtle"
-        radius={'lg'}
-        onClick={() => push('/problems')}
-      >
-        구매하러 가기
-      </Button>
-    </Flex>
+      <SimpleGrid cols={{ base: 1, sm: 3 }} spacing={50} maw={1000} m={'auto'}>
+        {items}
+      </SimpleGrid>
+    </Container>
   )
 }
 

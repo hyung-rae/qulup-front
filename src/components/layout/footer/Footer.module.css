@@ -1,0 +1,21 @@
+.left_section {
+  min-width: 220px;
+
+  @media (max-width: 800px) {
+    margin: auto;
+  }
+}
+
+.right_section {
+  min-width: 220px;
+
+  @media (max-width: 800px) {
+    margin: auto;
+  }
+}
+
+.right_section_field {
+  @media (max-width: 800px) {
+    justify-content: space-between;
+  }
+}

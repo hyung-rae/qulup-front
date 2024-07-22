@@ -1,3 +1,18 @@
 .label:hover {
   color: white;
 }
+
+.heaer_container {
+  @media (max-width: 800px) {
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+}
+
+.user_section {
+  @media (max-width: 800px) {
+    flex-direction: row-reverse !important;
+
+    padding: 0px !important;
+  }
+}
