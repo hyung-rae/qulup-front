@@ -6,8 +6,16 @@ import classes from './Header.module.css'
 
 import React from 'react'
 import { useDisclosure } from '@mantine/hooks'
-import SignIn from '../../sign/SignIn'
-import SignUp from '../../sign/SignUp'
+import SignIn from '@/src/components/sign/SignIn'
+import SignUp from '@/src/components/sign/SignUp'
+import Link from 'next/link'
+
+const links = [
+  { link: '/gemstone', label: 'Math Gemstone' },
+  { link: '/problems', label: '문제' },
+  { link: '/examProblems', label: '모의고사 문제' },
+  { link: '/problem-manage', label: '내문제 관리' },
+]
 
 const Header = () => {
   const { push, basePath } = useRouter()
@@ -15,6 +23,12 @@ const Header = () => {
 
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
   const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
+
+  const navigationItems = links.map(link => (
+    <Link key={link.label} href={link.link} className={classes.link}>
+      {link.label}
+    </Link>
+  ))
 
   const handleLogin = () => {
     setIsLogin(true)
@@ -36,6 +50,9 @@ const Header = () => {
           onClick={() => push('/')}
           alt={'logo'}
         />
+        <Mantine.Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
+          {navigationItems}
+        </Mantine.Group>
 
         {/* 로그인/유저 정보 */}
         {isLogin ? (

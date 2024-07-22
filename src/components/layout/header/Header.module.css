@@ -1,3 +1,23 @@
 .label:hover {
   color: white;
 }
+
+.link {
+  display: block;
+  line-height: 1;
+  padding: 8px 12px; /* rem 단위를 사용하는 경우 calc 함수를 사용합니다. 예: padding: calc(8 * var(--mantine-rem)) calc(12 * var(--mantine-rem)); */
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: var(--mantine-color-white); /* light-dark 함수는 CSS 변수로 직접 표현할 수 없습니다. */
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  .link {
+    color: var(--mantine-color-dark-0);
+  }
+}
+.link:hover {
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+}

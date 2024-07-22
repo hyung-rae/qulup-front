@@ -1,0 +1,20 @@
+.card {
+  background-color: white;
+}
+
+.body {
+  flex-grow: 1;
+  height: 100%;
+  cursor: pointer;
+  padding: 16px; /* var(--mantine-spacing-md)를 실제 패딩 값으로 변경 */
+}
+
+.card:hover {
+  background-color: var(--mantine-color-gray-1); /* 예시로 밝은 회색 배경 색상 지정 */
+}
+
+.title {
+  font-weight: bold;
+  font-family: 'Greycliff CF', Arial, sans-serif; /* var(--mantine-font-family)를 대체할 폰트 패밀리로 변경 */
+  line-height: 1.2;
+}

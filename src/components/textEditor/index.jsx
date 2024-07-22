@@ -141,19 +141,19 @@ const TextEditor = ({ setEditorHtml }) => {
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: var(--mantine-color-dark-6);
+          background-color: transparent;
           min-width: calc(1.625rem* var(--mantine-scale));
           height: calc(1.625rem* var(--mantine-scale));
           border: calc(0.0625rem* var(--mantine-scale)) solid;
-          border-color: var(--mantine-color-dark-4);
+          border-color: var(--mantine-color-gray-4);
           border-right: none;
           cursor: pointer;
           svg {
-            stroke: var(--mantine-color-dark-1);
+            stroke: var(--mantine-color-dark-7);
           }
         }
         .imageUploadButton:hover {
-          background-color: var(--mantine-color-dark-5);
+          background-color: var(--mantine-color-gray-1);
         }
       `}
       </style>

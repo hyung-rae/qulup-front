@@ -1,5 +1,5 @@
 .card {
-  transition: 150ms ease;
+  transition: transform 150ms ease;
 
   box-shadow: var(--mantine-shadow-sm);
   cursor: pointer;
@@ -9,8 +9,8 @@
   }
 }
 .card.checked {
-  transition: 150ms ease;
-  border: 1px solid #eee;
+  /* transition: 150ms ease; */
+  border: 1px solid #000;
 }
 .card img {
   cursor: pointer;
@@ -22,8 +22,10 @@
 }
 
 .action {
+  background-color: #fff;
   border-radius: 8px;
   transition: 0.2s;
+  border: 1px solid #ddd;
 }
 
 .action .active {
@@ -31,7 +33,8 @@
 }
 
 .action:hover {
-  background-color: var(--mantine-color-gray-filled-hover);
+  background-color: #ddd;
+  border: 1px solid #ddd;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
