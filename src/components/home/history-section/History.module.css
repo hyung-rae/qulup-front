@@ -1,0 +1,16 @@
+.scrollbar {
+  border-radius: 4px;
+  background-color: var(--mantine-color-dark-6);
+}
+
+.scrollbar:hover {
+  background-color: var(--mantine-color-dark-6);
+}
+
+.scrollbar[data-orientation='vertical'] .thumb {
+  background-color: var(--mantine-color-dark-8);
+}
+
+.scrollbar[data-orientation='horizontal'] .thumb {
+  background-color: var(--mantine-color-dark-8);
+}

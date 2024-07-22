@@ -26,7 +26,7 @@ const Header = () => {
       <SignIn opened={signInOpened} onClose={signInClose} open={signUpOpen} handleLogin={handleLogin} />
       {/* 회원가입 모달 */}
       <SignUp opened={signUpOpened} onClose={signUpClose} />
-      <Mantine.Group bg={'dark.7'} justify="space-around" h={'100%'} w={'100%'}>
+      <Mantine.Group bg={'dark.7'} justify="space-around" h={'100%'} w={'100%'} className={classes.heaer_container}>
         <Mantine.Image
           radius="md"
           w={'auto'}
@@ -39,8 +39,8 @@ const Header = () => {
 
         {/* 로그인/유저 정보 */}
         {isLogin ? (
-          <Mantine.Flex direction="column" gap={15} pt="sm">
-            <Mantine.Group gap={30}>
+          <Mantine.Flex direction="column" gap={15} pt="sm" className={classes.user_section}>
+            <Mantine.Group gap={15}>
               <Mantine.Group gap={10}>
                 <Mantine.Text fz="sm" fw="bolder" c="white">
                   우형래 님
@@ -127,9 +127,6 @@ const Header = () => {
             <Mantine.Button size="compact-md" variant="transparent" className={classes.label} onClick={signInOpen}>
               로그인
             </Mantine.Button>
-            {/* <Mantine.Button size="compact-md" variant="default" onClick={open}>
-              회원가입
-            </Mantine.Button> */}
           </Mantine.Group>
         )}
       </Mantine.Group>

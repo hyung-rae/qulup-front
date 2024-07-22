@@ -14,10 +14,12 @@ import {
   Title,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { noticeList } from './notice-mock'
+import classes from './Notice.module.css'
 const Notice = () => {
   const [opened, { open, close }] = useDisclosure(false)
   return (
-    <Container fluid mt={120} p="lg">
+    <Container py={50} fluid bg={'dark.7'}>
       {/* 팝업 */}
       <Modal.Root opened={opened} onClose={close}>
         <Modal.Overlay />
@@ -29,34 +31,36 @@ const Notice = () => {
         </Modal.Content>
       </Modal.Root>
 
-      <Divider
-        my="lg"
-        label={
-          <Title order={3} c="white" fw={700}>
-            공지사항 / 이벤트
-          </Title>
-        }
-        labelPosition="center"
-      />
-      <ScrollArea maw={800} h={250} m="auto" offsetScrollbars scrollbarSize={8}>
-        <Flex direction="column" p="xl" gap={10}>
-          {new Array(5).fill(1).map((_, i) => (
-            <Group key={i} style={{ cursor: 'pointer' }} onClick={open}>
-              <Box miw={60}>
-                {i < 3 && (
-                  <Badge color={i % 2 === 0 ? 'red' : 'blue'} size="sm">
-                    {i % 2 === 0 ? 'New' : 'Event'}
-                  </Badge>
-                )}
-              </Box>
+      <Title order={3} c="white" fw={700} m={'auto'} mb={20} maw={1000}>
+        공지사항 & 이벤트
+      </Title>
 
-              <Text size="sm" c="white" fw={700}>
-                {i + 1}월 {i % 2 === 0 ? '업데이트' : '이벤트'} 소식
-              </Text>
+      <ScrollArea maw={1000} h={350} m={'auto'} py={20} scrollbars="y" scrollbarSize={10} classNames={classes}>
+        <Flex direction="column" gap={20}>
+          {noticeList.map(({ id, type, title }) => (
+            <Group key={id} align="center" style={{ cursor: 'pointer' }} onClick={open}>
+              {type === 'new' && (
+                <Badge color={'teal'} size="sm" miw={60}>
+                  NEW
+                </Badge>
+              )}
+              {type === 'event' && (
+                <Badge color={'cyan'} size="sm" miw={60}>
+                  EVENT
+                </Badge>
+              )}
+              {type === 'normal' && <Box miw={60} />}
+              <Box className={classes.title_section}>
+                <Text size="sm" c="white" fw={700} lineClamp={1}>
+                  {title}
+                </Text>
+              </Box>
             </Group>
           ))}
         </Flex>
       </ScrollArea>
+
+      <Divider my="lg" labelPosition="center" color="gray.8" />
     </Container>
   )
 }
