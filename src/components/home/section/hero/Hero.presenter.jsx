@@ -1,8 +1,8 @@
-import { Box, Flex, Group, Overlay, Text, Title } from '@mantine/core'
-import classes from './Hero.module.css'
+import { Flex, Overlay, Title } from '@mantine/core'
 import { useRouter } from 'next/router'
+import classes from './Hero.module.css'
 
-const Hero = () => {
+const HeroUI = () => {
   const { basePath } = useRouter()
   return (
     <Flex
@@ -30,4 +30,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default HeroUI

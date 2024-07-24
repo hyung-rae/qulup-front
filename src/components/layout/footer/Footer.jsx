@@ -6,7 +6,7 @@ const Footer = () => {
   const { basePath } = useRouter()
   return (
     <footer>
-      <Container fluid bg={'dark.7'} p="xl" pt={0}>
+      <Container fluid bg={'dark.7'} p="xl">
         <Group align="flex-start" justify="space-between" maw={1000} wrap="wrap" m={'auto'}>
           <Flex direction="column" gap={5} className={classes.left_section}>
             <Image radius="md" w={80} src={`${basePath}/images/logo.png`} alt={'logo'} />

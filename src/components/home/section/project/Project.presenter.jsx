@@ -1,9 +1,8 @@
 import { Carousel } from '@mantine/carousel'
-import { useMediaQuery } from '@mantine/hooks'
-import { Paper, Text, Title, useMantineTheme, rem, Container, Center, Flex, Group } from '@mantine/core'
+import { Container, Flex, Group, Text, Title } from '@mantine/core'
 import classes from './Project.module.css'
 
-const Project = () => {
+const ProjectUI = () => {
   return (
     <Container mt={120}>
       <Carousel loop slideSize="100%" slideGap="xs" controlSize={19} withIndicators>
@@ -114,4 +113,4 @@ const Project = () => {
   )
 }
 
-export default Project
+export default ProjectUI

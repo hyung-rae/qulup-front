@@ -1,9 +1,10 @@
 import { Box, Container, Divider, Flex, Group, ScrollArea, Stack, Text, ThemeIcon, Title } from '@mantine/core'
 import classes from './History.module.css'
-import { hisoryMock } from './history-mock'
-const History = () => {
+import { historyList } from './mock'
+
+const HistoryUI = () => {
   return (
-    <Container my={100} fluid>
+    <Container my={150} fluid>
       <Box maw={1000} m={'auto'}>
         <Title order={1} c="white" fw={700}>
           History
@@ -23,9 +24,9 @@ const History = () => {
         pos={'relative'}
       >
         <Divider variant="dashed" w={'100%'} size={'sm'} color={'gray.7'} pos={'absolute'} top={8} left={0} />
-        <Group w={'100%'} wrap="no-wrap" gap={100}>
-          {hisoryMock.map(({ id, year, infoList }) => (
-            <HisoryItem key={id} year={year} infoList={infoList} />
+        <Group w={'100%'} wrap="no-wrap" gap={100} align="flex-start">
+          {historyList.map(({ id, year, infoList }) => (
+            <HistoryItem key={id} year={year} infoList={infoList} />
           ))}
         </Group>
       </ScrollArea>
@@ -33,9 +34,9 @@ const History = () => {
   )
 }
 
-export default History
+export default HistoryUI
 
-const HisoryItem = ({ year, infoList }) => {
+const HistoryItem = ({ year, infoList }) => {
   return (
     <Group align="flex-start" gap={30} miw={350} pt={30} pl={10} wrap="no-wrap" pos={'relative'}>
       <Box w={18} h={18} pos={'absolute'} top={0} left={0} bg={'dark.8'} style={{ borderRadius: '50%' }} />
