@@ -1,12 +1,9 @@
 import { Button, Checkbox, Flex, Group, Image, Input, Modal, PasswordInput } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
 import { IconAt, IconBuilding, IconId, IconLock, IconPhone } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
-import Terms from './Terms'
-const SignUp = ({ opened, onClose }) => {
-  const { basePath } = useRouter()
 
-  const [termsOpened, { open, close }] = useDisclosure(false)
+const SignUpUI = ({ opened, onClose, onClickTerms }) => {
+  const { basePath } = useRouter()
   return (
     <Modal.Root opened={opened} onClose={onClose} size="sm">
       <Modal.Overlay />
@@ -80,13 +77,10 @@ const SignUp = ({ opened, onClose }) => {
           </Flex>
           <Group mt={20} justify="space-between">
             <Checkbox size="xs" defaultChecked label="개인정보 수집 이용 동의" color="dark" />
-            <Button size="xs" variant="transparent" onClick={open}>
+            <Button size="xs" variant="transparent" onClick={onClickTerms}>
               약관보기
             </Button>
           </Group>
-
-          {/* 약관 모달 */}
-          <Terms opened={termsOpened} onClose={close} />
 
           <Button fullWidth color="dark" mt={30} onClick={onClose}>
             회원가입
@@ -97,4 +91,4 @@ const SignUp = ({ opened, onClose }) => {
   )
 }
 
-export default SignUp
+export default SignUpUI

@@ -1,29 +1,14 @@
-import {
-  Button,
-  CloseButton,
-  Divider,
-  Flex,
-  Group,
-  Image,
-  Input,
-  Modal,
-  PasswordInput,
-  Text,
-  Title,
-  UnstyledButton,
-} from '@mantine/core'
-import { useRouter } from 'next/router'
+import { Button, Divider, Flex, Group, Image, Input, Modal, PasswordInput } from '@mantine/core'
 import { IconAt, IconLock } from '@tabler/icons-react'
-import { FacebookButton, GoogleButton, KaKaoButton, NaverButton } from '../social-buttons'
+import { useRouter } from 'next/router'
+import { FacebookButton, GoogleButton, KaKaoButton, NaverButton } from '@/src/components/social-buttons/index'
 
-const SignIn = ({ opened, onClose, open, handleLogin }) => {
+const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp }) => {
   const { basePath } = useRouter()
-
   return (
     <Modal.Root opened={opened} onClose={onClose} size="sm">
       <Modal.Overlay />
       <Modal.Content pos="relative">
-        {/* <CloseButton size="xl" variant="transparent" c="dark" pos="absolute" top={10} right={10} onClick={onClose} /> */}
         <Modal.Body p={'xl'} bg={'white'}>
           <Image radius="md" w={120} src={`${basePath}/images/logo.png`} alt={'logo'} m="auto" mt={30} />
           <Flex direction={'column'} mt={50} gap={30}>
@@ -51,16 +36,7 @@ const SignIn = ({ opened, onClose, open, handleLogin }) => {
               </Button>
 
               <Group mt={10} justify="space-between">
-                <Button
-                  size="compact-xs"
-                  c="dimmed"
-                  td="underline"
-                  variant="transparent"
-                  onClick={() => {
-                    open()
-                    onClose()
-                  }}
-                >
+                <Button size="compact-xs" c="dimmed" td="underline" variant="transparent" onClick={onClickSignUp}>
                   회원가입 하기
                 </Button>
                 <Button size="compact-xs" c="dimmed" td="underline" variant="transparent">
@@ -82,4 +58,4 @@ const SignIn = ({ opened, onClose, open, handleLogin }) => {
   )
 }
 
-export default SignIn
+export default SignInUI

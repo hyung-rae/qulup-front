@@ -1,4 +1,4 @@
-import { Box, Center, CloseButton, Modal, Textarea, Title } from '@mantine/core'
+import { Box, CloseButton, Modal, Title } from '@mantine/core'
 
 const Terms = ({ opened, onClose }) => {
   return (
