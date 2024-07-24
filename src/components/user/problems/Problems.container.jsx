@@ -1,7 +1,7 @@
-import React from 'react'
+import ProblemsUI from './Problems.presenter'
 
 const Problems = () => {
-  return <div>Problems</div>
+  return <ProblemsUI />
 }
 
 export default Problems

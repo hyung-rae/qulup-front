@@ -1,7 +1,7 @@
-import UserInfo from '@/src/components/user/info/UserInfo.container'
+import User from '@/src/components/user/User.container'
 
-const UserInfoPage = () => {
-  return <UserInfo />
+const UserPage = () => {
+  return <User />
 }
 
-export default UserInfoPage
+export default UserPage
