@@ -7,7 +7,7 @@ import { IconShoppingCart, IconUserCog, IconNews } from '@tabler/icons-react'
 const HeaderUI = ({ isLogin, onClickSignIn, handleLogOut }) => {
   const { basePath } = useRouter()
   return (
-    <Group bg={'dark.7'} justify="space-around" h={'100%'} w={'100%'} className={classes.header_container}>
+    <Flex bg={'dark.7'} align={'center'} h={'100%'} w={'100%'} className={classes.header_container}>
       <Link href={'/'}>
         <Image radius="md" w={'auto'} h={20} src={`${basePath}/images/logo.png`} alt={'logo'} />
       </Link>
@@ -80,7 +80,7 @@ const HeaderUI = ({ isLogin, onClickSignIn, handleLogOut }) => {
           </Group>
         </Flex>
       )}
-    </Group>
+    </Flex>
   )
 }
 
