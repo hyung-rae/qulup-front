@@ -1,10 +1,10 @@
-import { Checkbox, Container, Grid, Group, Pagination, Paper, Stack, Title } from '@mantine/core'
+import { Center, Checkbox, Container, Grid, Group, Pagination, Paper, Stack, Title } from '@mantine/core'
 
 const CartUI = ({ cartReceipt, cartItem, page, setPage, totalCount, checkedIds, handleCheckedAll }) => {
   return (
     <Container fluid maw={1500} p={'lg'}>
       <Grid justify="center" align="flex-start">
-        <Grid.Col span={{ base: 12, sm: 3 }}>{cartReceipt}</Grid.Col>
+        <Grid.Col span={{ base: 12, md: 2 }}>{cartReceipt}</Grid.Col>
         <Grid.Col span="auto">
           <Paper shadow="xs" p="lg">
             <Stack mih={'70vh'} gap={0}>
@@ -21,7 +21,9 @@ const CartUI = ({ cartReceipt, cartItem, page, setPage, totalCount, checkedIds, 
               <Grid my={20} justify="flex-start">
                 {cartItem}
               </Grid>
-              <Pagination total={totalCount / 10} page={page} onChange={setPage} color="dark" size="sm" mt="auto" />
+              <Center mt="auto">
+                <Pagination total={totalCount / 10} page={page} onChange={setPage} color="dark" size="sm" />
+              </Center>
             </Stack>
           </Paper>
         </Grid.Col>
