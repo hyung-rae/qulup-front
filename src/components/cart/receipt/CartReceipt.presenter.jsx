@@ -1,13 +1,13 @@
 import { Button, Divider, Group, Paper, Stack, Text, Title } from '@mantine/core'
 
-const CartReceiptUI = ({ selectCount, totalPrice, totalDiscount }) => {
+const CartReceiptUI = ({ checkedCount, totalPrice, totalDiscount }) => {
   return (
     <Paper shadow="xs" p="lg">
       <Group mb={20}>
         <Title order={5}>
           선택한
           <Text component="span" c="teal" inherit mx={5}>
-            {selectCount || 0}
+            {checkedCount || 0}
           </Text>
           개의 상품
         </Title>

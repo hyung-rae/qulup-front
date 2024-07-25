@@ -1,11 +1,13 @@
 import { Checkbox, CloseButton, Grid, Group, Image, Stack, Text } from '@mantine/core'
 
-const CartItemUI = ({ id, name, decs, price, discount }) => {
+const CartItemUI = ({ handleChecked, check, ...props }) => {
+  const { id, name, decs, price, discount } = props
+
   return (
     <Grid.Col span={6}>
       <Group justify="flex-start" bg={'gray.1'} p={10} style={{ borderRadius: '4px' }}>
         <Group gap={10}>
-          <Checkbox size="xs" color="dark" />
+          <Checkbox size="xs" color="dark" checked={check} onChange={e => handleChecked(id, e.target.checked)} />
           <Image
             w={50}
             h={50}
