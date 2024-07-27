@@ -1,6 +1,6 @@
 import { Button, Divider, Group, Paper, Stack, Text, Title } from '@mantine/core'
 
-const CartReceiptUI = ({ checkedCount, totalPrice, totalDiscount }) => {
+const CartReceiptUI = ({ moveToOrderPage, checkedCount, totalPrice, totalDiscount }) => {
   return (
     <Paper shadow="xs" p="lg">
       <Group mb={20}>
@@ -38,7 +38,8 @@ const CartReceiptUI = ({ checkedCount, totalPrice, totalDiscount }) => {
             {Number(totalPrice - totalDiscount || 0).toLocaleString('ko-KR')} 원
           </Text>
         </Group>
-        <Button mt={20} fullWidth color="dark">
+
+        <Button mt={20} fullWidth color="dark" onClick={moveToOrderPage} disabled={checkedCount === 0}>
           결제하기
         </Button>
       </Stack>

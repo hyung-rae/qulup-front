@@ -1,5 +1,7 @@
+import Order from '@/src/components/order/Order.container'
+
 const OrderPage = () => {
-  return <div>OrderPage</div>
+  return <Order />
 }
 
 export default OrderPage
