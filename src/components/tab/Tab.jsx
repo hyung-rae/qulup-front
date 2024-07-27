@@ -1,5 +1,4 @@
-import { Tabs, rem } from '@mantine/core'
-import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react'
+import { Tabs } from '@mantine/core'
 import classes from './Tab.module.css'
 
 const Tab = props => {
@@ -10,7 +9,6 @@ const Tab = props => {
       <Tabs.List grow>
         {contents.map((tab, index) => (
           <Tabs.Tab
-            mih={50}
             value={tab.value}
             leftSection={tab.icon}
             onClick={() => setTabValue(tab.value)}

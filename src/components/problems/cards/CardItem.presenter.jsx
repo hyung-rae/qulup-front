@@ -26,23 +26,33 @@ const difficultyOption = {
 }
 
 const CardItemUI = ({ ...props }) => {
-  const { article, checkedList, heartList, handleProblemClick, handleDetailClick, handleHeartClick } = props
+  const {
+    article,
+    checkedList,
+    heartList,
+    handleProblemClick,
+    handleDetailClick,
+    handleHeartClick,
+    isChecked,
+    setIsChecked,
+  } = props
   return (
     <Mantine.Card
       key={`problem_${article.id}`}
       p="md"
       radius="md"
-      component="a"
-      href="#"
       className={`${classes.card} ${checkedList.includes(article.id) ? classes.checked : ''}`}
-      onClick={() => {
+      onClick={e => {
         handleProblemClick(article.id)
       }}
     >
       <Mantine.Flex justify={'space-between'} mb={20}>
-        <Mantine.Box>
-          <Mantine.Text size="md">문제번호: {article.id}</Mantine.Text>
-        </Mantine.Box>
+        <Mantine.Group gap={10}>
+          <Mantine.Checkbox color="dark" checked={isChecked} onChange={e => setIsChecked(e.target.checked)} />
+          <Mantine.Text size="md" fw={700}>
+            {article.id}.
+          </Mantine.Text>
+        </Mantine.Group>
         <Mantine.Group gap={5}>
           {article.tag.map(tag => (
             <Mantine.Badge color="dark.3" key={tag}>

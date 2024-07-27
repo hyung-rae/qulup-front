@@ -3,7 +3,7 @@ import { IconSearch } from '@tabler/icons-react'
 import Cards from './cards/Cards.container'
 
 import { ACADEMY_FILTER, PROBLEM_FILTER, SEARCH_FILTER } from '@/src/components/problems/SelectFilter'
-import { PROBLEM_DATA } from '@/src/mock-data/dummy'
+import { useState } from 'react'
 
 const ProblemsUI = ({ ...props }) => {
   const {
@@ -13,18 +13,21 @@ const ProblemsUI = ({ ...props }) => {
     setSearchText,
     handleSearch,
     heartList,
-    setHeartList,
+    handleAllCheck,
     handleDetailClick,
     handleProblemClick,
     handleHeartClick,
+    placeholder,
+    setPlaceholder,
+    data = [],
   } = props
+
   return (
-    <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
+    <Container bg="gray.3" fluid p="xl" mih={'100vh'} maw={1700}>
       <Flex direction="column" maw={1920} m="auto" gap={20}>
         <Group justify="space-between" align="flex-end">
           <Group>
-            <Button>전체 선택</Button>
-
+            <Button onClick={handleAllCheck}>전체 선택</Button>
             {checkedList.length > 0 && (
               <>
                 <Button onClick={() => setCheckedList([])}>전체 해제</Button>
@@ -33,16 +36,29 @@ const ProblemsUI = ({ ...props }) => {
             )}
           </Group>
           <Group justify="flex-end" align="flex-end">
-            <MultiSelect miw={200} label="제외 학원" data={ACADEMY_FILTER} />
             <MultiSelect
               miw={200}
-              label="제외 단원"
+              data={ACADEMY_FILTER}
+              placeholder={placeholder.academy ? '제외 학원' : ''}
+              onChange={e => {
+                setPlaceholder(prev => {
+                  return { ...prev, academy: !(e.length > 0) }
+                })
+              }}
+            />
+            <MultiSelect
+              miw={200}
+              placeholder={placeholder.problem ? '제외 단원' : ''}
               data={PROBLEM_FILTER}
+              onChange={e => {
+                setPlaceholder(prev => {
+                  return { ...prev, problem: !(e.length > 0) }
+                })
+              }}
               comboboxProps={{ width: 200, position: 'bottom-end' }}
             />
             <Group gap={5} align="flex-end">
               <Select
-                label="문제 검색"
                 placeholder="검색타입"
                 data={SEARCH_FILTER}
                 w={100}
@@ -61,7 +77,7 @@ const ProblemsUI = ({ ...props }) => {
         </Group>
 
         <Cards
-          data={PROBLEM_DATA}
+          data={data}
           heartList={heartList}
           handleProblemClick={handleProblemClick}
           handleDetailClick={handleDetailClick}

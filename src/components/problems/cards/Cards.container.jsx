@@ -14,8 +14,9 @@ const Cards = ({
   py = 'xl',
   data = [],
 }) => {
-  const cards = data.map(article => (
+  const cards = data.map((article, i) => (
     <CardItem
+      key={`problem_${i}`}
       article={article}
       checkedList={checkedList}
       heartList={heartList}
