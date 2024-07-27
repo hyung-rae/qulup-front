@@ -21,6 +21,7 @@ import { Carousel } from '@mantine/carousel'
 
 import { ACADEMY_FILTER, PROBLEM_FILTER, SEARCH_FILTER } from '@/src/components/problems/SelectFilter'
 import { PROBLEM_DATA, RECOMMEND_DATA } from '@/src/mock-data/dummy'
+// import ProblemsUI from '../user/problems/Problems.container'
 
 const Problems = () => {
   const handleDetailClick = id => {
@@ -79,7 +80,6 @@ const Problems = () => {
           </Flex>
         </Flex>
       </Modal>
-
       <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
         <Flex direction="column" maw={1920} m="auto" gap={20}>
           <Group justify="space-between" align="flex-end">

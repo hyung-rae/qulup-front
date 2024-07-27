@@ -1,4 +1,4 @@
-import Problems from '@/src/components/problems/Problems'
+import Problems from '@/src/components/problems/Problems.container'
 
 const ProblemsPage = () => {
   return <Problems />

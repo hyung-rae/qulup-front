@@ -1,18 +1,7 @@
 import React from 'react'
-import {
-  ActionIcon,
-  Badge,
-  SimpleGrid,
-  Card,
-  Image,
-  Text,
-  Container,
-  AspectRatio,
-  Flex,
-  Group,
-  Box,
-} from '@mantine/core'
-import classes from './ArticlesCardsGrid.module.css'
+import * as Mantine from '@mantine/core'
+
+import classes from './Cards.module.css'
 import { IconHeart } from '@tabler/icons-react'
 
 const problemCodeStyleProps = {
@@ -36,20 +25,10 @@ const difficultyOption = {
   hard: { color: 'red', title: '어려움' },
 }
 
-const ArticlesCardsGrid = ({
-  checkedList = [],
-  heartList = [],
-  handleProblemClick = () => {},
-  handleDetailClick = () => {},
-  handleHeartClick = () => {},
-  col = 4,
-  width = 1800,
-  px = '16px',
-  py = 'xl',
-  data = [],
-}) => {
-  const cards = data.map(article => (
-    <Card
+const CardItemUI = ({ ...props }) => {
+  const { article, checkedList, heartList, handleProblemClick, handleDetailClick, handleHeartClick } = props
+  return (
+    <Mantine.Card
       key={`problem_${article.id}`}
       p="md"
       radius="md"
@@ -60,18 +39,20 @@ const ArticlesCardsGrid = ({
         handleProblemClick(article.id)
       }}
     >
-      <Flex justify={'space-between'} mb={20}>
-        <Box>
-          <Text size="md">문제번호: {article.id}</Text>
-        </Box>
-        <Group gap={5}>
+      <Mantine.Flex justify={'space-between'} mb={20}>
+        <Mantine.Box>
+          <Mantine.Text size="md">문제번호: {article.id}</Mantine.Text>
+        </Mantine.Box>
+        <Mantine.Group gap={5}>
           {article.tag.map(tag => (
-            <Badge color="dark.3" key={tag}>
+            <Mantine.Badge color="dark.3" key={tag}>
               {tag}
-            </Badge>
+            </Mantine.Badge>
           ))}
-          <Badge bg={difficultyOption[article.difficulty].color}>{difficultyOption[article.difficulty].title}</Badge>
-          <ActionIcon
+          <Mantine.Badge bg={difficultyOption[article.difficulty].color}>
+            {difficultyOption[article.difficulty].title}
+          </Mantine.Badge>
+          <Mantine.ActionIcon
             className={classes.action}
             onClick={e => {
               e.stopPropagation()
@@ -84,14 +65,14 @@ const ArticlesCardsGrid = ({
               className={`${heartList.includes(article.id) && classes.active}`}
               fill={heartList.includes(article.id) ? 'red' : ''}
             />
-          </ActionIcon>
-        </Group>
-      </Flex>
-      <AspectRatio ratio={1680 / 720}>
-        <Text size="xs" bg={'dark.6'} c={'white'} style={problemCodeStyleProps}>
+          </Mantine.ActionIcon>
+        </Mantine.Group>
+      </Mantine.Flex>
+      <Mantine.AspectRatio ratio={1680 / 720}>
+        <Mantine.Text size="xs" bg={'dark.6'} c={'white'} style={problemCodeStyleProps}>
           {article.code}
-        </Text>
-        <Image
+        </Mantine.Text>
+        <Mantine.Image
           src={article.image}
           radius={4}
           bd={'1px solid #555'}
@@ -100,25 +81,15 @@ const ArticlesCardsGrid = ({
             handleDetailClick(article.id)
           }}
         />
-      </AspectRatio>
-      <Text size="md" tt="uppercase" fw={700} mt="md">
+      </Mantine.AspectRatio>
+      <Mantine.Text size="md" tt="uppercase" fw={700} mt="md">
         {article.price} 원
-      </Text>
-      <Text className={classes.description} mt={5}>
+      </Mantine.Text>
+      <Mantine.Text className={classes.description} mt={5}>
         {article.description}
-      </Text>
-    </Card>
-  ))
-
-  return (
-    <>
-      <Container px={px} py={py} size={1850}>
-        <SimpleGrid cols={{ base: 1, sm: col }} style={{ minWidth: width, maxWidth: width }}>
-          {cards}
-        </SimpleGrid>
-      </Container>
-    </>
+      </Mantine.Text>
+    </Mantine.Card>
   )
 }
 
-export default React.memo(ArticlesCardsGrid)
+export default CardItemUI
