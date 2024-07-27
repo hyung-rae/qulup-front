@@ -1,6 +1,6 @@
 import { Box, Container, Paper, Tabs, Text } from '@mantine/core'
 import UserInfo from './info/UserInfo.container'
-import Problems from './problems/Problems.container'
+import ProblemsManage from './problemsManage/ProblemsManage.container'
 import Payment from './payment/Payment.container'
 
 const UserUI = ({ menu }) => {
@@ -25,7 +25,7 @@ const UserUI = ({ menu }) => {
 
         <Tabs.Panel value="문제 관리">
           <Box pt={'xl'}>
-            <Problems />
+            <ProblemsManage />
           </Box>
         </Tabs.Panel>
 
