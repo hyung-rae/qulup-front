@@ -1,5 +1,5 @@
 import classes from '@/src/components/service/Service.module.css'
-import { Button, Container, Flex, Pagination, Paper, Table, TextInput } from '@mantine/core'
+import { Button, Container, Flex, Group, SegmentedControl, Pagination, Paper, Table, TextInput } from '@mantine/core'
 
 import Tab from '@/src/components/tab/Tab'
 import { FAQ_DEFAULT, INQUIRY_DEFAULT } from '@/src/mock-data/dummy'
@@ -16,10 +16,6 @@ const ServiceUI = ({ ...props }) => {
     handleInquiryClick,
     writingOpen,
   } = props
-  const temp = [
-    { title: 'FAQ', value: 'faq', icon: null },
-    { title: '1:1문의', value: 'inquiry', icon: null },
-  ]
 
   const FAQ_ROWS = FAQ_DEFAULT.map(row => {
     return (
@@ -45,17 +41,29 @@ const ServiceUI = ({ ...props }) => {
 
   return (
     <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
-      <Flex direction="column" w={1200} m="auto" gap={20}>
-        <Tab contents={temp} defaultValue={'faq'} setTabValue={setTabValue} style={{ padding: '20px 0' }} />
-        <Table.ScrollContainer minWidth={800}>
-          <Flex justify="end" w={'100%'} gap={10} mb={20}>
-            {tabValue === 'inquiry' && <Button onClick={writingOpen}>글쓰기</Button>}
-            <TextInput
-              value={searchText}
-              placeholder="검색어를 입력해주세요"
-              onChange={e => setSearchText(e.target.value)}
-              rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
+      <Flex direction="column" maw={1200} m="auto" gap={20}>
+        <Table.ScrollContainer>
+          <Flex justify="space-between" w={'100%'} gap={10} mb={20}>
+            <SegmentedControl
+              value={tabValue}
+              defaultValue="faq"
+              data={[
+                { label: 'FAQ', value: 'faq' },
+                { label: '1:1 문의', value: 'inquiry' },
+              ]}
+              onClick={e => {
+                setTabValue(e.target.value)
+              }}
             />
+            <Group>
+              {tabValue === 'inquiry' && <Button onClick={writingOpen}>글쓰기</Button>}
+              <TextInput
+                value={searchText}
+                placeholder="검색어를 입력해주세요"
+                onChange={e => setSearchText(e.target.value)}
+                rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
+              />
+            </Group>
           </Flex>
           <Paper m="auto" shadow="xs" withBorder p="xl">
             <Table verticalSpacing="xs">

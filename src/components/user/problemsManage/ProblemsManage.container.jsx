@@ -5,6 +5,8 @@ import DetailModal from './detail/DetailModal.container'
 import RequestModal from './request/RequestModal.container'
 import ProblemsManageUI from './ProblemsManage.presenter'
 
+import { PROBLEM_DATA } from '@/src/mock-data/dummy'
+
 const ProblemsManage = () => {
   const [heartList, setHeartList] = useState([])
   const [checkedList, setCheckedList] = useState([])
@@ -36,6 +38,12 @@ const ProblemsManage = () => {
   }
   const handleBuy = () => {}
 
+  const handleAllCheck = () => {
+    const idList = PROBLEM_DATA.map(el => el.id)
+    console.log(idList, checkedList)
+    setCheckedList([...idList])
+  }
+
   return (
     <>
       <DetailModal detailOpened={detailOpened} detailOpen={detailOpen} detailClose={detailClose} />
@@ -53,6 +61,8 @@ const ProblemsManage = () => {
         setCheckedList={setCheckedList}
         handleReQuest={handleReQuest}
         handleBuy={handleBuy}
+        handleAllCheck={handleAllCheck}
+        data={PROBLEM_DATA}
       />
     </>
   )

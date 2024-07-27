@@ -9,25 +9,20 @@ import DetailModal from './detail/DetailModal.container'
 import ServiceUI from './Service.presenter'
 import WriteModal from './write/WriteModal.container'
 
-const TextEditor = dynamic(() => import('@/src/components/textEditor'), { ssr: false })
-
-{
-}
 const Service = ({ props }) => {
   const [tabValue, setTabValue] = useState('faq') // faq or inquiry
-  const [detailOpened, { open: detailOpen, close: detailClose }] = useDisclosure(false)
-  const [writingOpened, { open: writingOpen, close: writingClose }] = useDisclosure(false)
   const [modalTitle, setModalTitle] = useState('타이틀')
   const [editorHtml, setEditorHtml] = useState('')
   const [searchText, setSearchText] = useState('')
 
+  const [detailOpened, { open: detailOpen, close: detailClose }] = useDisclosure(false)
+  const [writingOpened, { open: writingOpen, close: writingClose }] = useDisclosure(false)
+
   const handleFaqClick = row => {
-    console.log('faq row: ', row)
     setModalTitle(row.title)
     detailOpen()
   }
   const handleInquiryClick = row => {
-    console.log('inquiry row: ', row)
     setModalTitle(row.title)
     detailOpen()
   }

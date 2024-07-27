@@ -6,7 +6,7 @@ import Payment from './payment/Payment.container'
 const UserUI = ({ menu }) => {
   return (
     <Container maw={1200} m={'auto'} bg={'gray.3'} fluid p={0}>
-      <Tabs siz defaultValue="개인정보 관리" p="xs" color="dark">
+      <Tabs defaultValue="개인정보 관리" p="xs" color="dark">
         <Tabs.List>
           {menu.map(item => (
             <Tabs.Tab key={item.id} value={item.label} leftSection={item.icon}>
@@ -30,7 +30,7 @@ const UserUI = ({ menu }) => {
         </Tabs.Panel>
 
         <Tabs.Panel value="결제내역 관리">
-          <Box>
+          <Box pt={'xl'}>
             <Payment />
           </Box>
         </Tabs.Panel>
