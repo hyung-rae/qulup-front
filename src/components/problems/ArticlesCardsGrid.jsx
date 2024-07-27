@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   ActionIcon,
   Badge,
@@ -14,88 +15,6 @@ import {
 import classes from './ArticlesCardsGrid.module.css'
 import { IconHeart } from '@tabler/icons-react'
 
-const mockdata = [
-  {
-    id: 1,
-    description: 'Top 10 places to visit in Norway this summer',
-    image:
-      'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'easy',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 2,
-    description: 'Best forests to visit in North America',
-    image:
-      'https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 3,
-    description: 'Hawaii beaches review: better than you think',
-    image:
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'hard',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 4,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 5,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 6,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 7,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 8,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-]
 const problemCodeStyleProps = {
   position: 'absolute',
   display: 'flex',
@@ -117,8 +36,19 @@ const difficultyOption = {
   hard: { color: 'red', title: '어려움' },
 }
 
-const ArticlesCardsGrid = ({ checkedList, heartList, handleProblemClick, handleDetailClick, handleHeartClick }) => {
-  const cards = mockdata.map(article => (
+const ArticlesCardsGrid = ({
+  checkedList = [],
+  heartList = [],
+  handleProblemClick = () => {},
+  handleDetailClick = () => {},
+  handleHeartClick = () => {},
+  col = 4,
+  width = 1800,
+  px = '16px',
+  py = 'xl',
+  data = [],
+}) => {
+  const cards = data.map(article => (
     <Card
       key={`problem_${article.id}`}
       p="md"
@@ -157,7 +87,7 @@ const ArticlesCardsGrid = ({ checkedList, heartList, handleProblemClick, handleD
           </ActionIcon>
         </Group>
       </Flex>
-      <AspectRatio ratio={1920 / 1080}>
+      <AspectRatio ratio={1680 / 720}>
         <Text size="xs" bg={'dark.6'} c={'white'} style={problemCodeStyleProps}>
           {article.code}
         </Text>
@@ -182,11 +112,13 @@ const ArticlesCardsGrid = ({ checkedList, heartList, handleProblemClick, handleD
 
   return (
     <>
-      <Container py="xl" size={1920}>
-        <SimpleGrid cols={{ base: 1, sm: 4 }}>{cards}</SimpleGrid>
+      <Container px={px} py={py} size={1850}>
+        <SimpleGrid cols={{ base: 1, sm: col }} style={{ minWidth: width, maxWidth: width }}>
+          {cards}
+        </SimpleGrid>
       </Container>
     </>
   )
 }
 
-export default ArticlesCardsGrid
+export default React.memo(ArticlesCardsGrid)
