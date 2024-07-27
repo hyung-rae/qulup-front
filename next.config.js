@@ -1,6 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig = {
+  reactStrictMode: false,
   basePath: isProd ? '/qulup-front' : '',
   assetPrefix: isProd ? 'https://hyung-rae.github.io/qulup-front/' : '',
   images: {
