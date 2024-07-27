@@ -1,4 +1,4 @@
-import Gemstone from '@/src/components/gemstone/Gemstone'
+import Gemstone from '@/src/components/mathGemstone/Gemstone.container'
 
 const MathGemstonePage = () => {
   return <Gemstone />
