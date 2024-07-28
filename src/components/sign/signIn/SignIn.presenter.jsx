@@ -3,7 +3,7 @@ import { IconAt, IconLock } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
 import { FacebookButton, GoogleButton, KaKaoButton, NaverButton } from '@/src/components/social-buttons/index'
 
-const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp }) => {
+const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind }) => {
   const { basePath } = useRouter()
   return (
     <Modal.Root opened={opened} onClose={onClose} size="sm">
@@ -39,7 +39,7 @@ const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp }) => {
                 <Button size="compact-xs" c="dimmed" td="underline" variant="transparent" onClick={onClickSignUp}>
                   회원가입 하기
                 </Button>
-                <Button size="compact-xs" c="dimmed" td="underline" variant="transparent">
+                <Button size="compact-xs" c="dimmed" td="underline" variant="transparent" onClick={onClickFind}>
                   이메일 / 비밀번호 찾기
                 </Button>
               </Group>

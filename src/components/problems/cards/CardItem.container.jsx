@@ -2,7 +2,15 @@ import React, { useEffect, useState } from 'react'
 import CardItemUI from './CardItem.presenter'
 
 const CardItem = ({ ...props }) => {
-  const { article, checkedList, heartList, handleProblemClick, handleDetailClick, handleHeartClick } = props
+  const {
+    article,
+    checkedList,
+    heartList,
+    handleProblemClick,
+    handleDetailClick,
+    handleHeartClick,
+    detailModal = false,
+  } = props
   const [isChecked, setIsChecked] = useState(false)
 
   useEffect(() => {
@@ -20,6 +28,7 @@ const CardItem = ({ ...props }) => {
       handleHeartClick={handleHeartClick}
       isChecked={isChecked}
       setIsChecked={setIsChecked}
+      detailModal={detailModal}
     />
   )
 }

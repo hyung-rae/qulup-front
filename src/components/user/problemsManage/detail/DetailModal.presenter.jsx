@@ -1,11 +1,12 @@
 import { Card, Flex, Modal, Text } from '@mantine/core'
 import Cards from '../cards/Cards.container'
-import { RECOMMEND_DATA } from '@/src/mock-data/dummy'
+import { RECOMMEND_DATA } from '@/src/components/problems/mock'
 
 const DetailModalUI = ({ ...props }) => {
   const { detailOpened, detailClose } = props
+
   return (
-    <Modal opened={detailOpened} size={'1920'} onClose={detailClose} title={'문제 상세보기'} centered>
+    <Modal opened={detailOpened} size={1920} onClose={detailClose} title={'문제 상세보기'} centered>
       <Flex gap={40}>
         <Flex direction="column" gap={20} w={'100%'}>
           <Text size="18px" fw={700}>

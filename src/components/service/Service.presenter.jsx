@@ -14,6 +14,11 @@ import {
 
 import { IconSearch } from '@tabler/icons-react'
 
+const ANSWER_TITLE = {
+  wait: '대기중',
+  done: '답변 완료',
+}
+
 const ServiceUI = ({ ...props }) => {
   const {
     tabValue,
@@ -45,7 +50,7 @@ const ServiceUI = ({ ...props }) => {
         <Table.Tr className={classes.tr} key={`inquiry_${row.id}`} onClick={() => handleInquiryClick(row)}>
           <Table.Td align="center">{row.id}</Table.Td>
           <Table.Td align="center">{row.writer}</Table.Td>
-          <Table.Td align="center">{row.state}</Table.Td>
+          <Table.Td align="center">{ANSWER_TITLE[row.state]}</Table.Td>
           <Table.Td>{row.created_at}</Table.Td>
         </Table.Tr>
       </>

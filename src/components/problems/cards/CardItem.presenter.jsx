@@ -35,7 +35,9 @@ const CardItemUI = ({ ...props }) => {
     handleHeartClick,
     isChecked,
     setIsChecked,
+    detailModal,
   } = props
+
   return (
     <Mantine.Card
       key={`problem_${article.id}`}
@@ -48,7 +50,9 @@ const CardItemUI = ({ ...props }) => {
     >
       <Mantine.Flex justify={'space-between'} mb={20}>
         <Mantine.Group gap={10}>
-          <Mantine.Checkbox color="dark" checked={isChecked} onChange={e => setIsChecked(e.target.checked)} />
+          {!detailModal && (
+            <Mantine.Checkbox color="dark" checked={isChecked} onChange={e => setIsChecked(e.target.checked)} />
+          )}
           <Mantine.Text size="md" fw={700}>
             {article.id}.
           </Mantine.Text>

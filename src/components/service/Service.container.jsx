@@ -6,7 +6,7 @@ import { useDisclosure } from '@mantine/hooks'
 import DetailModal from './detail/DetailModal.container'
 import ServiceUI from './Service.presenter'
 import WriteModal from './write/WriteModal.container'
-import { FAQ_DEFAULT, INQUIRY_DEFAULT } from './mock'
+
 import { getBoardData, getSearchBoardData } from '@/pages/api/service'
 
 const Service = ({ props }) => {
@@ -14,8 +14,8 @@ const Service = ({ props }) => {
   const [article, setArticle] = useState(null)
   const [editorHtml, setEditorHtml] = useState('')
   const [searchText, setSearchText] = useState('')
-  const [faq_data, setFaqData] = useState(FAQ_DEFAULT)
-  const [inquiry_data, setInquiryData] = useState(INQUIRY_DEFAULT)
+  const [faq_data, setFaqData] = useState([])
+  const [inquiry_data, setInquiryData] = useState([])
 
   const [totalCount, setTotalCount] = useState(56)
 

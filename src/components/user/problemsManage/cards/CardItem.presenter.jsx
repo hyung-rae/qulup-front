@@ -26,16 +26,7 @@ const difficultyOption = {
 }
 
 const CardItemUI = ({ ...props }) => {
-  const {
-    article,
-    checkedList,
-    heartList,
-    handleProblemClick,
-    handleDetailClick,
-    handleHeartClick,
-    isChecked,
-    setIsChecked,
-  } = props
+  const { article, checkedList, heartList, handleProblemClick, handleDetailClick, isChecked, setIsChecked } = props
   return (
     <Mantine.Card
       key={`problem_${article.id}`}
