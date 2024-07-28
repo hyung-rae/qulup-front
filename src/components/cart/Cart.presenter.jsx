@@ -4,12 +4,12 @@ import Link from 'next/link'
 
 const CartUI = ({ cartReceipt, cartItem, page, setPage, totalCount, checkedIds, handleCheckedAll }) => {
   return (
-    <Container fluid maw={1500} p={'lg'}>
+    <Container fluid maw={1700} p={'lg'}>
       <Grid justify="center" align="flex-start">
         <Grid.Col span={{ base: 12, md: 2 }}>{cartReceipt}</Grid.Col>
         <Grid.Col span="auto">
           <Paper shadow="xs" p="lg">
-            <Stack mih={'70vh'} gap={0}>
+            <Stack gap={0}>
               <Group>
                 <Checkbox
                   size="xs"
@@ -36,7 +36,7 @@ const CartUI = ({ cartReceipt, cartItem, page, setPage, totalCount, checkedIds, 
                 {cartItem}
               </Grid>
               <Center mt="auto">
-                <Pagination total={totalCount / 10} page={page} onChange={setPage} color="dark" size="sm" />
+                <Pagination total={totalCount / 10} page={page} onChange={setPage} color="dark" />
               </Center>
             </Stack>
           </Paper>

@@ -9,7 +9,7 @@ import WriteModal from './write/WriteModal.container'
 
 import { getBoardData, getSearchBoardData } from '@/pages/api/service'
 
-const Service = ({ props }) => {
+const Service = ({}) => {
   const [tabValue, setTabValue] = useState('faq') // faq or inquiry
   const [article, setArticle] = useState(null)
   const [editorHtml, setEditorHtml] = useState('')

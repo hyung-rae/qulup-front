@@ -1,5 +1,6 @@
 import { Badge, Box, Button, Flex, Grid, Image, Space, Stack, Text } from '@mantine/core'
 import { IconArrowRight, IconShoppingBag, IconStar, IconStarFilled } from '@tabler/icons-react'
+import classes from './GemstoneItem.module.css'
 
 const GemstoneItemUI = ({ item, isLiked, setIsLiked, matches, open, moveToOrderPage }) => {
   return (
@@ -8,9 +9,10 @@ const GemstoneItemUI = ({ item, isLiked, setIsLiked, matches, open, moveToOrderP
         direction={matches ? 'row' : 'column'}
         justify={matches ? 'flex-start' : 'center'}
         align={'center'}
-        bg={'gray.1'}
+        bg={'white'}
         p={10}
         gap={40}
+        className={classes.item}
       >
         <Box pos={'relative'}>
           {item.status === 'wait' && (
@@ -58,22 +60,20 @@ const GemstoneItemUI = ({ item, isLiked, setIsLiked, matches, open, moveToOrderP
           <Button
             size="sm"
             leftSection={isLiked ? <IconStarFilled size={14} fill="gold" /> : <IconStar size={14} />}
-            variant="transparent"
+            variant="default"
             onClick={() => setIsLiked(!isLiked)}
           >
             {item.like}
           </Button>
-          {item.status === 'complete' && (
-            <Button
-              size="sm"
-              color="dark"
-              leftSection={<IconShoppingBag size={14} />}
-              rightSection={<IconArrowRight size={14} />}
-              onClick={moveToOrderPage}
-            >
-              구매하기
-            </Button>
-          )}
+          <Button
+            size="sm"
+            color="dark"
+            leftSection={<IconShoppingBag size={14} />}
+            rightSection={<IconArrowRight size={14} />}
+            onClick={moveToOrderPage}
+          >
+            구매하기
+          </Button>
         </Stack>
       </Flex>
     </Grid.Col>

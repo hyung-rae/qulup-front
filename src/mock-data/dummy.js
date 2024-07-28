@@ -181,44 +181,4 @@ export const PROBLEM_DATA = [
     tag: ['#태그1', '#태그2'],
     code: 'C0Q1X',
   },
-  {
-    id: 13,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 14,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 15,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
-  {
-    id: 16,
-    description: 'Mountains at night: 12 best locations to enjoy the view',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
-    price: 58000,
-    difficulty: 'normal',
-    tag: ['#태그1', '#태그2'],
-    code: 'C0Q1X',
-  },
 ]

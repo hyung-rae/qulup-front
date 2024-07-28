@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Group, MultiSelect, Pagination, Select, Text, TextInput } from '@mantine/core'
+import { Box, Button, Container, Flex, Group, MultiSelect, Pagination, Select, Text, TextInput } from '@mantine/core'
 import { IconSearch } from '@tabler/icons-react'
 import Cards from './cards/Cards.container'
 
@@ -27,15 +27,9 @@ const ProblemsUI = ({ ...props }) => {
     <Container bg="gray.3" fluid p="xl" mih={'100vh'} maw={1700}>
       <Flex direction="column" maw={1920} m="auto" gap={20}>
         <Group justify="space-between" align="flex-end">
-          <Group>
-            <Button onClick={handleAllCheck}>전체 선택</Button>
-            {checkedList.length > 0 && (
-              <>
-                <Button onClick={() => setCheckedList([])}>전체 해제</Button>
-                <Text>선택문항: {checkedList.length}</Text>
-              </>
-            )}
-          </Group>
+          <Text fz={26} fw={900} variant="gradient" gradient={{ from: 'gray', to: 'dark', deg: 0 }}>
+            전체 문제
+          </Text>
           <Group justify="flex-end" align="flex-end">
             <MultiSelect
               miw={200}
@@ -76,6 +70,23 @@ const ProblemsUI = ({ ...props }) => {
             </Group>
           </Group>
         </Group>
+        <Flex justify={'space-between'} align={'center'}>
+          <Group style={{ position: 'relative' }} py={20}>
+            <Button w={100} onClick={handleAllCheck}>
+              전체 선택
+            </Button>
+            {checkedList.length > 0 && (
+              <Flex align={'center'} justify={'center'} gap={20} style={{ position: 'absolute', left: 110 }}>
+                <Button w={100} onClick={() => setCheckedList([])}>
+                  전체 해제
+                </Button>
+                <Text w={100}>선택문항: {checkedList.length}</Text>
+              </Flex>
+            )}
+          </Group>
+          <Pagination total={5} color="dark.3" page={page} onChange={setPage} />
+          <Button w={120}>구매</Button>
+        </Flex>
 
         <Cards
           problemsData={problemsData}
@@ -85,12 +96,9 @@ const ProblemsUI = ({ ...props }) => {
           handleHeartClick={handleHeartClick}
           checkedList={checkedList}
           setCheckedList={setCheckedList}
+          px="0"
+          py="0"
         />
-        <Flex justify={'space-between'}>
-          <Button w={120} style={{ cursor: 'default' }} opacity={0}></Button>
-          <Pagination total={5} color="dark.3" page={page} onChange={setPage} />
-          <Button w={120}>구매</Button>
-        </Flex>
       </Flex>
     </Container>
   )

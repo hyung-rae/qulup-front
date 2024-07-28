@@ -1,11 +1,11 @@
-import { Box, Button, Group, Stack, Table, Text, Tooltip } from '@mantine/core'
+import { Paper, Button, Group, Stack, Table, Text, Tooltip, Pagination } from '@mantine/core'
 import classes from './Payment.module.css'
 import Link from 'next/link'
 
 const PaymentUI = () => {
   return (
-    <Box>
-      <Table.ScrollContainer lin minWidth={600} h={'80vh'} type="native" p={30}>
+    <Paper>
+      <Table.ScrollContainer lin minWidth={600} mih={500} type="native" p={30}>
         <Table className={classes.payment_table}>
           <Table.Thead>
             <Table.Tr>
@@ -88,7 +88,10 @@ const PaymentUI = () => {
           </Table.Tbody>
         </Table>
       </Table.ScrollContainer>
-    </Box>
+      <Group justify="center" py={30}>
+        <Pagination total={5} color="dark" />
+      </Group>
+    </Paper>
   )
 }
 
