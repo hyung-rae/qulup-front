@@ -1,0 +1,6 @@
+.item {
+  height: 140px;
+  @media screen and (max-width: 800px) {
+    height: auto;
+  }
+}

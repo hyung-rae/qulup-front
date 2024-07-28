@@ -1,13 +1,12 @@
 import { useDisclosure } from '@mantine/hooks'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import SignIn from '../../sign/signIn/SignIn.container'
-import HeaderUI from './Header.presenter'
-import SignUp from '../../sign/signUp/SignUp.container'
 import Find from '../../sign/find/Find.container'
+import SignIn from '../../sign/signIn/SignIn.container'
+import SignUp from '../../sign/signUp/SignUp.container'
+import HeaderUI from './Header.presenter'
 
 const Header = () => {
-  const { push, basePath } = useRouter()
   const [isLogin, setIsLogin] = useState(false)
 
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)

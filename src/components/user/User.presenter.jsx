@@ -1,16 +1,16 @@
-import { Box, Container, Paper, Tabs, Text } from '@mantine/core'
+import { Box, Container, Paper, SegmentedControl, Tabs, Text } from '@mantine/core'
 import UserInfo from './info/UserInfo.container'
 import ProblemsManage from './problemsManage/ProblemsManage.container'
 import Payment from './payment/Payment.container'
 
 const UserUI = ({ menu }) => {
   return (
-    <Container maw={1200} m={'auto'} bg={'gray.3'} fluid p={0}>
+    <Container maw={1700} m={'auto'} bg={'gray.3'} fluid p={0}>
       <Tabs defaultValue="개인정보 관리" p="xs" color="dark">
         <Tabs.List>
           {menu.map(item => (
             <Tabs.Tab key={item.id} value={item.label} leftSection={item.icon}>
-              <Text fz={'xs'} fw={700}>
+              <Text fz={'md'} fw={700}>
                 {item.label}
               </Text>
             </Tabs.Tab>

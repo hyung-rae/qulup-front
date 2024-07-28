@@ -2,7 +2,7 @@ import { Box, Button, FileInput, Group, Modal, Stack } from '@mantine/core'
 import TextEditor from '@/src/components/textEditor'
 
 const WriteModalUI = ({ ...props }) => {
-  const { editorHtml, setEditorHtml, handlePostData, writingOpened, writingOpen, writingClose } = props
+  const { setEditorHtml, handlePostData, writingOpened, writingClose } = props
   return (
     <Modal
       opened={writingOpened}

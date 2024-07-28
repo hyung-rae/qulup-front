@@ -1,10 +1,41 @@
-export const ACADEMY_FILTER = [
-  { value: '대성', label: '대성' },
-  { value: '청솔', label: '청솔' },
-  { value: '혁훈', label: '혁훈' },
-  { value: '정빈', label: '정빈' },
-]
+// export const ACADEMY_FILTER = [
+//   { value: '대성', label: '대성' },
+//   { value: '청솔', label: '청솔' },
+//   { value: '혁훈', label: '혁훈' },
+//   { value: '정빈', label: '정빈' },
+// ]
 
+export const ACADEMY_FILTER = [
+  {
+    group: '대성',
+    items: [
+      { value: '0', label: '강남' },
+      { value: '1', label: '부산' },
+      { value: '2', label: '인천' },
+    ],
+  },
+  {
+    group: '청솔',
+    items: [
+      { value: '3', label: '평촌' },
+      { value: '4', label: '강남' },
+    ],
+  },
+  {
+    group: '퀄업',
+    items: [
+      { value: '5', label: '양재' },
+      { value: '6', label: '도곡' },
+    ],
+  },
+  {
+    group: '기타',
+    items: [
+      { value: '7', label: '어쩌고' },
+      { value: '8', label: '저쩌고' },
+    ],
+  },
+]
 export const PROBLEM_FILTER = [
   {
     group: '수1',
