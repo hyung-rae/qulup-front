@@ -1,0 +1,8 @@
+.payment_table th,
+.payment_table td {
+  text-align: center !important;
+}
+
+.payment_table tr {
+  border-color: var(--mantine-color-dark-8);
+}
