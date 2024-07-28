@@ -1,8 +1,17 @@
 import classes from '@/src/components/service/Service.module.css'
-import { Button, Container, Flex, Group, SegmentedControl, Pagination, Paper, Table, TextInput } from '@mantine/core'
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Group,
+  Pagination,
+  Paper,
+  SegmentedControl,
+  Table,
+  TextInput,
+} from '@mantine/core'
 
-import Tab from '@/src/components/tab/Tab'
-import { FAQ_DEFAULT, INQUIRY_DEFAULT } from '@/src/mock-data/dummy'
 import { IconSearch } from '@tabler/icons-react'
 
 const ServiceUI = ({ ...props }) => {
@@ -15,9 +24,13 @@ const ServiceUI = ({ ...props }) => {
     handleFaqClick,
     handleInquiryClick,
     writingOpen,
+    faq_data = [],
+    inquiry_data = [],
+    totalCount,
+    handleGetBoardData,
   } = props
 
-  const FAQ_ROWS = FAQ_DEFAULT.map(row => {
+  const FAQ_ROWS = faq_data.map(row => {
     return (
       <Table.Tr className={classes.tr} key={`faq_${row.id}`} onClick={() => handleFaqClick(row)}>
         <Table.Td align="center">{row.id}</Table.Td>
@@ -26,18 +39,24 @@ const ServiceUI = ({ ...props }) => {
       </Table.Tr>
     )
   })
-  const INQUIRY_ROWS = INQUIRY_DEFAULT.map(row => {
+  const INQUIRY_ROWS = inquiry_data.map(row => {
     return (
       <>
         <Table.Tr className={classes.tr} key={`inquiry_${row.id}`} onClick={() => handleInquiryClick(row)}>
           <Table.Td align="center">{row.id}</Table.Td>
-          <Table.Td align="center">{row.name}</Table.Td>
+          <Table.Td align="center">{row.writer}</Table.Td>
           <Table.Td align="center">{row.state}</Table.Td>
           <Table.Td>{row.created_at}</Table.Td>
         </Table.Tr>
       </>
     )
   })
+
+  const EMPTY_ROWS = (
+    <Flex w={'100%'} h={400} justify="center" align={'center'}>
+      데이터가 없습니다.
+    </Flex>
+  )
 
   return (
     <Container bg="gray.3" fluid p="xl" mih={'100vh'}>
@@ -65,7 +84,7 @@ const ServiceUI = ({ ...props }) => {
               />
             </Group>
           </Flex>
-          <Paper m="auto" shadow="xs" withBorder p="xl">
+          <Paper m="auto" shadow="xs" withBorder p="xl" w={'100%'}>
             <Table verticalSpacing="xs">
               <Table.Thead>
                 <Table.Tr>
@@ -83,12 +102,24 @@ const ServiceUI = ({ ...props }) => {
                   </Table.Th>
                 </Table.Tr>
               </Table.Thead>
-              <Table.Tbody>{tabValue === 'faq' ? FAQ_ROWS : INQUIRY_ROWS}</Table.Tbody>
+              <Table.Tbody>
+                {tabValue === 'faq' && faq_data.length > 0 && FAQ_ROWS}
+                {tabValue === 'inquiry' && inquiry_data.length > 0 && INQUIRY_ROWS}
+              </Table.Tbody>
             </Table>
+            {(tabValue === 'faq' && faq_data.length === 0) || (tabValue === 'inquiry' && inquiry_data.length === 0)
+              ? EMPTY_ROWS
+              : null}
           </Paper>
         </Table.ScrollContainer>
-        <Flex w={'100%'} mt={20} justify="center">
-          <Pagination total={10} color="dark.3" />
+        <Flex w={'100%'} mt={20} justify="center" align={'center'}>
+          <Pagination
+            total={totalCount / 10}
+            color="dark.3"
+            onChange={page => {
+              handleGetBoardData(page)
+            }}
+          />
         </Flex>
       </Flex>
     </Container>

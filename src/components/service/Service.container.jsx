@@ -1,29 +1,33 @@
 'use client'
 
-import { useState } from 'react'
-
-import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
 
 import { useDisclosure } from '@mantine/hooks'
 import DetailModal from './detail/DetailModal.container'
 import ServiceUI from './Service.presenter'
 import WriteModal from './write/WriteModal.container'
+import { FAQ_DEFAULT, INQUIRY_DEFAULT } from './mock'
+import { getBoardData, getSearchBoardData } from '@/pages/api/service'
 
 const Service = ({ props }) => {
   const [tabValue, setTabValue] = useState('faq') // faq or inquiry
-  const [modalTitle, setModalTitle] = useState('타이틀')
+  const [article, setArticle] = useState(null)
   const [editorHtml, setEditorHtml] = useState('')
   const [searchText, setSearchText] = useState('')
+  const [faq_data, setFaqData] = useState(FAQ_DEFAULT)
+  const [inquiry_data, setInquiryData] = useState(INQUIRY_DEFAULT)
+
+  const [totalCount, setTotalCount] = useState(56)
 
   const [detailOpened, { open: detailOpen, close: detailClose }] = useDisclosure(false)
   const [writingOpened, { open: writingOpen, close: writingClose }] = useDisclosure(false)
 
   const handleFaqClick = row => {
-    setModalTitle(row.title)
+    setArticle(row)
     detailOpen()
   }
   const handleInquiryClick = row => {
-    setModalTitle(row.title)
+    setArticle(row)
     detailOpen()
   }
 
@@ -33,7 +37,25 @@ const Service = ({ props }) => {
 
   const handleSearch = () => {
     console.log(`검색: ${searchText}`)
+    getSearchBoardData({ type: tabValue, content: searchText, page, count: 10 })
+    // TODO: 검색 후 나온 데이터를 setFaqData / setInquiryData 에 넣어준다.
   }
+
+  const handleGetBoardData = async page => {
+    const res = await getBoardData({ type: tabValue, page, count: 10 })
+    if (tabValue === 'faq') {
+      setFaqData(res.data)
+      setTotalCount(res.totalCount)
+    } else {
+      setInquiryData(res.data)
+      setTotalCount(res.totalCount)
+    }
+  }
+
+  useEffect(() => {
+    // 최초 진입시, faq의 1페이지 10개 데이터 불러오기
+    handleGetBoardData({ type: tabValue, page: 1, count: 10 })
+  }, [tabValue])
 
   return (
     <>
@@ -42,8 +64,8 @@ const Service = ({ props }) => {
         detailOpened={detailOpened}
         detailOpen={detailOpen}
         detailClose={detailClose}
-        modalTitle={modalTitle}
-        setModalTitle={setModalTitle}
+        article={article}
+        setArticle={setArticle}
       />
       {/* 글쓰기 모달 */}
       <WriteModal
@@ -63,6 +85,10 @@ const Service = ({ props }) => {
         handleFaqClick={handleFaqClick}
         handleInquiryClick={handleInquiryClick}
         writingOpen={writingOpen}
+        faq_data={faq_data}
+        inquiry_data={inquiry_data}
+        totalCount={totalCount}
+        handleGetBoardData={handleGetBoardData}
       />
     </>
   )
