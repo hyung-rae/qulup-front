@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 const SignUpUI = ({ opened, onClose, onClickTerms }) => {
   const { basePath } = useRouter()
   return (
-    <Modal.Root opened={opened} onClose={onClose} size="sm">
+    <Modal.Root opened={opened} onClose={onClose} size="sm" centered>
       <Modal.Overlay />
       <Modal.Content pos="relative">
         <Modal.Body p={'xl'} bg={'white'}>

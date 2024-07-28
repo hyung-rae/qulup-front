@@ -2,7 +2,7 @@ import { Avatar, Box, Button, CloseButton, Flex, Group, Image, Modal, Text, Text
 
 const CommentUI = ({ opened, onClose }) => {
   return (
-    <Modal.Root opened={opened} onClose={onClose} size="lg">
+    <Modal.Root opened={opened} onClose={onClose} size="lg" centered>
       <Modal.Overlay />
       <Modal.Content pos="relative">
         <CloseButton size="xl" variant="transparent" c="dark" pos="absolute" top={10} right={10} onClick={onClose} />
