@@ -74,13 +74,13 @@ const ServiceUI = ({ ...props }) => {
           <Table.ScrollContainer>
             <Flex justify="space-between" w={'100%'} gap={10} mb={20}>
               <Group>
-                {tabValue === 'inquiry' && <Button onClick={writingOpen}>글쓰기</Button>}
                 <TextInput
                   value={searchText}
                   placeholder="검색어를 입력해주세요"
                   onChange={e => setSearchText(e.target.value)}
                   rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
                 />
+                {tabValue === 'inquiry' && <Button onClick={writingOpen}>글쓰기</Button>}
               </Group>
               <SegmentedControl
                 size="md"
