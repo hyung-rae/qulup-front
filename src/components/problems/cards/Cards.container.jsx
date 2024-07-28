@@ -12,9 +12,10 @@ const Cards = ({
   col = 4,
   px = '16px',
   py = 'xl',
-  data = [],
+  problemsData = [],
+  detailModal,
 }) => {
-  const cards = data.map((article, i) => (
+  const cards = problemsData.map((article, i) => (
     <CardItem
       key={`problem_${i}`}
       article={article}
@@ -23,6 +24,7 @@ const Cards = ({
       handleProblemClick={handleProblemClick}
       handleDetailClick={handleDetailClick}
       handleHeartClick={handleHeartClick}
+      detailModal={detailModal}
     />
   ))
   return <CardsUI cards={cards} col={col} px={px} py={py} />

@@ -3,7 +3,6 @@ import { IconSearch } from '@tabler/icons-react'
 import Cards from './cards/Cards.container'
 
 import { ACADEMY_FILTER, PROBLEM_FILTER, SEARCH_FILTER } from '@/src/components/problems/SelectFilter'
-import { useState } from 'react'
 
 const ProblemsUI = ({ ...props }) => {
   const {
@@ -19,7 +18,9 @@ const ProblemsUI = ({ ...props }) => {
     handleHeartClick,
     placeholder,
     setPlaceholder,
-    data = [],
+    problemsData = [],
+    page,
+    setPage,
   } = props
 
   return (
@@ -77,7 +78,7 @@ const ProblemsUI = ({ ...props }) => {
         </Group>
 
         <Cards
-          data={data}
+          problemsData={problemsData}
           heartList={heartList}
           handleProblemClick={handleProblemClick}
           handleDetailClick={handleDetailClick}
@@ -85,10 +86,9 @@ const ProblemsUI = ({ ...props }) => {
           checkedList={checkedList}
           setCheckedList={setCheckedList}
         />
-
-        <Flex justify={'space-between'} p={16}>
+        <Flex justify={'space-between'}>
           <Button w={120} style={{ cursor: 'default' }} opacity={0}></Button>
-          <Pagination total={10} color="dark.3" />
+          <Pagination total={5} color="dark.3" page={page} onChange={setPage} />
           <Button w={120}>구매</Button>
         </Flex>
       </Flex>
