@@ -4,18 +4,18 @@ import { historyList } from './mock'
 
 const HistoryUI = () => {
   return (
-    <Container my={150} fluid>
-      <Box maw={1000} m={'auto'}>
+    <Stack gap={40} justify="center" m={'auto'} maw={1400} align="flex-start" id="history" mih={'100vh'}>
+      <Box>
         <Title order={1} c="white" fw={700}>
           History
         </Title>
-        <Text mt={10} mb={20} c="dimmed" fw={700}>
+        <Text size="xl" my={30} c="dimmed" fw={700}>
           연혁
         </Text>
       </Box>
       <ScrollArea
         maw={1400}
-        m={'auto'}
+        w={'100%'}
         pb={50}
         scrollbars="x"
         scrollbarSize={10}
@@ -30,7 +30,7 @@ const HistoryUI = () => {
           ))}
         </Group>
       </ScrollArea>
-    </Container>
+    </Stack>
   )
 }
 

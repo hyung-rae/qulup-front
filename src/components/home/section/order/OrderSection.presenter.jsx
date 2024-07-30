@@ -1,4 +1,4 @@
-import { Box, Button, Container, Group, Image, SimpleGrid, Text, Title } from '@mantine/core'
+import { Box, Button, Container, Group, Image, SimpleGrid, Stack, Text, Title } from '@mantine/core'
 import { IconArrowRight, IconShoppingBag } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
 import classes from './OrderSection.module.css'
@@ -6,31 +6,26 @@ import { productList } from './mock'
 
 const OrderSectionUI = ({ moveToProblemsPage }) => {
   return (
-    <Container my={150} size="lg">
-      <Group w={'100%'} maw={1000} justify="space-between" m={'auto'} mb={50}>
+    <Stack justify="center" gap={40} m={'auto'} maw={1400} align="flex-start" id="order" mih={'100vh'}>
+      <Box>
         <Title order={1} c="white" fw={700}>
           Order & Purchase
         </Title>
-      </Group>
+        <Text size="xl" my={30} c="dimmed" fw={700}>
+          상품 구매
+        </Text>
+      </Box>
 
-      <SimpleGrid cols={{ base: 1, sm: 3 }} spacing={50} maw={1000} m={'auto'}>
+      <SimpleGrid cols={{ base: 1, sm: 3 }} spacing={50}>
         {productList.map(item => (
           <OrderSectionItemUI {...item} key={item.title} />
         ))}
       </SimpleGrid>
 
-      <Group maw={1000} m={'auto'}>
-        <Button
-          fullWidth
-          color="gray.9"
-          mt={50}
-          rightSection={<IconArrowRight size={14} />}
-          onClick={moveToProblemsPage}
-        >
-          구매하기
-        </Button>
-      </Group>
-    </Container>
+      <Button fullWidth h={50} color="gray.9" rightSection={<IconArrowRight size={20} />} onClick={moveToProblemsPage}>
+        구매하기
+      </Button>
+    </Stack>
   )
 }
 

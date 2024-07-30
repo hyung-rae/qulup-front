@@ -31,7 +31,6 @@ const Header = () => {
     findOpen()
     signInClose()
   }
-
   return (
     <>
       {/* 로그인  모달 */}

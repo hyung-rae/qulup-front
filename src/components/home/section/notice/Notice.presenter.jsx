@@ -5,7 +5,7 @@ import NoticePopupUI from './popup/NoticePopup.presenter'
 
 const NoticeUI = ({ opened, open, onClose }) => {
   return (
-    <Container py={50} fluid bg={'dark.7'}>
+    <Container py={50} fluid bg={'dark.7'} id="notice">
       {/* 팝업 */}
       <NoticePopupUI opened={opened} onClose={onClose} />
 

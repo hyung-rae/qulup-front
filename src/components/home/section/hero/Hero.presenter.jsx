@@ -6,10 +6,11 @@ const HeroUI = () => {
   const { basePath } = useRouter()
   return (
     <Flex
+      id="hero"
       align="center"
       justify="center"
       w={'100%'}
-      h={'85vh'}
+      mih={'100vh'}
       className={classes.container}
       style={{ backgroundImage: `url(${basePath}/images/hero-section.jpg)` }}
     >
