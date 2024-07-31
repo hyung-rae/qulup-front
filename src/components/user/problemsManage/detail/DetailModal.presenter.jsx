@@ -1,4 +1,4 @@
-import { Card, Flex, Modal, Text } from '@mantine/core'
+import { Image, Card, Flex, Modal, Text } from '@mantine/core'
 import Cards from '../cards/Cards.container'
 import { RECOMMEND_DATA } from '@/src/components/problems/mock'
 
@@ -12,11 +12,16 @@ const DetailModalUI = ({ ...props }) => {
           <Text size="18px" fw={700}>
             문제
           </Text>
-          <Card bg={'gray.1'}>1asa</Card>
+          <Card bg={'gray.1'}>
+            {/* 문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고문제어쩌고저쩌고 */}
+            <Image src={'/images/problem_example.png'} />
+          </Card>
           <Text size="18px" fw={700}>
             해설
           </Text>
-          <Card bg={'gray.1'}>1asa</Card>
+          <Card bg={'gray.1'}>
+            <Image src={'/images/answer_example.png'} />
+          </Card>
           <Text size="18px" fw={700}>
             정답
           </Text>

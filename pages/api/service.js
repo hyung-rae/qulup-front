@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import { FAQ_DEFAULT, INQUIRY_DEFAULT } from '@/src/components/service/mock'
 
 export const getBoardData = async ({ type = 'faq', page = 1, count = 10 }) => {

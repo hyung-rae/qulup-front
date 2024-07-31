@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import { PROBLEM_DATA, RECOMMEND_DATA } from '@/src/components/problems/mock'
 
 export const getProblemsData = async ({ page = 1, count = 10 }) => {
