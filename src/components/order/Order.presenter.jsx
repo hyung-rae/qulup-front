@@ -1,6 +1,20 @@
-import { Button, Container, Divider, Group, Input, Paper, Radio, Select, Stack, Text, Title } from '@mantine/core'
+import {
+  Button,
+  Container,
+  Divider,
+  Group,
+  Input,
+  NumberInput,
+  Paper,
+  Radio,
+  Select,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core'
+import classes from './Order.module.css'
 
-const OrderUI = ({ orderItems, price, discount, payMethod, setPayMethod }) => {
+const OrderUI = ({ orderItems, price, discount, payMethod, setPayMethod, point, setPoint, userPoint }) => {
   return (
     <Container p={'xl'}>
       <Paper maw={600} p={40} m={'auto'} bg={'white'}>
@@ -54,11 +68,37 @@ const OrderUI = ({ orderItems, price, discount, payMethod, setPayMethod }) => {
               </Text>
             </Group>
             <Group justify="space-between">
+              <Group gap={5}>
+                <Text size="xs" fw={700} c="dimmed">
+                  사용가능 포인트
+                  <Text component="span" c="teal" fw={700} ml={5}>
+                    {Number(userPoint - point || 0).toLocaleString('ko-KR')} p
+                  </Text>
+                </Text>
+                <Button size="compact-xs" onClick={() => setPoint(userPoint)}>
+                  전액 사용
+                </Button>
+              </Group>
+
+              <NumberInput
+                size="xs"
+                value={point}
+                onChange={setPoint}
+                min={0}
+                max={userPoint}
+                hideControls
+                classNames={{ input: classes.number_input }}
+                thousandSeparator=","
+                suffix=" 포인트"
+                error={point > userPoint && '사용가능 포인트를 확인해주세요'}
+              />
+            </Group>
+            <Group justify="space-between">
               <Text size="sm" fw={700}>
                 결제 금액
               </Text>
               <Text size="sm" fw={700}>
-                {Number(price - discount || 0).toLocaleString('ko-KR')} 원
+                {Number(price - discount - point || 0).toLocaleString('ko-KR')} 원
               </Text>
             </Group>
           </Stack>

@@ -4,11 +4,14 @@ import { cartItemList } from '@/src/components/cart/mock'
 import { useState } from 'react'
 
 const Order = () => {
+  const [userPoint, setUserPoint] = useState(2000)
+  const [point, setPoint] = useState(0)
+
+  const [payMethod, setPayMethod] = useState('card')
+
   const {
     query: { ids, totalPrice, totalDiscount },
   } = useRouter()
-
-  const [payMethod, setPayMethod] = useState('card')
 
   return (
     <OrderUI
@@ -17,6 +20,9 @@ const Order = () => {
       discount={totalDiscount}
       payMethod={payMethod}
       setPayMethod={setPayMethod}
+      point={point}
+      setPoint={setPoint}
+      userPoint={userPoint}
     />
   )
 }

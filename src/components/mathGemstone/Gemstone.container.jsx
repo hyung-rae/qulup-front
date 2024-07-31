@@ -11,14 +11,14 @@ const Gemstone = () => {
 
   const [opened, { open, close }] = useDisclosure(false)
 
-  const getGemstoneItemList = (page, sortType) => {
-    const sort = sortType === 'new' ? gemstoneItemList : gemstoneItemList.sort((a, b) => b.like - a.like)
-    return sort.slice(page * 10 - 10, page * 10)
+  const getGemstoneItemList = page => {
+    return gemstoneItemList.slice(page * 10 - 10, page * 10)
   }
 
   useEffect(() => {
-    setGemstone(getGemstoneItemList(page, sortType))
-  }, [page, sortType])
+    const list = getGemstoneItemList(page)
+    setGemstone(list)
+  }, [page])
   return (
     <>
       <Comment opened={opened} onClose={close} />

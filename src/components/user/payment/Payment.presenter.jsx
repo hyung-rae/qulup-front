@@ -2,7 +2,7 @@ import { Paper, Button, Group, Stack, Table, Text, Tooltip, Pagination } from '@
 import classes from './Payment.module.css'
 import Link from 'next/link'
 
-const PaymentUI = () => {
+const PaymentUI = ({ paymentItemList, open }) => {
   return (
     <Paper>
       <Table.ScrollContainer lin minWidth={600} mih={500} type="native" p={30}>
@@ -21,57 +21,14 @@ const PaymentUI = () => {
             <Table.Tr>
               <Table.Td>
                 <Stack gap={5}>
-                  <Group justify="space-between">
+                  <Group justify="center">
                     <Text size="sm" fw={700}>
-                      확률과 통계 & 미적분
+                      {paymentItemList[0].name}
+                      {paymentItemList.length > 1 && `외 ${paymentItemList.length} 문제`}
                     </Text>
-                    <Button size="compact-xs" color="dark">
-                      다운로드
+                    <Button size="compact-xs" color="dark" onClick={open}>
+                      상세보기
                     </Button>
-                  </Group>
-                  <Group justify="space-between">
-                    <Text size="sm" fw={700}>
-                      확률과 통계 & 미적분
-                    </Text>
-                    <Tooltip label="24.04.12 까지 다운로드 가능" size="xs">
-                      <Button size="compact-xs" color="dark">
-                        다운로드
-                      </Button>
-                    </Tooltip>
-                  </Group>
-                </Stack>
-              </Table.Td>
-              <Table.Td>신용카드</Table.Td>
-              <Table.Td>72,000 원</Table.Td>
-              <Table.Td>결제완료</Table.Td>
-              <Table.Td>24.11.02</Table.Td>
-              <Table.Td>
-                <Link href={'#'}>
-                  <Text size="xs">영수증 보기</Text>
-                </Link>
-              </Table.Td>
-            </Table.Tr>
-
-            <Table.Tr>
-              <Table.Td>
-                <Stack gap={5}>
-                  <Group justify="space-between">
-                    <Text size="sm" fw={700}>
-                      확률과 통계 & 미적분
-                    </Text>
-                    <Button size="compact-xs" color="dark">
-                      다운로드
-                    </Button>
-                  </Group>
-                  <Group justify="space-between">
-                    <Text size="sm" fw={700}>
-                      확률과 통계 & 미적분
-                    </Text>
-                    <Tooltip label="24.04.12 까지 다운로드 가능" size="xs">
-                      <Button size="compact-xs" color="dark">
-                        다운로드
-                      </Button>
-                    </Tooltip>
                   </Group>
                 </Stack>
               </Table.Td>
