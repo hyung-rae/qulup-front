@@ -37,6 +37,13 @@ const SignUpUI = ({
                 />
                 <Button onClick={handleEmailVerification}>인증하기</Button>
               </Group>
+              <TextInput
+                flex={1}
+                variant="filled"
+                leftSection={<IconAt style={{ width: 18, height: 18 }} stroke={1.5} />}
+                placeholder="이메일 인증 코드"
+                {...form.getInputProps('emailVerificationCode')}
+              />
               <PasswordInput
                 variant="filled"
                 leftSection={<IconLock style={{ width: 18, height: 18 }} stroke={1.5} />}
