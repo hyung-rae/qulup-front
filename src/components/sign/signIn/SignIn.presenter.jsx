@@ -1,7 +1,6 @@
-import { Button, Divider, Flex, Group, Image, Input, Modal, PasswordInput } from '@mantine/core'
+import { Button, Flex, Group, Image, Input, Modal, PasswordInput } from '@mantine/core'
 import { IconAt, IconLock } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
-import { FacebookButton, GoogleButton, KaKaoButton, NaverButton } from '@/src/components/social-buttons/index'
 
 const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind }) => {
   const { basePath } = useRouter()
@@ -44,13 +43,6 @@ const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind }) 
                 </Button>
               </Group>
             </div>
-            <Divider label="or" labelPosition="center" color="gray" />
-            <Flex direction={'column'} gap={10}>
-              <GoogleButton>구글 로그인</GoogleButton>
-              <FacebookButton>Facebook 로그인</FacebookButton>
-              <NaverButton>네이버 로그인</NaverButton>
-              <KaKaoButton>카카오 로그인</KaKaoButton>
-            </Flex>
           </Flex>
         </Modal.Body>
       </Modal.Content>
