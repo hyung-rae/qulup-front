@@ -16,9 +16,9 @@ export const postSignUp = async params => {
 
 export const postVerificationEmail = async params => {
   try {
-    const res = await axios.post(`${DEFAULT_URL}/sendVerificationEmail.do`, params)
-    console.log('params: ', params)
-    console.log('res: ', res)
+    const res = await axios.post(`${DEFAULT_URL}/verificationEmail.do`, params)
+    console.log('이메일인증 param: ', params)
+    console.log('이메일인증 응답: ', res)
     return res.data
   } catch (error) {
     console.error('API 요청 중 에러 발생: ', error)
@@ -29,8 +29,8 @@ export const postVerificationEmail = async params => {
 export const postVerificationPhone = async params => {
   try {
     const res = await axios.post(`${DEFAULT_URL}/sendVerificationPhone.do`, params)
-    console.log('params: ', params)
-    console.log('res: ', res)
+    console.log('핸드폰인증 params:', params)
+    console.log('핸드폰인증 응답: ', res)
     return res.data
   } catch (error) {
     console.error('API 요청 중 에러 발생: ', error)

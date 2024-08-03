@@ -17,14 +17,15 @@ const SignUp = ({ opened, onClose }) => {
       nickname: '수학고수', // 닉네임
       phone: '01012345678', // 핸드폰 번호
       confirmPassword: 'znjffjq123$',
+      emailVerificationCode: '',
       termsAccepted: false,
     },
 
     validate: {
-      email: value => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-      password: value => (value.length < 6 ? 'Password must be at least 6 characters' : null),
-      confirmPassword: (value, values) => (value !== values.password ? 'Passwords do not match' : null),
-      phone: value => (/^\d{10,11}$/.test(value) ? null : 'Invalid phone number'),
+      email: value => (/^\S+@\S+$/.test(value) ? null : '이메일이 올바르지 않습니다.'),
+      password: value => (value.length < 6 ? '패스워드는 최소 6자여야 합니다.' : null),
+      confirmPassword: (value, values) => (value !== values.password ? '비밀번호가 같지 않습니다.' : null),
+      phone: value => (/^\d{10,11}$/.test(value) ? null : '올바른 핸드폰번호가 아닙니다.'),
     },
   })
 
@@ -43,7 +44,6 @@ const SignUp = ({ opened, onClose }) => {
     onSuccess: () => {
       // 성공 시 처리 (예: 성공 메시지 표시, 리디렉션 등)
       console.log('이메일 인증 성공')
-      onClose()
     },
     onError: error => {
       // 실패 시 처리 (예: 에러 메시지 표시)
@@ -54,7 +54,6 @@ const SignUp = ({ opened, onClose }) => {
     onSuccess: () => {
       // 성공 시 처리 (예: 성공 메시지 표시, 리디렉션 등)
       console.log('휴대폰번호 성공')
-      onClose()
     },
     onError: error => {
       // 실패 시 처리 (예: 에러 메시지 표시)
@@ -75,17 +74,17 @@ const SignUp = ({ opened, onClose }) => {
   }
 
   const handleEmailVerification = () => {
-    console.log('form.values:', form.values.email)
     const param = {
-      email: 'jb2n95@naver.com',
+      // name: '고혁훈',
+      // email: form.values.email,
+      email: form.values.email,
     }
     emailVerificationMutation.mutate(param)
   }
 
   const handlePhoneVerification = () => {
-    console.log('form.values:', form.values.phone)
     const param = {
-      phone: '01063196097',
+      phone: form.values.phone,
     }
     phoneVerificationMutation.mutate(param)
   }
