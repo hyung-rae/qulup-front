@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group, Image, Indicator, Stack, Text, Title } from '@mantine/core'
+import { ActionIcon, Button, Group, Image, Indicator, Stack, Text, Title, Flex } from '@mantine/core'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import classes from './Header.module.css'
@@ -10,6 +10,7 @@ const HeaderUI = ({ isLogin, onClickSignIn, handleLogOut }) => {
   const moveToSection = section => {
     document.getElementById(section).scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
+
   return (
     <Stack justify="center" gap={10} bg={'dark.7'} h={'100%'}>
       <Group justify="space-around">
@@ -51,47 +52,43 @@ const HeaderUI = ({ isLogin, onClickSignIn, handleLogOut }) => {
         )}
       </Group>
       <Group gap={30} justify="center">
-        {pathname === '/' ? (
-          <>
-            <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('about')}>
-              About
-            </Title>
-            <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('order')}>
-              Order
-            </Title>
-            <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('history')}>
-              History
-            </Title>
-            <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('notice')}>
-              Notice
-            </Title>
-          </>
-        ) : (
-          <>
-            <Link href={'/problems'} style={{ textDecoration: 'none' }}>
-              <Title c={pathname === '/problems' ? 'teal' : 'dark.1'} className={classes.title_btn}>
-                문제
-              </Title>
-            </Link>
-            <Link href={'/examProblems'} style={{ textDecoration: 'none' }}>
-              <Title c={pathname === '/examProblems' ? 'teal' : 'dark.1'} className={classes.title_btn}>
-                모의고사
-              </Title>
-            </Link>
-            <Link href={'/gemstone'} style={{ textDecoration: 'none' }}>
-              <Title c={pathname === '/gemstone' ? 'teal' : 'dark.1'} className={classes.title_btn}>
-                Math Gemstone
-              </Title>
-            </Link>
-          </>
-        )}
-
+        <Link href={'/problems'} style={{ textDecoration: 'none' }}>
+          <Title c={pathname === '/problems' ? 'teal' : 'dark.1'} className={classes.title_btn}>
+            문제
+          </Title>
+        </Link>
+        <Link href={'/examProblems'} style={{ textDecoration: 'none' }}>
+          <Title c={pathname === '/examProblems' ? 'teal' : 'dark.1'} className={classes.title_btn}>
+            모의고사
+          </Title>
+        </Link>
+        <Link href={'/gemstone'} style={{ textDecoration: 'none' }}>
+          <Title c={pathname === '/gemstone' ? 'teal' : 'dark.1'} className={classes.title_btn}>
+            Math Gemstone
+          </Title>
+        </Link>
         <Link href={'/service'} style={{ textDecoration: 'none' }}>
           <Title c={pathname === '/service' ? 'teal' : 'dark.1'} className={classes.title_btn}>
             FAQ
           </Title>
         </Link>
       </Group>
+      {pathname === '/' && (
+        <Group style={{ position: 'absolute', bottom: '-30px', left: '20px' }}>
+          <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('about')}>
+            About
+          </Title>
+          <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('order')}>
+            Order
+          </Title>
+          <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('history')}>
+            History
+          </Title>
+          <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('notice')}>
+            Notice
+          </Title>
+        </Group>
+      )}
     </Stack>
   )
 }

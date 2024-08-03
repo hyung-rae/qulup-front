@@ -49,7 +49,7 @@ const Problems = () => {
 
   const handleGetProblemsData = async page => {
     // ## API TODO: page에 맞는 문제를 보내주시면 됩니다. 추후, 제외학원과 제외단원 등을 추가 입력받으면 됩니다.
-    let res = await getProblemsData({ page: page, count: 10 })
+    let res = await getProblemsData({ page: page })
     setProblemsData(res.data)
   }
 
