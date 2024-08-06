@@ -6,15 +6,12 @@ const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'multipart/form-data',
   },
+  withCredentials: true, // 쿠키를 포함하도록 설정
 })
 
 // 인터셉터 설정
 axiosInstance.interceptors.request.use(
   config => {
-    const cookies = document.cookie // 브라우저의 쿠키를 가져옴
-    console.log('cookies1:', cookies)
-    config.headers.Cookie = cookies // 요청 헤더에 쿠키를 추가
-    console.log('cookies2:', config.headers)
     return config
   },
   error => {
@@ -26,8 +23,6 @@ export const postSignUp = async params => {
   console.log('API TODO: 데이터를 param으로 받아서, 데이터를 보내주세요.')
   try {
     const res = await axiosInstance.post(`${DEFAULT_URL}QV1/createMember.do`, params)
-    console.log('params: ', params)
-    console.log('res: ', res)
     return res.data
   } catch (error) {
     console.error('API 요청 중 에러 발생: ', error)
