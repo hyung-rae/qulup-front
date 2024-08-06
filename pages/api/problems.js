@@ -31,7 +31,7 @@ export const getRecommendData = async ({ page = 1, count = 10 }) => {
 export const postFileDownload = async () => {
   console.log('API TODO: file download')
 
-  const res = await axios.get(`http://3.35.131.46/download`, {
+  const res = await axios.post(`http://3.35.131.46/download`, {
     filePath: '/app/qulup/FileUpload/test.pdf',
   })
   console.log('res: ', res)

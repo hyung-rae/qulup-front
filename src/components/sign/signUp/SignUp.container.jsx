@@ -4,8 +4,9 @@ import { useDisclosure } from '@mantine/hooks'
 import Terms from './Terms'
 import { useForm } from '@mantine/form'
 import { postSignUp, postVerificationEmail, postVerificationPhone } from '@/pages/api/signIn'
+import { useEffect } from 'react'
 
-const SignUp = ({ opened, onClose }) => {
+const SignUp = ({ opened, onClose, cookies }) => {
   const [termsOpened, { open, close }] = useDisclosure(false)
 
   const form = useForm({
@@ -30,15 +31,22 @@ const SignUp = ({ opened, onClose }) => {
   })
 
   const signUpMutation = useMutation(postSignUp, {
-    onSuccess: () => {
+    onSuccess: res => {
       // 성공 시 처리 (예: 성공 메시지 표시, 리디렉션 등)
-      console.log('회원가입 성공')
-      onClose()
+      console.log('res.data.success: ', res.success)
+      if (res.success) {
+        console.log('회원가입 성공')
+        form.reset()
+        onClose()
+      } else {
+        console.log('회원가입 실패')
+      }
     },
     onError: error => {
       // 실패 시 처리 (예: 에러 메시지 표시)
       console.error('회원12121가입 실패', error)
     },
+    onSettled: () => {},
   })
   const emailVerificationMutation = useMutation(postVerificationEmail, {
     onSuccess: () => {
@@ -69,6 +77,7 @@ const SignUp = ({ opened, onClose }) => {
       nm: values.nm,
       nickname: values.nickname,
       phone: values.phone,
+      emailVerificationCode: values.emailVerificationCode,
     }
     signUpMutation.mutate(param)
   }
@@ -83,6 +92,7 @@ const SignUp = ({ opened, onClose }) => {
   }
 
   const handlePhoneVerification = () => {
+    console.log
     const param = {
       phone: form.values.phone,
     }
@@ -97,7 +107,10 @@ const SignUp = ({ opened, onClose }) => {
         handleEmailVerification={handleEmailVerification}
         handlePhoneVerification={handlePhoneVerification}
         opened={opened}
-        onClose={onClose}
+        onClose={() => {
+          onClose()
+          form.reset()
+        }}
         onClickTerms={open}
       />
       <Terms opened={termsOpened} onClose={close} />
