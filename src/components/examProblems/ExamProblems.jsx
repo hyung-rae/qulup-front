@@ -2,12 +2,15 @@ import { Box, Container, Flex, Group, MultiSelect, SegmentedControl, Select, Tex
 import ExamProblemsItem from './ExamProblemsItem'
 import { ACADEMY_FILTER, PROBLEM_FILTER, SEARCH_FILTER } from '@/src/components/problems/SelectFilter'
 import { useState } from 'react'
+import { IconSearch } from '@tabler/icons-react'
+
 const Gemstone = () => {
   const [placeholder, setPlaceholder] = useState({
     academy: true,
     problem: true,
   })
   const [searchText, setSearchText] = useState('')
+  const handleSearch = () => {}
 
   return (
     <Container bg="gray.3" maw={1700} fluid p="xl" mih={'100vh'}>
