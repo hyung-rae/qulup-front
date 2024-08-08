@@ -1,14 +1,22 @@
-import { useMutation } from 'react-query'
+import { useState } from 'react'
+
+// component
 import SignUpUI from './SignUp.presenter'
-import { useDisclosure } from '@mantine/hooks'
 import Terms from './Terms'
+
+// api
+import { postSignUp, postVerificationEmail, postVerificationPhone } from '@/pages/api/authApi'
+
+// lib
+import { useDisclosure } from '@mantine/hooks'
+import { useMutation } from 'react-query'
 import { useForm } from '@mantine/form'
-import { postSignUp, postVerificationEmail, postVerificationPhone } from '@/pages/api/signIn'
-import { useEffect } from 'react'
 
-const SignUp = ({ opened, onClose, cookies }) => {
+const SignUp = ({ opened, onClose }) => {
   const [termsOpened, { open, close }] = useDisclosure(false)
+  const [phoneKey, setPhoneKey] = useState('')
 
+  // 회원가입 initial 폼
   const form = useForm({
     initialValues: {
       email: 'qulup@example.com', // 이메일
@@ -30,10 +38,9 @@ const SignUp = ({ opened, onClose, cookies }) => {
     },
   })
 
+  // 회원가입 api 요청 함수
   const signUpMutation = useMutation(postSignUp, {
     onSuccess: res => {
-      // 성공 시 처리 (예: 성공 메시지 표시, 리디렉션 등)
-      console.log('res.data.success: ', res.success)
       if (res.success) {
         console.log('회원가입 성공')
         form.reset()
@@ -42,33 +49,10 @@ const SignUp = ({ opened, onClose, cookies }) => {
         console.log('회원가입 실패')
       }
     },
-    onError: error => {
-      // 실패 시 처리 (예: 에러 메시지 표시)
-      console.error('회원12121가입 실패', error)
-    },
     onSettled: () => {},
   })
-  const emailVerificationMutation = useMutation(postVerificationEmail, {
-    onSuccess: () => {
-      // 성공 시 처리 (예: 성공 메시지 표시, 리디렉션 등)
-      console.log('이메일 인증 성공')
-    },
-    onError: error => {
-      // 실패 시 처리 (예: 에러 메시지 표시)
-      console.error('이메일 인증 실패::::', error)
-    },
-  })
-  const phoneVerificationMutation = useMutation(postVerificationPhone, {
-    onSuccess: () => {
-      // 성공 시 처리 (예: 성공 메시지 표시, 리디렉션 등)
-      console.log('휴대폰번호 성공')
-    },
-    onError: error => {
-      // 실패 시 처리 (예: 에러 메시지 표시)
-      console.error('휴대폰 번호 인증 실패::::', error)
-    },
-  })
 
+  // 회원가입 폼제출 함수
   const handleSubmit = values => {
     const param = {
       email: values.email,
@@ -78,21 +62,45 @@ const SignUp = ({ opened, onClose, cookies }) => {
       nickname: values.nickname,
       phone: values.phone,
       emailVerificationCode: values.emailVerificationCode,
+      phoneKey: phoneKey,
     }
     signUpMutation.mutate(param)
   }
 
+  // 이메일 인증 api 요청 함수
+  const emailVerificationMutation = useMutation(postVerificationEmail, {
+    onSuccess: res => {
+      if (res.success) {
+        alert('이메일 인증 성공')
+      } else {
+        console.log('이메일 인증 실패')
+      }
+    },
+  })
+
+  // 이메일 인증 함수
   const handleEmailVerification = () => {
     const param = {
-      // name: '고혁훈',
-      // email: form.values.email,
       email: form.values.email,
     }
     emailVerificationMutation.mutate(param)
   }
 
+  // 핸드폰 인증 api 요청 함수
+  const phoneVerificationMutation = useMutation(postVerificationPhone, {
+    onSuccess: res => {
+      if (res.success) {
+        console.log('res::;휴', res)
+        console.log('휴대폰 인증 성공')
+        setPhoneKey(res.phoneKey)
+      } else {
+        console.log('휴대폰 인증 실패')
+      }
+    },
+  })
+
+  // 핸드폰 인증 함수
   const handlePhoneVerification = () => {
-    console.log
     const param = {
       phone: form.values.phone,
     }
