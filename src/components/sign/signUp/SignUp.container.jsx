@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // component
 import SignUpUI from './SignUp.presenter'
 import Terms from './Terms'
 
 // api
-import { postSignUp, postVerificationEmail, postVerificationPhone } from '@/pages/api/authApi'
+import { postSignUp, postVerificationEmail, postVerificationPhone, getTest, getFromSession } from '@/pages/api/authApi'
 
 // lib
 import { useDisclosure } from '@mantine/hooks'
@@ -14,17 +14,16 @@ import { useForm } from '@mantine/form'
 
 const SignUp = ({ opened, onClose }) => {
   const [termsOpened, { open, close }] = useDisclosure(false)
-  const [phoneKey, setPhoneKey] = useState('')
 
   // 회원가입 initial 폼
   const form = useForm({
     initialValues: {
-      email: 'qulup@example.com', // 이메일
+      email: 'aceman9508@gmail.com', // 이메일
       password: 'znjffjq123$', // 패스워드
       academyNm: '퀄럽', // 학원 소속
       nm: '김정빈', // 강사명
       nickname: '수학고수', // 닉네임
-      phone: '01012345678', // 핸드폰 번호
+      phone: '01063196096', // 핸드폰 번호
       confirmPassword: 'znjffjq123$',
       emailVerificationCode: '',
       termsAccepted: false,
@@ -52,6 +51,28 @@ const SignUp = ({ opened, onClose }) => {
     onSettled: () => {},
   })
 
+  const getTestMutation = useMutation(getTest, {
+    onSuccess: res => {
+      if (res.success) {
+        console.log('res test: ', res)
+      } else {
+        console.log('회원가입 실패')
+      }
+    },
+    onSettled: () => {},
+  })
+
+  const getFromSessionMutation = useMutation(getFromSession, {
+    onSuccess: res => {
+      if (res.success) {
+        console.log('res test: ', res)
+      } else {
+        console.log('회원가입 실패')
+      }
+    },
+    onSettled: () => {},
+  })
+
   // 회원가입 폼제출 함수
   const handleSubmit = values => {
     const param = {
@@ -62,7 +83,6 @@ const SignUp = ({ opened, onClose }) => {
       nickname: values.nickname,
       phone: values.phone,
       emailVerificationCode: values.emailVerificationCode,
-      phoneKey: phoneKey,
     }
     signUpMutation.mutate(param)
   }
@@ -90,9 +110,7 @@ const SignUp = ({ opened, onClose }) => {
   const phoneVerificationMutation = useMutation(postVerificationPhone, {
     onSuccess: res => {
       if (res.success) {
-        console.log('res::;휴', res)
-        console.log('휴대폰 인증 성공')
-        setPhoneKey(res.phoneKey)
+        alert('휴대폰 인증 성공')
       } else {
         console.log('휴대폰 인증 실패')
       }
@@ -107,11 +125,20 @@ const SignUp = ({ opened, onClose }) => {
     phoneVerificationMutation.mutate(param)
   }
 
+  const handleSubmitTest = () => {
+    getTestMutation.mutate({ test: 'test' })
+  }
+  const handleTest = () => {
+    getFromSessionMutation.mutate()
+  }
+
   return (
     <>
       <SignUpUI
         form={form}
         handleSubmit={handleSubmit}
+        handleTest={handleTest}
+        handleSubmitTest={handleSubmitTest}
         handleEmailVerification={handleEmailVerification}
         handlePhoneVerification={handlePhoneVerification}
         opened={opened}
@@ -121,6 +148,7 @@ const SignUp = ({ opened, onClose }) => {
         }}
         onClickTerms={open}
       />
+
       <Terms opened={termsOpened} onClose={close} />
     </>
   )
