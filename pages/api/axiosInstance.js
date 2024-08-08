@@ -7,21 +7,13 @@ const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'multipart/form-data',
   },
-  // withCredentials: true,
+  withCredentials: true,
 })
 
-// 인터셉터 설정
+// 요청 인터셉터
 axiosInstance.interceptors.request.use(
   config => {
-    const sessionKey = localStorage.getItem('sessionKey')
-    if (sessionKey) {
-      // FormData로 변환된 경우를 고려한 처리
-      if (config.data instanceof FormData) {
-        config.data.append('sessionKey', sessionKey)
-      } else {
-        config.data = { ...config.data, sessionKey } // 요청 본문에 sessionKey 추가
-      }
-    }
+    config.headers['Cookie'] = 'SESSION=123123123; path=/;'
     return config
   },
   error => {
