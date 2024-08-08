@@ -2,7 +2,7 @@ import { Button, Flex, Group, Image, Input, Modal, PasswordInput } from '@mantin
 import { IconAt, IconLock } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
 
-const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind }) => {
+const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind, setUsername, setPassword }) => {
   const { basePath } = useRouter()
   return (
     <Modal.Root opened={opened} onClose={onClose} size="sm" centered>
@@ -18,6 +18,7 @@ const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind }) 
                   leftSection={<IconAt style={{ width: 18, height: 18 }} stroke={1.5} />}
                   placeholder="이메일을 입력해주세요"
                   defaultValue={'Ls2pC@example.com'}
+                  onChange={e => setUsername(e.target.value)}
                 />
               </Input.Wrapper>
               <PasswordInput
@@ -26,6 +27,7 @@ const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind }) 
                 placeholder="비밀번호를 입력해주세요"
                 mt={20}
                 defaultValue={'12345678'}
+                onChange={e => setPassword(e.target.value)}
               />
             </div>
 
