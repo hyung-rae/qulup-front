@@ -1,16 +1,5 @@
 import axiosInstance from './axiosInstance'
 import { createFormData } from './createFormData'
-// import axios from 'axios'
-
-// const DEFAULT_URL = 'http://3.35.131.46/'
-
-// const axiosInstance = axios.create({
-//   baseURL: DEFAULT_URL,
-//   headers: {
-//     'Content-Type': 'multipart/form-data',
-//   },
-//   withCredentials: true,
-// })
 
 // 회원가입 api
 export const postSignUp = async params => {
@@ -28,11 +17,8 @@ export const postSignUp = async params => {
 // 로그인 api
 export const postSignIn = async params => {
   try {
-    const res = await axiosInstance.post(`QV1/signIn.do`, createFormData(params))
-    const sessionKey = res.data.sessionKey
-    if (sessionKey) {
-      localStorage.setItem('sessionKey', sessionKey) // sessionKey를 로컬 스토리지에 저장
-    }
+    const res = await axiosInstance.post(`QV1/login.do`, createFormData(params))
+    console.log('res: ', res)
     return res.data
   } catch (error) {
     console.error('로그인 요청 중 에러 발생: ', error)

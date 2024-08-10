@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const DEFAULT_URL = 'http://3.35.131.46/'
+const DEFAULT_URL = 'http://quluptest.shop/'
 
 const axiosInstance = axios.create({
   baseURL: DEFAULT_URL,
@@ -13,7 +13,6 @@ const axiosInstance = axios.create({
 // 요청 인터셉터
 axiosInstance.interceptors.request.use(
   config => {
-    config.headers['Cookie'] = 'SESSION=123123123; path=/;'
     return config
   },
   error => {

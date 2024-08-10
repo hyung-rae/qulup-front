@@ -7,11 +7,11 @@ export const getProblemsData = async ({ page = 1 }) => {
   console.log('API TODO: page, count를 param으로 받아서, 데이터를 보내주세요.')
   // ## API TODO: page, count를 param으로 받아서, 데이터를 보내주세요.
   // ex)
-  const res = await axios.get(`${DEFAULT_URL}/problemList.do`, {
-    params: { page },
-  })
+  // const res = await axios.get(`${DEFAULT_URL}/problemList.do`, {
+  //   params: { page },
+  // })
 
-  console.log('문제 데이터 응답: ', res)
+  // console.log('문제 데이터 응답: ', res)
   // return res.data
   // 임시 코드
   return { data: PROBLEM_DATA }

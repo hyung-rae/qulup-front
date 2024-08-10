@@ -17,7 +17,7 @@ const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind, se
                   variant="filled"
                   leftSection={<IconAt style={{ width: 18, height: 18 }} stroke={1.5} />}
                   placeholder="이메일을 입력해주세요"
-                  defaultValue={'Ls2pC@example.com'}
+                  defaultValue={'aceman9508@gmail.com'}
                   onChange={e => setUsername(e.target.value)}
                 />
               </Input.Wrapper>
@@ -26,7 +26,7 @@ const SignInUI = ({ opened, onClose, handleLogin, onClickSignUp, onClickFind, se
                 leftSection={<IconLock style={{ width: 18, height: 18 }} stroke={1.5} />}
                 placeholder="비밀번호를 입력해주세요"
                 mt={20}
-                defaultValue={'12345678'}
+                defaultValue={'znjffjq123$'}
                 onChange={e => setPassword(e.target.value)}
               />
             </div>
