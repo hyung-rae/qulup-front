@@ -10,7 +10,7 @@ function Test() {
 
   // 기본 설정
   const instance = axios.create({
-    baseURL: 'http://3.35.131.46', // 스프링 서버의 URL로 변경
+    baseURL: 'http://quluptest.shop', // 스프링 서버의 URL로 변경
     withCredentials: true, // 쿠키를 포함하기 위해 설정
   })
   // 세션에 값 저장
@@ -23,14 +23,14 @@ function Test() {
     }
   }
   // 세션에서 값 가져오기
-  const getFromSession = async () => {
-    try {
-      const response = await instance.get(`/getFromSession`)
-      console.log(response.data)
-    } catch (error) {
-      console.error('Failed to get from session', error)
-    }
-  }
+  // const getFromSession = async () => {
+  //   try {
+  //     const response = await instance.get(`/getFromSession`)
+  //     console.log(response.data)
+  //   } catch (error) {
+  //     console.error('Failed to get from session', error)
+  //   }
+  // }
   // Redis 연결 테스트
   const testRedisConnection = async () => {
     try {
@@ -40,17 +40,23 @@ function Test() {
       console.error('Redis connection test failed', error)
     }
   }
-  useEffect(() => {
-    // 세션 테스트 요청
-    axios
-      .get('http://3.35.131.46/getFromSession')
-      .then(response => {
-        setSessionData(response.data)
-      })
-      .catch(error => {
-        console.error('Error fetching session data:', error)
-      })
-  }, [])
+
+  const handleTemp = async () => {
+    await getFromSession().then(res => {
+      console.log('res: ', res)
+    })
+  }
+  // useEffect(() => {
+  //   // 세션 테스트 요청
+  //   axios
+  //     .get('http://quluptest.shop/getFromSession')
+  //     .then(response => {
+  //       setSessionData(response.data)
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching session data:', error)
+  //     })
+  // }, [])
   return (
     <div className="App">
       <h1 style={{ color: '#000' }}>Session Test</h1>
@@ -70,7 +76,7 @@ function Test() {
       </button>
       <button
         onClick={() => {
-          getFromSession()
+          handleTemp()
         }}
       >
         Get From session

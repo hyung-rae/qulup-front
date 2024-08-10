@@ -20,9 +20,11 @@ const problemCodeStyleProps = {
 }
 
 const difficultyOption = {
+  veryEasy: { color: 'gray', title: '매우 쉬움' },
   easy: { color: 'green', title: '쉬움' },
   normal: { color: 'yellow', title: '보통' },
   hard: { color: 'red', title: '어려움' },
+  veryHard: { color: 'dark', title: '매우 어려움' },
 }
 
 const CardItemUI = ({ ...props }) => {

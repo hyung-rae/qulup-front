@@ -6,7 +6,17 @@ import { v1 } from 'uuid'
 export const userState = atom({
   key: `userState${v1}`, // atom의 고유 키
   default: {
-    isAuthenticated: false,
-    userInfo: null,
+    academyNm: '',
+    id: '',
+    level: null,
+    mberSeq: 0,
+    mberTy: 'N',
+    memo: null,
+    nickname: '',
+    nm: '',
+    password: null,
+    phone: '',
+    point: 0,
+    time: null,
   },
 })
