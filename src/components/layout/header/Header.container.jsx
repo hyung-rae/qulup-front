@@ -7,12 +7,13 @@ import HeaderUI from './Header.presenter'
 import { postSignIn } from '@/pages/api/authApi'
 import { useMutation } from 'react-query'
 import { userState } from '@/src/services/user'
+import { useRecoilState } from 'recoil'
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = userState(userState)
+  const [user, setUser] = useRecoilState(userState)
 
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
   const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
