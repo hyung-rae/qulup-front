@@ -39,7 +39,7 @@ const GemstoneItemUI = ({ item, isLiked, setIsLiked, matches, open, moveToOrderP
           />
         </Box>
 
-        <Stack w={'100%'} gap={0} maw={260} justify="space-between" style={{ cursor: 'pointer' }} onClick={open}>
+        <Stack w={'100%'} gap={0} maw={260} justify="space-between" className={classes.info_area} onClick={open}>
           <Text lineClamp={1} size="sm" fw={700}>
             {item.name}
           </Text>
@@ -72,7 +72,7 @@ const GemstoneItemUI = ({ item, isLiked, setIsLiked, matches, open, moveToOrderP
             rightSection={<IconArrowRight size={14} />}
             onClick={moveToOrderPage}
           >
-            구매하기
+            장바구니
           </Button>
         </Stack>
       </Flex>

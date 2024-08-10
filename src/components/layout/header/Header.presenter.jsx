@@ -4,15 +4,9 @@ import { useRouter } from 'next/router'
 import classes from './Header.module.css'
 import { IconShoppingCart, IconUserCog } from '@tabler/icons-react'
 
-const HeaderUI = ({ user, isLogin, onClickSignIn, handleLogOut }) => {
+const HeaderUI = ({ user, isLogin, onClickSignIn, handleLogOut, moveToSection }) => {
   const { basePath, pathname } = useRouter()
-
-  const moveToSection = section => {
-    document.getElementById(section).scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
-
-  console.log('user: ', user)
-
+  
   return (
     <Stack justify="center" gap={10} bg={'dark.7'} h={'100%'}>
       <Group justify="space-around">
@@ -76,7 +70,7 @@ const HeaderUI = ({ user, isLogin, onClickSignIn, handleLogOut }) => {
         </Link>
       </Group>
       {pathname === '/' && (
-        <Group style={{ position: 'absolute', bottom: '-30px', left: '20px' }}>
+        <Group justify="flex-end" className={classes.section_nav}>
           <Title c={'dark.1'} className={classes.title_btn} onClick={() => moveToSection('about')}>
             About
           </Title>

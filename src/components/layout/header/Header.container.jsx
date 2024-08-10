@@ -48,6 +48,10 @@ const Header = () => {
     signInClose()
   }
 
+  const moveToSection = section => {
+    document.getElementById(section).scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
   return (
     <>
       {/* 로그인 모달 */}
@@ -66,7 +70,13 @@ const Header = () => {
       {/* 아이디 / 비밀번호 찾기 모달 */}
       <Find opened={findOpened} onClose={findClose} />
 
-      <HeaderUI user={user} isLogin={isLogin} onClickSignIn={signInOpen} handleLogOut={handleLogOut} />
+      <HeaderUI
+        user={user}
+        isLogin={isLogin}
+        onClickSignIn={signInOpen}
+        handleLogOut={handleLogOut}
+        moveToSection={moveToSection}
+      />
     </>
   )
 }
