@@ -63,6 +63,7 @@ const ProblemsManage = () => {
         handleBuy={handleBuy}
         handleAllCheck={handleAllCheck}
         data={PROBLEM_DATA}
+        totalCount={PROBLEM_DATA.length}
       />
     </>
   )

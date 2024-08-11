@@ -43,10 +43,6 @@ const Gemstone = () => {
     <Container bg="gray.3" maw={1700} fluid p="xl" mih={'100vh'}>
       <Flex direction="column" m="auto" gap={20}>
         <Group align="flex-start" justify="space-between">
-          <Text fz={26} fw={900} variant="gradient" gradient={{ from: 'gray', to: 'dark', deg: 0 }}>
-            모의고사 문제
-          </Text>
-
           <Group justify="flex-end" align="flex-end">
             <MultiSelect
               miw={200}
@@ -87,10 +83,8 @@ const Gemstone = () => {
               />
             </Group>
           </Group>
+          <Pagination total={5} color="dark" />
         </Group>
-        <Center mt="auto">
-          <Pagination total={5} />
-        </Center>
         {mock.map((article, index) => {
           return <ExamProblemsItem key={index} article={article} />
         })}
