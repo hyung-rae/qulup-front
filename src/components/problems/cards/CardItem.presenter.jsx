@@ -41,12 +41,12 @@ const CardItemUI = ({ ...props }) => {
 
   return (
     <Mantine.Card
-      key={`problem_${article.id}`}
+      key={`problem_${article.problemSeq}`}
       p="md"
       radius="md"
-      className={`${classes.card} ${checkedList.includes(article.id) ? classes.checked : ''}`}
+      className={`${classes.card} ${checkedList.includes(article.problemSeq) ? classes.checked : ''}`}
       onClick={e => {
-        handleProblemClick(article.id)
+        handleProblemClick(article.problemSeq)
       }}
     >
       <Mantine.Flex direction={'column'} justify={'space-between'} mb={20} gap={10} miw={250}>
@@ -70,8 +70,8 @@ const CardItemUI = ({ ...props }) => {
             <IconBookmark
               style={{ width: 16, height: 16 }}
               color={'gold'}
-              className={`${heartList.includes(article.id) && classes.active}`}
-              fill={heartList.includes(article.id) ? 'gold' : ''}
+              className={`${heartList.includes(article.problemSeq) && classes.active}`}
+              fill={heartList.includes(article.problemSeq) ? 'gold' : ''}
             />
           </Mantine.ActionIcon>
         </Mantine.Group>

@@ -45,7 +45,7 @@ const Problems = () => {
   }
 
   const handleAllCheck = () => {
-    const idList = PROBLEM_DATA.map(el => el.id)
+    const idList = problemsData.map(el => el.problemSeq)
     setCheckedList(idList)
   }
 
@@ -75,7 +75,7 @@ const Problems = () => {
         detailClose={detailClose}
         articleId={articleId}
         problemsData={problemsData}
-        recommendData={recommendData}
+        recommendData={problemsData}
       />
       <ProblemsUI
         checkedList={checkedList}

@@ -1,7 +1,8 @@
 import DetailModalUI from './DetailModal.presenter'
 
 const DetailModal = ({ ...props }) => {
-  return <DetailModalUI {...props} />
+  const handleRecommendClick = () => {}
+  return <DetailModalUI {...props} handleRecommendClick={handleRecommendClick} />
 }
 
 export default DetailModal

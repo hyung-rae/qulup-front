@@ -14,9 +14,9 @@ const CardItem = ({ ...props }) => {
   const [isChecked, setIsChecked] = useState(false)
 
   useEffect(() => {
-    if (checkedList.includes(article.id)) setIsChecked(true)
+    if (checkedList.includes(article.problemSeq)) setIsChecked(true)
     else setIsChecked(false)
-  }, [article.id, setIsChecked, checkedList, checkedList.length])
+  }, [article.problemSeq, setIsChecked, checkedList, checkedList.length])
 
   return (
     <CardItemUI
