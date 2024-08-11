@@ -3,8 +3,9 @@ import Cards from '../cards/Cards.container'
 
 const DetailModalUI = ({ ...props }) => {
   const { detailOpened, detailClose, articleId, problemsData, recommendData } = props
-  const problemData = problemsData.find(el => el.id === articleId)
-  if (!problemData) return
+  // const problemData = problemsData.find(el => el. === articleId)
+
+  if (true) return
 
   return (
     <Modal opened={detailOpened} size={'1920'} onClose={detailClose} title={`${articleId}번 문제 상세보기`} centered>

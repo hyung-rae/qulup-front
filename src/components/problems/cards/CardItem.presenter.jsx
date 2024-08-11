@@ -55,17 +55,17 @@ const CardItemUI = ({ ...props }) => {
             <Mantine.Checkbox color="dark" checked={isChecked} onChange={e => setIsChecked(e.target.checked)} />
           )}
           <Mantine.Text size="md" fw={700}>
-            {article.id}.
+            {article.problemSeq}.
           </Mantine.Text>
         </Mantine.Group>
         <Mantine.Group gap={5}>
-          {article.tag.map(tag => (
+          {article.tag.split(',').map(tag => (
             <Mantine.Badge color="dark.3" key={tag}>
               {tag}
             </Mantine.Badge>
           ))}
-          <Mantine.Badge bg={difficultyOption[article.difficulty].color}>
-            {difficultyOption[article.difficulty].title}
+          <Mantine.Badge bg={difficultyOption[article?.difficulty]?.color || 'gray'}>
+            {difficultyOption[article.difficulty]?.title || '쉬움'}
           </Mantine.Badge>
           <Mantine.ActionIcon
             className={classes.action}
@@ -88,20 +88,20 @@ const CardItemUI = ({ ...props }) => {
           {article.code}
         </Mantine.Text>
         <Mantine.Image
-          src={article.image}
+          src={article.problemImage}
           radius={4}
           bd={'1px solid #555'}
           onClick={e => {
             e.stopPropagation()
-            handleDetailClick(article.id)
+            handleDetailClick(article.problemSeq)
           }}
         />
       </Mantine.AspectRatio>
       <Mantine.Text size="md" tt="uppercase" fw={700} mt="md">
-        {article.price} 원
+        {article?.price || 1111} 원
       </Mantine.Text>
       <Mantine.Text className={classes.description} mt={5}>
-        {article.description}
+        {article?.description || '문제 설명입니다.'}
       </Mantine.Text>
     </Mantine.Card>
   )

@@ -80,7 +80,7 @@ const ProblemsUI = ({ ...props }) => {
               />
             </Group>
           </Group>
-          <Pagination total={5} color="dark" page={page} onChange={setPage} />
+          <Pagination total={totalCount / 12 + 1} color="dark" page={page} onChange={setPage} />
         </Group>
         <Flex justify={'space-between'} align={'center'}>
           <Group style={{ position: 'relative' }}>
