@@ -7,11 +7,6 @@ const Terms = ({ opened, onClose }) => {
       <Modal.Content pos="relative">
         <CloseButton size="xl" variant="transparent" c="dark" pos="absolute" top={10} right={10} onClick={onClose} />
         <Modal.Body p={'xl'} bg={'gray.3'}>
-          {/* <Box> */}
-          {/* <Title my={20} order={2}>
-              개인정보 수집 이용 동의 약관
-            </Title> */}
-          {/* <Card mah={800} style={{ overflow: 'scroll' }}> */}
           <Title my={20} order={2}>
             개인정보 수집 이용 동의 약관
           </Title>

@@ -11,8 +11,6 @@ const SignUpUI = ({
   handleSubmit,
   handleEmailVerification,
   handlePhoneVerification,
-  handleSubmitTest,
-  handleTest,
 }) => {
   const { basePath } = useRouter()
 
@@ -67,8 +65,6 @@ const SignUpUI = ({
                   {...form.getInputProps('phone')}
                 />
                 <Button onClick={handlePhoneVerification}>인증하기</Button>
-                {/* <Button onClick={handleSubmitTest}>handleSubmitTest</Button> */}
-                {/* <Button onClick={handleTest}>handleTest</Button> */}
               </Group>
             </Flex>
 
