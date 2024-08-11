@@ -1,5 +1,17 @@
-import { Button, Container, Flex, Group, Pagination, SegmentedControl, Text } from '@mantine/core'
+import {
+  Button,
+  Center,
+  Checkbox,
+  Container,
+  Flex,
+  Group,
+  Pagination,
+  SegmentedControl,
+  Text,
+  Title,
+} from '@mantine/core'
 import Cards from './cards/Cards.container'
+import { IconClockCheck, IconStarFilled } from '@tabler/icons-react'
 
 const ProblemsManageUI = ({ ...props }) => {
   const {
@@ -15,18 +27,35 @@ const ProblemsManageUI = ({ ...props }) => {
     handleBuy,
     handleAllCheck,
     data,
+    totalCount,
   } = props
   return (
     <Container bg="gray.3" fluid pb="xl" mih={'100vh'}>
       <Flex direction="column" maw={1920} m="auto">
-        <Group justify="flex-end">
+        <Group justify="space-between">
           <SegmentedControl
             size="md"
             value={tabValue}
             defaultValue="buy"
             data={[
-              { label: '구매목록', value: 'buy' },
-              { label: '즐겨찾기', value: 'favorite' },
+              {
+                label: (
+                  <Center style={{ gap: 10 }}>
+                    <IconClockCheck style={{ width: 16, height: 16 }} />
+                    <span>구매목록</span>
+                  </Center>
+                ),
+                value: 'buy',
+              },
+              {
+                label: (
+                  <Center style={{ gap: 10 }}>
+                    <IconStarFilled fill="gold" style={{ width: 16, height: 16 }} />
+                    <span>즐겨찾기</span>
+                  </Center>
+                ),
+                value: 'favorite',
+              },
             ]}
             onClick={e => {
               setTabValue(e.target.value)
@@ -35,29 +64,43 @@ const ProblemsManageUI = ({ ...props }) => {
             withItemsBorders={false}
             color="dark"
           />
+          <Pagination total={3} color="dark" />
         </Group>
         <Group style={{ position: 'relative' }} py={30} justify="space-between">
-          <Button w={100} onClick={handleAllCheck}>
-            전체 선택
-          </Button>
-          {checkedList.length > 0 && (
-            <Flex align={'center'} justify={'center'} gap={20} style={{ position: 'absolute', left: 110 }}>
-              <Button w={100} onClick={() => setCheckedList([])}>
-                전체 해제
+          <Group style={{ position: 'relative' }}>
+            <Checkbox
+              size="md"
+              color="dark"
+              indeterminate={checkedList.length > 0 && checkedList.length !== totalCount}
+              onChange={e => {
+                e.target.checked ? handleAllCheck() : setCheckedList([])
+              }}
+            />
+            <Title order={5}>
+              선택한 문제
+              <Text component="span" c="teal" inherit mx={5}>
+                {checkedList.length || 0}
+              </Text>
+              건
+            </Title>
+
+            {tabValue === 'buy' ? (
+              <Button size="xs" onClick={handleReQuest}>
+                문제 재요청
               </Button>
-              <Text w={100}>선택문항: {checkedList.length}</Text>
-            </Flex>
-          )}
-          <Pagination total={3} color="dark.3" />
-          {tabValue === 'buy' ? (
-            <Button w={120} onClick={handleReQuest}>
-              문제 재요청
-            </Button>
-          ) : (
-            <Button w={120} onClick={handleBuy}>
-              구매
-            </Button>
-          )}
+            ) : (
+              <>
+                {checkedList.length > 0 && (
+                  <Button size="xs" color="dark">
+                    구매하기
+                  </Button>
+                )}
+                <Button variant="subtle" size="xs" color="dark">
+                  전체 상품 구매하기
+                </Button>
+              </>
+            )}
+          </Group>
         </Group>
 
         <Cards
