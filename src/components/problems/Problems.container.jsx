@@ -89,6 +89,7 @@ const Problems = () => {
         problemsData={problemsData}
         page={page}
         setPage={setPage}
+        totalCount={PROBLEM_DATA.length}
       />
     </>
   )

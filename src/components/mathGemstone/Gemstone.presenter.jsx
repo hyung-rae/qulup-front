@@ -1,15 +1,11 @@
-import { Center, Container, Grid, Group, Pagination, SegmentedControl, Stack, Text } from '@mantine/core'
-
+import { Center, Container, Grid, Group, Pagination, SegmentedControl, Stack } from '@mantine/core'
 import { IconClockCheck, IconStarFilled } from '@tabler/icons-react'
 import GemstoneItem from './item/GemstoneItem.container'
 
 const GemstoneUI = ({ sortType, setSortType, gemstone, page, setPage, open }) => {
   return (
     <Container fluid maw={1700} p={'xl'}>
-      <Group align="flex-start" justify="space-between">
-        <Text fz={26} fw={900} variant="gradient" gradient={{ from: 'gray', to: 'dark', deg: 0 }}>
-          Math Gemstone
-        </Text>
+      <Group align="center" justify="space-between">
         <SegmentedControl
           value={sortType}
           onChange={setSortType}
@@ -36,9 +32,10 @@ const GemstoneUI = ({ sortType, setSortType, gemstone, page, setPage, open }) =>
               ),
             },
           ]}
-          mb={20}
           color="dark"
         />
+
+        <Pagination total={3} page={page} onChange={setPage} color="dark" />
       </Group>
       <Stack>
         <Grid my={20} justify="flex-start">
@@ -46,9 +43,6 @@ const GemstoneUI = ({ sortType, setSortType, gemstone, page, setPage, open }) =>
             <GemstoneItem item={item} key={item.id} open={open} />
           ))}
         </Grid>
-        <Center mt="auto">
-          <Pagination total={3} page={page} onChange={setPage} color="dark" />
-        </Center>
       </Stack>
     </Container>
   )

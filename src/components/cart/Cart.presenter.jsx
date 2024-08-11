@@ -12,13 +12,14 @@ const CartUI = ({ cartReceipt, cartItem, page, setPage, totalCount, checkedIds, 
             <Stack gap={0}>
               <Group>
                 <Checkbox
-                  size="xs"
+                  size="sm"
                   color="dark"
                   checked={checkedIds.length === totalCount}
                   indeterminate={checkedIds.length > 0 && checkedIds.length !== totalCount}
                   onChange={handleCheckedAll}
                 />
-                <Title order={6}>전체 선택하기 (총 {Number(totalCount).toLocaleString('ko-KR')}개)</Title>
+                <Title order={4}>전체 선택하기 (총 {Number(totalCount).toLocaleString('ko-KR')}개)</Title>
+                <Pagination total={totalCount / 10} page={page} onChange={setPage} color="dark" ml={'auto'} />
               </Group>
               <Grid my={20} justify="flex-start">
                 {totalCount === 0 && (
@@ -35,9 +36,6 @@ const CartUI = ({ cartReceipt, cartItem, page, setPage, totalCount, checkedIds, 
                 )}
                 {cartItem}
               </Grid>
-              <Center mt="auto">
-                <Pagination total={totalCount / 10} page={page} onChange={setPage} color="dark" />
-              </Center>
             </Stack>
           </Paper>
         </Grid.Col>

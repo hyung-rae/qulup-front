@@ -1,6 +1,5 @@
-import { Box, Button, Container, Group, Image, SimpleGrid, Stack, Text, Title } from '@mantine/core'
-import { IconArrowRight, IconShoppingBag } from '@tabler/icons-react'
-import { useRouter } from 'next/router'
+import { Box, Button, Image, SimpleGrid, Stack, Text, Title } from '@mantine/core'
+import { IconArrowRight } from '@tabler/icons-react'
 import classes from './OrderSection.module.css'
 import { productList } from './mock'
 

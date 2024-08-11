@@ -16,17 +16,17 @@ const GemstoneItemUI = ({ item, isLiked, setIsLiked, matches, open, moveToOrderP
       >
         <Box pos={'relative'}>
           {item.status === 'wait' && (
-            <Badge size="sm" color="gray" pos={'absolute'} top={0} left={0}>
+            <Badge size="sm" color="gray" pos={'absolute'} top={0} left={0} radius={4}>
               대기중
             </Badge>
           )}
           {item.status === 'process' && (
-            <Badge size="sm" color="blue" pos={'absolute'} top={0} left={0}>
+            <Badge size="sm" color="blue" pos={'absolute'} top={0} left={0} radius={4}>
               해설 작업중
             </Badge>
           )}
           {item.status === 'complete' && (
-            <Badge size="sm" color="teal" pos={'absolute'} top={0} left={0}>
+            <Badge size="sm" color="teal" pos={'absolute'} top={0} left={0} radius={4}>
               해설완료
             </Badge>
           )}

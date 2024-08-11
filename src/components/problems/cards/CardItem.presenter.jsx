@@ -1,8 +1,7 @@
 import React from 'react'
 import * as Mantine from '@mantine/core'
-
 import classes from './Cards.module.css'
-import { IconHeart } from '@tabler/icons-react'
+import { IconBookmark } from '@tabler/icons-react'
 
 const problemCodeStyleProps = {
   position: 'absolute',
@@ -75,11 +74,11 @@ const CardItemUI = ({ ...props }) => {
               handleHeartClick(article.id)
             }}
           >
-            <IconHeart
+            <IconBookmark
               style={{ width: 16, height: 16 }}
-              color={'red'}
+              color={'gold'}
               className={`${heartList.includes(article.id) && classes.active}`}
-              fill={heartList.includes(article.id) ? 'red' : ''}
+              fill={heartList.includes(article.id) ? 'gold' : ''}
             />
           </Mantine.ActionIcon>
         </Mantine.Group>

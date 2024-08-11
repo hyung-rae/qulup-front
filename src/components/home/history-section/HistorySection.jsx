@@ -2,7 +2,7 @@ import { Box, Container, Divider, Flex, Group, ScrollArea, Stack, Text, ThemeIco
 import classes from './History.module.css'
 import { historyList } from './mock'
 
-const HistoryUI = () => {
+const HistorySection = () => {
   return (
     <Stack gap={40} justify="center" m={'auto'} maw={1400} align="flex-start" id="history" mih={'100vh'}>
       <Box>
@@ -34,7 +34,7 @@ const HistoryUI = () => {
   )
 }
 
-export default HistoryUI
+export default HistorySection
 
 const HistoryItem = ({ year, infoList }) => {
   return (

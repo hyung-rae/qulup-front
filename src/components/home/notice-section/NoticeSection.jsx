@@ -1,13 +1,15 @@
 import { Badge, Box, Container, Divider, Flex, Group, ScrollArea, Text, Title } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { noticeList } from './mock'
 import classes from './Notice.module.css'
-import NoticePopupUI from './popup/NoticePopup.presenter'
+import NoticePopup from './NoticePopup'
 
-const NoticeUI = ({ opened, open, onClose }) => {
+const NoticeSection = () => {
+  const [opened, { open, close }] = useDisclosure(false)
   return (
     <Container py={50} fluid bg={'dark.7'} id="notice">
       {/* 팝업 */}
-      <NoticePopupUI opened={opened} onClose={onClose} />
+      <NoticePopup opened={opened} onClose={close} />
 
       <Title order={3} c="white" fw={700} m={'auto'} mb={20} maw={1000}>
         공지사항 & 이벤트
@@ -43,4 +45,4 @@ const NoticeUI = ({ opened, open, onClose }) => {
   )
 }
 
-export default NoticeUI
+export default NoticeSection

@@ -1,7 +1,7 @@
-import { Box, Container, Group, List, Stack, Text, Title } from '@mantine/core'
+import { Box, Group, List, Stack, Text, Title } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 
-const AboutUI = () => {
+const AboutSection = () => {
   const matches = useMediaQuery('(max-width: 800px)')
   return (
     <Stack gap={40} justify="center" m={'auto'} maw={1400} align="flex-start" id="about" mih={'100vh'}>
@@ -47,4 +47,4 @@ const AboutUI = () => {
   )
 }
 
-export default AboutUI
+export default AboutSection

@@ -1,7 +1,7 @@
 import { CloseButton, Image, Modal } from '@mantine/core'
 import { useRouter } from 'next/router'
 
-const NoticePopupUI = ({ opened, onClose }) => {
+const NoticePopup = ({ opened, onClose }) => {
   const { basePath } = useRouter()
   return (
     <Modal.Root opened={opened} onClose={onClose}>
@@ -16,4 +16,4 @@ const NoticePopupUI = ({ opened, onClose }) => {
   )
 }
 
-export default NoticePopupUI
+export default NoticePopup

@@ -1,7 +1,7 @@
-import { Box, Container, Paper, SegmentedControl, Tabs, Text } from '@mantine/core'
+import { Box, Container, Tabs, Text } from '@mantine/core'
 import UserInfo from './info/UserInfo.container'
-import ProblemsManage from './problemsManage/ProblemsManage.container'
 import Payment from './payment/Payment.container'
+import ProblemsManage from './problemsManage/ProblemsManage.container'
 
 const UserUI = ({ menu }) => {
   return (

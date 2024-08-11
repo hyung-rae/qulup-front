@@ -1,4 +1,17 @@
-import { Box, Button, Container, Flex, Group, MultiSelect, Pagination, Select, Text, TextInput } from '@mantine/core'
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  Flex,
+  Group,
+  MultiSelect,
+  Pagination,
+  Select,
+  Text,
+  TextInput,
+  Title,
+} from '@mantine/core'
 import { IconSearch } from '@tabler/icons-react'
 import Cards from './cards/Cards.container'
 
@@ -21,15 +34,13 @@ const ProblemsUI = ({ ...props }) => {
     problemsData = [],
     page,
     setPage,
+    totalCount,
   } = props
 
   return (
     <Container bg="gray.3" fluid p="xl" mih={'100vh'} maw={1700}>
       <Flex direction="column" maw={1920} m="auto" gap={20}>
         <Group justify="space-between" align="flex-end">
-          <Text fz={26} fw={900} variant="gradient" gradient={{ from: 'gray', to: 'dark', deg: 0 }}>
-            전체 문제
-          </Text>
           <Group justify="flex-end" align="flex-end">
             <MultiSelect
               miw={200}
@@ -69,23 +80,34 @@ const ProblemsUI = ({ ...props }) => {
               />
             </Group>
           </Group>
+          <Pagination total={5} color="dark" page={page} onChange={setPage} />
         </Group>
         <Flex justify={'space-between'} align={'center'}>
-          <Group style={{ position: 'relative' }} py={20}>
-            <Button w={100} onClick={handleAllCheck}>
-              전체 선택
-            </Button>
+          <Group style={{ position: 'relative' }}>
+            <Checkbox
+              size="md"
+              color="dark"
+              indeterminate={checkedList.length > 0 && checkedList.length !== totalCount}
+              onChange={e => {
+                e.target.checked ? handleAllCheck() : setCheckedList([])
+              }}
+            />
+            <Title order={5}>
+              선택한 문제
+              <Text component="span" c="teal" inherit mx={5}>
+                {checkedList.length || 0}
+              </Text>
+              건
+            </Title>
             {checkedList.length > 0 && (
-              <Flex align={'center'} justify={'center'} gap={20} style={{ position: 'absolute', left: 110 }}>
-                <Button w={100} onClick={() => setCheckedList([])}>
-                  전체 해제
-                </Button>
-                <Text w={100}>선택문항: {checkedList.length}</Text>
-              </Flex>
+              <Button size="xs" color="dark">
+                구매하기
+              </Button>
             )}
+            <Button variant="subtle" size="xs" color="dark">
+              전체 상품 구매하기
+            </Button>
           </Group>
-          <Pagination total={5} color="dark.3" page={page} onChange={setPage} />
-          <Button w={120}>구매</Button>
         </Flex>
 
         <Cards

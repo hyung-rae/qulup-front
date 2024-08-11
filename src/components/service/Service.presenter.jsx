@@ -1,8 +1,7 @@
 import classes from '@/src/components/service/Service.module.css'
 import {
-  Box,
-  Text,
   Button,
+  Center,
   Container,
   Flex,
   Group,
@@ -12,8 +11,7 @@ import {
   Table,
   TextInput,
 } from '@mantine/core'
-
-import { IconSearch } from '@tabler/icons-react'
+import { IconSearch, IconNote, IconHandClick } from '@tabler/icons-react'
 
 const ANSWER_TITLE = {
   wait: '대기중',
@@ -66,77 +64,87 @@ const ServiceUI = ({ ...props }) => {
 
   return (
     <Container bg="gray.3" maw={1700} fluid p="xl" mih={'100vh'}>
-      <Box>
-        <Text pb={40} fz={26} fw={900} variant="gradient" gradient={{ from: 'gray', to: 'dark', deg: 0 }}>
-          {tabValue === 'faq' ? 'FAQ' : '1:1 문의'}
-        </Text>
-        <Flex direction="column" m="auto" gap={20}>
-          <Table.ScrollContainer>
-            <Flex justify="space-between" w={'100%'} gap={10} mb={20}>
-              <Group>
-                <TextInput
-                  value={searchText}
-                  placeholder="검색어를 입력해주세요"
-                  onChange={e => setSearchText(e.target.value)}
-                  rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
-                />
-                {tabValue === 'inquiry' && <Button onClick={writingOpen}>글쓰기</Button>}
-              </Group>
-              <SegmentedControl
-                size="md"
-                value={tabValue}
-                defaultValue="faq"
-                data={[
-                  { label: 'FAQ', value: 'faq' },
-                  { label: '1:1 문의', value: 'inquiry' },
-                ]}
-                onClick={e => {
-                  setTabValue(e.target.value)
-                }}
-                w={300}
-                withItemsBorders={false}
-                color="dark"
-              />
-            </Flex>
-            <Paper m="auto" shadow="xs" withBorder p="xl" w={'100%'}>
-              <Table verticalSpacing="xs">
-                <Table.Thead>
-                  <Table.Tr>
-                    <Table.Th style={{ textAlign: 'center' }} width={50}>
-                      No.
-                    </Table.Th>
-                    <Table.Th style={{ textAlign: 'center' }}>{tabValue === 'inquiry' ? '작성자' : '제목'}</Table.Th>
-                    {tabValue === 'inquiry' && (
-                      <Table.Th width={100} style={{ textAlign: 'center' }}>
-                        답변 상태
-                      </Table.Th>
-                    )}
-                    <Table.Th style={{ textAlign: 'center' }} width={100}>
-                      작성일
-                    </Table.Th>
-                  </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                  {tabValue === 'faq' && faq_data.length > 0 && FAQ_ROWS}
-                  {tabValue === 'inquiry' && inquiry_data.length > 0 && INQUIRY_ROWS}
-                </Table.Tbody>
-              </Table>
-              {(tabValue === 'faq' && faq_data.length === 0) || (tabValue === 'inquiry' && inquiry_data.length === 0)
-                ? EMPTY_ROWS
-                : null}
-            </Paper>
-          </Table.ScrollContainer>
-          <Flex w={'100%'} mt={20} justify="center" align={'center'}>
-            <Pagination
-              total={totalCount / 10}
-              color="dark.3"
-              onChange={page => {
-                handleGetBoardData(page)
+      <Flex direction="column" m="auto" gap={20}>
+        <Table.ScrollContainer>
+          <Group align="center" justify="space-between" mb={20}>
+            <SegmentedControl
+              size="md"
+              value={tabValue}
+              defaultValue="faq"
+              data={[
+                {
+                  label: (
+                    <Center style={{ gap: 10 }}>
+                      <IconNote sIconHandClick={{ width: 16, height: 16 }} />
+                      <span>FAQ</span>
+                    </Center>
+                  ),
+                  value: 'faq',
+                },
+                {
+                  label: (
+                    <Center style={{ gap: 10 }}>
+                      <IconHandClick sIconHandClick={{ width: 16, height: 16 }} />
+                      <span>1:1 문의</span>
+                    </Center>
+                  ),
+                  value: 'inquiry',
+                },
+              ]}
+              onClick={e => {
+                setTabValue(e.target.value)
               }}
+              w={300}
+              withItemsBorders={false}
+              color="dark"
             />
-          </Flex>
-        </Flex>
-      </Box>
+            <Group>
+              <TextInput
+                value={searchText}
+                placeholder="검색어를 입력해주세요"
+                onChange={e => setSearchText(e.target.value)}
+                rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
+              />
+
+              <Pagination total={totalCount / 10} color="dark." onChange={page => handleGetBoardData(page)} />
+            </Group>
+          </Group>
+          <Paper m="auto" shadow="xs" withBorder p="md" w={'100%'}>
+            {tabValue === 'inquiry' && (
+              <Group justify="flex-end" mb={10}>
+                <Button color="dark" onClick={writingOpen}>
+                  글쓰기
+                </Button>
+              </Group>
+            )}
+            <Table verticalSpacing="xs">
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th style={{ textAlign: 'center' }} width={50}>
+                    No.
+                  </Table.Th>
+                  <Table.Th style={{ textAlign: 'center' }}>{tabValue === 'inquiry' ? '작성자' : '제목'}</Table.Th>
+                  {tabValue === 'inquiry' && (
+                    <Table.Th width={100} style={{ textAlign: 'center' }}>
+                      답변 상태
+                    </Table.Th>
+                  )}
+                  <Table.Th style={{ textAlign: 'center' }} width={100}>
+                    작성일
+                  </Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {tabValue === 'faq' && faq_data.length > 0 && FAQ_ROWS}
+                {tabValue === 'inquiry' && inquiry_data.length > 0 && INQUIRY_ROWS}
+              </Table.Tbody>
+            </Table>
+            {(tabValue === 'faq' && faq_data.length === 0) || (tabValue === 'inquiry' && inquiry_data.length === 0)
+              ? EMPTY_ROWS
+              : null}
+          </Paper>
+        </Table.ScrollContainer>
+      </Flex>
     </Container>
   )
 }

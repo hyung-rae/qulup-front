@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const PaymentUI = ({ paymentItemList, open }) => {
   return (
-    <Paper>
+    <>
       <Table.ScrollContainer lin minWidth={600} mih={500} type="native" p={30}>
         <Table className={classes.payment_table}>
           <Table.Thead>
@@ -48,7 +48,7 @@ const PaymentUI = ({ paymentItemList, open }) => {
       <Group justify="center" py={30}>
         <Pagination total={5} color="dark" />
       </Group>
-    </Paper>
+    </>
   )
 }
 

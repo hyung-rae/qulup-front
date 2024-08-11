@@ -2,7 +2,7 @@ import { Flex, Overlay, Title } from '@mantine/core'
 import { useRouter } from 'next/router'
 import classes from './Hero.module.css'
 
-const HeroUI = () => {
+const HeroSection = () => {
   const { basePath } = useRouter()
   return (
     <Flex
@@ -31,4 +31,4 @@ const HeroUI = () => {
   )
 }
 
-export default HeroUI
+export default HeroSection
