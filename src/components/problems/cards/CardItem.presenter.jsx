@@ -49,7 +49,7 @@ const CardItemUI = ({ ...props }) => {
         handleProblemClick(article.id)
       }}
     >
-      <Mantine.Flex justify={'space-between'} mb={20}>
+      <Mantine.Flex direction={'column'} justify={'space-between'} mb={20} gap={10} miw={250}>
         <Mantine.Group gap={10}>
           {!detailModal && (
             <Mantine.Checkbox color="dark" checked={isChecked} onChange={e => setIsChecked(e.target.checked)} />
@@ -57,13 +57,6 @@ const CardItemUI = ({ ...props }) => {
           <Mantine.Text size="md" fw={700}>
             {article.problemSeq}.
           </Mantine.Text>
-        </Mantine.Group>
-        <Mantine.Group gap={5}>
-          {article.tag.split(',').map(tag => (
-            <Mantine.Badge color="dark.3" key={tag}>
-              {tag}
-            </Mantine.Badge>
-          ))}
           <Mantine.Badge bg={difficultyOption[article?.difficulty]?.color || 'gray'}>
             {difficultyOption[article.difficulty]?.title || '쉬움'}
           </Mantine.Badge>
@@ -81,6 +74,13 @@ const CardItemUI = ({ ...props }) => {
               fill={heartList.includes(article.id) ? 'gold' : ''}
             />
           </Mantine.ActionIcon>
+        </Mantine.Group>
+        <Mantine.Group gap={5}>
+          {article.tag.split(',').map(tag => (
+            <Mantine.Badge color="dark.1" key={tag}>
+              {tag}
+            </Mantine.Badge>
+          ))}
         </Mantine.Group>
       </Mantine.Flex>
       <Mantine.AspectRatio ratio={1680 / 720}>
