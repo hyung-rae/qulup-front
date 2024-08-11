@@ -5,7 +5,7 @@ const API_URL = 'http://quluptest.shop'
 const instance = axios.create({
   baseURL: API_URL,
   headers: {
-    'Content-Type': 'multipart/form-data',
+    'Content-Type': 'multipart/form-data; charset=UTF-8',
   },
   withCredentials: true,
 })
@@ -28,7 +28,7 @@ instance.interceptors.response.use(
   },
   error => {
     console.log('error :', error)
-    alert('잠시후 다시 시도해주세요.')
+    // alert('잠시후 다시 시도해주세요.')
     return Promise.reject(error)
   },
 )

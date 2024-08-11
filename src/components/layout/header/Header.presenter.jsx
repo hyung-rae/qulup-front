@@ -6,7 +6,7 @@ import { IconShoppingCart, IconUserCog } from '@tabler/icons-react'
 
 const HeaderUI = ({ user, isLogin, onClickSignIn, handleLogOut, moveToSection }) => {
   const { basePath, pathname } = useRouter()
-  
+
   return (
     <Stack justify="center" gap={10} bg={'dark.7'} h={'100%'}>
       <Group justify="space-around">
@@ -17,10 +17,10 @@ const HeaderUI = ({ user, isLogin, onClickSignIn, handleLogOut, moveToSection })
         {isLogin ? (
           <Group gap={15}>
             <Text fz="sm" fw="bolder" c="white">
-              우형래 님
+              {user?.nickname} 님
             </Text>
             <Text fz="sm" fw="bolder" c="white">
-              280 P
+              {user?.point} P
             </Text>
 
             <Indicator disabled>

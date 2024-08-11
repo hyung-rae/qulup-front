@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react'
-
 // component
 import SignUpUI from './SignUp.presenter'
 import Terms from './Terms'
 
 // api
-import { postSignUp, postVerificationEmail, postVerificationPhone, getTest, getFromSession } from '@/pages/api/authApi'
+import useAuthApi from '@/src/api/auth/useAuthApi'
 
 // lib
-import { useDisclosure } from '@mantine/hooks'
-import { useMutation } from 'react-query'
 import { useForm } from '@mantine/form'
+import { useDisclosure } from '@mantine/hooks'
 
 const SignUp = ({ opened, onClose }) => {
   const [termsOpened, { open, close }] = useDisclosure(false)
+  const { signUp, verificationEmail, verificationPhone } = useAuthApi()
 
   // 회원가입 initial 폼
   const form = useForm({
@@ -37,44 +35,8 @@ const SignUp = ({ opened, onClose }) => {
     },
   })
 
-  // 회원가입 api 요청 함수
-  const signUpMutation = useMutation(postSignUp, {
-    onSuccess: res => {
-      if (res.success) {
-        console.log('회원가입 성공')
-        form.reset()
-        onClose()
-      } else {
-        console.log('회원가입 실패')
-      }
-    },
-    onSettled: () => {},
-  })
-
-  const getTestMutation = useMutation(getTest, {
-    onSuccess: res => {
-      if (res.success) {
-        console.log('res test: ', res)
-      } else {
-        console.log('회원가입 실패')
-      }
-    },
-    onSettled: () => {},
-  })
-
-  const getFromSessionMutation = useMutation(getFromSession, {
-    onSuccess: res => {
-      if (res.success) {
-        console.log('res test: ', res)
-      } else {
-        console.log('회원가입 실패')
-      }
-    },
-    onSettled: () => {},
-  })
-
   // 회원가입 폼제출 함수
-  const handleSubmit = values => {
+  const handleSubmit = async values => {
     const param = {
       email: values.email,
       password: values.password,
@@ -84,52 +46,23 @@ const SignUp = ({ opened, onClose }) => {
       phone: values.phone,
       emailVerificationCode: values.emailVerificationCode,
     }
-    signUpMutation.mutate(param)
+    await signUp(param)
   }
-
-  // 이메일 인증 api 요청 함수
-  const emailVerificationMutation = useMutation(postVerificationEmail, {
-    onSuccess: res => {
-      if (res.success) {
-        alert('이메일 인증 성공')
-      } else {
-        console.log('이메일 인증 실패')
-      }
-    },
-  })
 
   // 이메일 인증 함수
   const handleEmailVerification = () => {
     const param = {
       email: form.values.email,
     }
-    emailVerificationMutation.mutate(param)
+    verificationEmail(param)
   }
-
-  // 핸드폰 인증 api 요청 함수
-  const phoneVerificationMutation = useMutation(postVerificationPhone, {
-    onSuccess: res => {
-      if (res.success) {
-        alert('휴대폰 인증 성공')
-      } else {
-        console.log('휴대폰 인증 실패')
-      }
-    },
-  })
 
   // 핸드폰 인증 함수
   const handlePhoneVerification = () => {
     const param = {
       phone: form.values.phone,
     }
-    phoneVerificationMutation.mutate(param)
-  }
-
-  const handleSubmitTest = () => {
-    getTestMutation.mutate({ test: 'test' })
-  }
-  const handleTest = () => {
-    getFromSessionMutation.mutate()
+    verificationPhone(param)
   }
 
   return (
@@ -137,8 +70,6 @@ const SignUp = ({ opened, onClose }) => {
       <SignUpUI
         form={form}
         handleSubmit={handleSubmit}
-        handleTest={handleTest}
-        handleSubmitTest={handleSubmitTest}
         handleEmailVerification={handleEmailVerification}
         handlePhoneVerification={handlePhoneVerification}
         opened={opened}

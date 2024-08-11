@@ -1,42 +1,50 @@
+import { userState } from '@/src/services/user'
 import { useDisclosure } from '@mantine/hooks'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import Find from '../../sign/find/Find.container'
 import SignIn from '../../sign/signIn/SignIn.container'
 import SignUp from '../../sign/signUp/SignUp.container'
 import HeaderUI from './Header.presenter'
-import { postSignIn } from '@/pages/api/authApi'
-import { useMutation } from 'react-query'
-import { userState } from '@/src/services/user'
-import { useRecoilState } from 'recoil'
+
+import useAuthApi from '@/src/api/auth/useAuthApi'
+import { useRouter } from 'next/router'
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('aceman9508@gmail.com')
+  const [password, setPassword] = useState('znjffjq123$')
   const [user, setUser] = useRecoilState(userState)
+  const { signIn, signUp, logout, refresh, isLoading } = useAuthApi()
 
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
   const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
   const [findOpened, { open: findOpen, close: findClose }] = useDisclosure(false)
 
-  const mutation = useMutation(postSignIn, {
-    onSuccess: data => {
-      setUser(data)
-      setIsLogin(true)
-    },
-    onError: error => {
-      console.error('로그인 실패:', error)
-      alert('로그인 실패')
-    },
-  })
+  const router = useRouter()
 
   const handleLogin = async () => {
-    mutation.mutate({ email: username, password })
+    let { memberData } = await signIn({ email, password })
+    setUser(memberData)
+    setIsLogin(true)
     signInClose()
   }
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
+    await logout()
     setIsLogin(false)
+    router.push('/')
+  }
+
+  const handleRefreshSession = async () => {
+    try {
+      let { success, memberData } = await refresh()
+      if (!success) return
+      setUser(memberData)
+      setIsLogin(true)
+    } catch {
+      return
+    }
   }
 
   const onClickSignUp = () => {
@@ -53,6 +61,10 @@ const Header = () => {
     document.getElementById(section).scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
+  useEffect(() => {
+    handleRefreshSession()
+  }, [])
+
   return (
     <>
       {/* 로그인 모달 */}
@@ -63,7 +75,7 @@ const Header = () => {
         handleLogin={handleLogin}
         onClickSignUp={onClickSignUp}
         onClickFind={onClickFind}
-        setUsername={setUsername}
+        setEmail={setEmail}
         setPassword={setPassword}
       />
       {/* 회원가입 모달 */}

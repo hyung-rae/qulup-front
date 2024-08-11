@@ -1,20 +1,18 @@
-import { postFileDownload } from '@/pages/api/problems'
 import { Button, CloseButton, Group, Modal, Stack, Text } from '@mantine/core'
-import { useMutation } from 'react-query'
 
 const PaymentItemDialog = ({ opened, onClose, paymentItemList }) => {
-  const postFileDownloadMutation = useMutation(postFileDownload, {
-    onSuccess: res => {
-      console.log('다운로드 성공', res)
-    },
-    onError: error => {
-      // 실패 시 처리 (예: 에러 메시지 표시)
-      console.error('회원12121가입 실패', error)
-    },
-  })
+  // const postFileDownloadMutation = useMutation(postFileDownload, {
+  //   onSuccess: res => {
+  //     console.log('다운로드 성공', res)
+  //   },
+  //   onError: error => {
+  //     // 실패 시 처리 (예: 에러 메시지 표시)
+  //     console.error('회원12121가입 실패', error)
+  //   },
+  // })
 
   const handleFileDownload = async () => {
-    postFileDownloadMutation.mutate()
+    // postFileDownloadMutation.mutate()
   }
 
   return (
