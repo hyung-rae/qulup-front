@@ -3,6 +3,7 @@ import CartUI from './Cart.presenter'
 import CartItem from './item/CartItem.container'
 import { cartItemList } from './mock'
 import CartReceipt from './receipt/CartReceipt.container'
+import useCartApi from '@/src/api/cart/useCartApi'
 
 const Cart = () => {
   const [page, setPage] = useState(1)
@@ -12,11 +13,12 @@ const Cart = () => {
 
   const [cartItems, setCartItems] = useState([])
 
-  const getCartItemList = page => {
-    return {
-      totalCount: cartItemList.length,
-      list: cartItemList.slice(page * 10 - 10, page * 10),
-    }
+  const { getCartItemList } = useCartApi()
+
+  const handleGetCartItemlist = async page => {
+    const { totalCount, list } = await getCartItemList(page)
+    setCartItems(list)
+    setTotalCount(totalCount)
   }
 
   const handleCheckedAll = event => {
@@ -28,9 +30,7 @@ const Cart = () => {
   }
 
   useEffect(() => {
-    const { totalCount, list } = getCartItemList(page)
-    setCartItems(list)
-    setTotalCount(totalCount)
+    handleGetCartItemlist()
   }, [page])
 
   return (

@@ -14,7 +14,7 @@ import {
 } from '@mantine/core'
 import classes from './Order.module.css'
 
-const OrderUI = ({ orderItems, price, discount, payMethod, setPayMethod, point, setPoint, userPoint }) => {
+const OrderUI = ({ orderItems, price, discount, payMethod, setPayMethod, point, setPoint, userPoint, handlePG }) => {
   return (
     <Container p={'xl'}>
       <Paper maw={600} p={40} m={'auto'} bg={'white'}>
@@ -129,7 +129,7 @@ const OrderUI = ({ orderItems, price, discount, payMethod, setPayMethod, point, 
             )}
           </Stack>
 
-          <Button color="dark" mt={30}>
+          <Button color="dark" mt={30} onClick={handlePG}>
             <Title order={5} c={'white'}>
               결제하기
             </Title>

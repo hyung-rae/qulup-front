@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDisclosure } from '@mantine/hooks'
 import ProblemsUI from './Problems.presenter'
 import DetailModal from './detail/DetailModal.container'
-import { PROBLEM_DATA } from '@/src/components/problems/mock'
 import useProblemApi from '@/src/api/problem/useProblemApi'
 
 const Problems = () => {

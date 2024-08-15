@@ -98,7 +98,7 @@ const CardItemUI = ({ ...props }) => {
         />
       </Mantine.AspectRatio>
       <Mantine.Text size="md" tt="uppercase" fw={700} mt="md">
-        {article?.price || 1111} 원
+        <span style={{ textDecoration: 'line-through' }}>{article?.price || 10000} 원</span> | {article.dc} 원
       </Mantine.Text>
       <Mantine.Text className={classes.description} mt={5}>
         {article?.description || '문제 설명입니다.'}
