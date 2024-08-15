@@ -2,7 +2,7 @@ import { Card, Flex, Modal, Text } from '@mantine/core'
 import Cards from '../cards/Cards.container'
 
 const DetailModalUI = ({ ...props }) => {
-  const { detailOpened, detailClose, articleId, problemsData, recommendData, handleRecommendClick } = props
+  const { detailOpened, detailClose, articleId, problemsData, handleRecommendClick } = props
   const problemData = problemsData.find(el => el.problemSeq === articleId)
 
   if (!problemData) return

@@ -7,7 +7,7 @@ import DetailModal from './detail/DetailModal.container'
 import ServiceUI from './Service.presenter'
 import WriteModal from './write/WriteModal.container'
 
-import { getBoardData, getSearchBoardData } from '@/pages/api/service'
+import { FAQ_DEFAULT, INQUIRY_DEFAULT } from './mock'
 
 const Service = ({}) => {
   const [tabValue, setTabValue] = useState('faq') // faq or inquiry
@@ -37,18 +37,13 @@ const Service = ({}) => {
 
   const handleSearch = () => {
     console.log(`검색: ${searchText}`)
-    getSearchBoardData({ type: tabValue, content: searchText, page, count: 10 })
-    // TODO: 검색 후 나온 데이터를 setFaqData / setInquiryData 에 넣어준다.
   }
 
   const handleGetBoardData = async page => {
-    const res = await getBoardData({ type: tabValue, page, count: 10 })
     if (tabValue === 'faq') {
-      setFaqData(res.data)
-      setTotalCount(res.totalCount)
+      setFaqData(FAQ_DEFAULT)
     } else {
-      setInquiryData(res.data)
-      setTotalCount(res.totalCount)
+      setInquiryData(INQUIRY_DEFAULT)
     }
   }
 

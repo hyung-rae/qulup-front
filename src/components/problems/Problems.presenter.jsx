@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Checkbox,
   Container,
@@ -28,7 +27,6 @@ const ProblemsUI = ({ ...props }) => {
     handleAllCheck,
     handleDetailClick,
     handleProblemClick,
-    handleHeartClick,
     placeholder,
     setPlaceholder,
     problemsData = [],
@@ -115,7 +113,6 @@ const ProblemsUI = ({ ...props }) => {
           heartList={heartList}
           handleProblemClick={handleProblemClick}
           handleDetailClick={handleDetailClick}
-          handleHeartClick={handleHeartClick}
           checkedList={checkedList}
           setCheckedList={setCheckedList}
           px="0"

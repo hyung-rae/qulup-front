@@ -33,10 +33,10 @@ const CardItemUI = ({ ...props }) => {
     heartList,
     handleProblemClick,
     handleDetailClick,
-    handleHeartClick,
     isChecked,
     setIsChecked,
     detailModal,
+    handleLikeButton,
   } = props
 
   return (
@@ -64,7 +64,6 @@ const CardItemUI = ({ ...props }) => {
             className={classes.action}
             onClick={e => {
               e.stopPropagation()
-              handleHeartClick(article.id)
             }}
           >
             <IconBookmark
@@ -72,6 +71,7 @@ const CardItemUI = ({ ...props }) => {
               color={'gold'}
               className={`${heartList.includes(article.problemSeq) && classes.active}`}
               fill={heartList.includes(article.problemSeq) ? 'gold' : ''}
+              onClick={() => handleLikeButton(article.problemSeq)}
             />
           </Mantine.ActionIcon>
         </Mantine.Group>

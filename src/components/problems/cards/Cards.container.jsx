@@ -8,12 +8,11 @@ const Cards = ({
   heartList = [],
   handleProblemClick = () => {},
   handleDetailClick = () => {},
-  handleHeartClick = () => {},
+  detailModal,
   col = 4,
   px = '16px',
   py = 'xl',
   problemsData = [],
-  detailModal,
 }) => {
   const cards = problemsData.map((article, i) => (
     <CardItem
@@ -23,7 +22,6 @@ const Cards = ({
       heartList={heartList}
       handleProblemClick={handleProblemClick}
       handleDetailClick={handleDetailClick}
-      handleHeartClick={handleHeartClick}
       detailModal={detailModal}
     />
   ))

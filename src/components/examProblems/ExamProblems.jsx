@@ -1,43 +1,39 @@
 import { ACADEMY_FILTER, PROBLEM_FILTER, SEARCH_FILTER } from '@/src/components/problems/SelectFilter'
 import { Center, Container, Flex, Group, MultiSelect, Pagination, Select, Text, TextInput } from '@mantine/core'
 import { IconSearch } from '@tabler/icons-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ExamProblemsItem from './ExamProblemsItem'
+import { examProblemsData } from './mock'
+import useProblemApi from '@/src/api/problem/useProblemApi'
 
-const Gemstone = () => {
+const ExamProblems = () => {
+  const [page, setPage] = useState(1)
+  const [examProblemsList, setExamProblemsList] = useState([])
+
   const [placeholder, setPlaceholder] = useState({
     academy: true,
     problem: true,
   })
   const [searchText, setSearchText] = useState('')
-  const handleSearch = () => {}
 
-  let mock = [
-    {
-      image:
-        'https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      state: 'done',
-      title: 'technology',
-      description: 'The best laptop for Frontend engineers in 2022',
-      price: 58000,
-    },
-    {
-      image:
-        'https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      state: 'done',
-      title: 'technology',
-      description: 'The best laptop for Frontend engineers in 2022',
-      price: 58000,
-    },
-    {
-      image:
-        'https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      state: 'done',
-      title: 'technology',
-      description: 'The best laptop for Frontend engineers in 2022',
-      price: 58000,
-    },
-  ]
+  const { getExamProblemList, getExamProblemSearch } = useProblemApi()
+
+  const handleSearch = async () => {
+    // TODO: 모의고사 문제 검색하는 로직
+    // let res = await getExamProblemSearch(page)
+    // setExamProblemsList(res.list)
+  }
+
+  const handleGetExamProblemsData = async page => {
+    // TODO: 모의고사 문제 리스트 불러오는 로직
+    // let res = await getExamProblemList(page)
+    // setExamProblemsList(res.list)
+  }
+
+  // 페이지가 최초로 랜더링될때 / page가 변경될때마다 문제를 불러오는 함수 실행
+  useEffect(() => {
+    handleGetExamProblemsData(page)
+  }, [page])
 
   return (
     <Container bg="gray.3" maw={1700} fluid p="xl" mih={'100vh'}>
@@ -83,9 +79,9 @@ const Gemstone = () => {
               />
             </Group>
           </Group>
-          <Pagination total={5} color="dark" />
+          <Pagination color="dark" total={5} page={page} onChange={setPage} />
         </Group>
-        {mock.map((article, index) => {
+        {examProblemsData.map((article, index) => {
           return <ExamProblemsItem key={index} article={article} />
         })}
       </Flex>
@@ -93,4 +89,4 @@ const Gemstone = () => {
   )
 }
 
-export default Gemstone
+export default ExamProblems
