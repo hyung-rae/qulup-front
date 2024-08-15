@@ -29,10 +29,10 @@ const useProblemApi = () => {
 
   // 문제 검색
   const getProblemSearch = async params => {
-    const { page } = params
+    const { page, searchAcademy, searchProblem, searchDifficulty } = params
     setIsLoading(true)
     try {
-      const res = await instance.get(`QV1/problemSearch.do?page=${page}`)
+      const res = await instance.get(`QV1/problemSearch.do?page=${page}&difficulty=${searchDifficulty}`)
       return res.data.ProblemList
     } catch {
     } finally {

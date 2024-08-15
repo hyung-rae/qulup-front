@@ -2,6 +2,7 @@ import React from 'react'
 import * as Mantine from '@mantine/core'
 import classes from './Cards.module.css'
 import { IconBookmark } from '@tabler/icons-react'
+import { useRouter } from 'next/router'
 
 const problemCodeStyleProps = {
   position: 'absolute',
@@ -18,6 +19,7 @@ const problemCodeStyleProps = {
   color: '#000',
 }
 
+// TODO: 색상코드 아래에 넣으시면 됩니다
 const difficultyOption = {
   veryEasy: { color: 'gray', title: '매우 쉬움' },
   easy: { color: 'green', title: '쉬움' },
@@ -38,6 +40,8 @@ const CardItemUI = ({ ...props }) => {
     detailModal,
     handleLikeButton,
   } = props
+
+  const { basePath } = useRouter()
 
   return (
     <Mantine.Card
@@ -88,7 +92,7 @@ const CardItemUI = ({ ...props }) => {
           {article.code}
         </Mantine.Text>
         <Mantine.Image
-          src={article.problemImage}
+          src={`${basePath}/images/question_example.png`}
           radius={4}
           bd={'1px solid #555'}
           onClick={e => {
@@ -98,7 +102,8 @@ const CardItemUI = ({ ...props }) => {
         />
       </Mantine.AspectRatio>
       <Mantine.Text size="md" tt="uppercase" fw={700} mt="md">
-        <span style={{ textDecoration: 'line-through' }}>{article?.price || 10000} 원</span> | {article.dc} 원
+        <span style={{ textDecoration: 'line-through', opacity: 0.3 }}>{article?.price || 10000} 원</span> |{' '}
+        {article.dc || 5000} 원
       </Mantine.Text>
       <Mantine.Text className={classes.description} mt={5}>
         {article?.description || '문제 설명입니다.'}

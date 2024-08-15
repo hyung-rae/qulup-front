@@ -74,6 +74,7 @@ const useAuthApi = () => {
       setIsLoading(false)
     }
   }
+
   const verificationPhone = async params => {
     setIsLoading(true)
     try {

@@ -15,7 +15,9 @@ const Header = () => {
   const [email, setEmail] = useState('aceman9508@gmail.com')
   const [password, setPassword] = useState('znjffjq123$')
   const [user, setUser] = useRecoilState(userState)
-  const { signIn, signUp, logout, refresh, isLoading } = useAuthApi()
+  const { signIn, logout, refresh } = useAuthApi()
+  const [loginToken, setLoginToken] = useState('')
+  const [signUpToken, setSignUpToken] = useState('')
 
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
   const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
@@ -24,7 +26,7 @@ const Header = () => {
   const router = useRouter()
 
   const handleLogin = async () => {
-    let { memberData } = await signIn({ email, password })
+    let { memberData } = await signIn({ email, password, recaptchaToken: loginToken })
     setUser(memberData)
     setIsLogin(true)
     signInClose()
@@ -77,9 +79,10 @@ const Header = () => {
         onClickFind={onClickFind}
         setEmail={setEmail}
         setPassword={setPassword}
+        setToken={setLoginToken}
       />
       {/* 회원가입 모달 */}
-      <SignUp opened={signUpOpened} onClose={signUpClose} />
+      <SignUp opened={signUpOpened} onClose={signUpClose} signUpToken={signUpToken} setToken={setSignUpToken} />
       {/* 아이디 / 비밀번호 찾기 모달 */}
       <Find opened={findOpened} onClose={findClose} />
 

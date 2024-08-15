@@ -1,11 +1,13 @@
 import { Card, Flex, Modal, Text } from '@mantine/core'
 import Cards from '../cards/Cards.container'
+import { useRouter } from 'next/router'
 
 const DetailModalUI = ({ ...props }) => {
   const { detailOpened, detailClose, articleId, problemsData, handleRecommendClick } = props
   const problemData = problemsData.find(el => el.problemSeq === articleId)
 
   if (!problemData) return
+  const { basePath } = useRouter()
 
   return (
     <Modal opened={detailOpened} size={'1920'} onClose={detailClose} title={`${articleId}번 문제 상세보기`} centered>
@@ -14,11 +16,19 @@ const DetailModalUI = ({ ...props }) => {
           <Text size="18px" fw={700}>
             문제
           </Text>
-          <Card bg={'gray.1'}>{problemData?.problemImage}</Card>
+          <Card style={{ maxHeight: '500px', overflow: 'scroll' }} bg={'gray.1'}>
+            {/* {problemData?.problemImage} */}
+            <img src={`${basePath}/images/question_example.png`} />
+          </Card>
           <Text size="18px" fw={700}>
             해설
           </Text>
-          <Card bg={'gray.1'}>{problemData?.problemSolution}</Card>
+          <Card style={{ maxHeight: '500px', overflow: 'scroll' }} bg={'gray.1'}>
+            {problemData?.problemSolution}
+            <img src={`${basePath}/images/answer_example01.png`} />
+            <img src={`${basePath}/images/answer_example02.png`} />
+            <img src={`${basePath}/images/answer_example03.png`} />
+          </Card>
           <Text size="18px" fw={700}>
             정답
           </Text>

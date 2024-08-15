@@ -1,17 +1,10 @@
-// export const ACADEMY_FILTER = [
-//   { value: '대성', label: '대성' },
-//   { value: '청솔', label: '청솔' },
-//   { value: '혁훈', label: '혁훈' },
-//   { value: '정빈', label: '정빈' },
-// ]
-
 export const ACADEMY_FILTER = [
   {
     group: '대성',
     items: [
-      { value: '0', label: '강남' },
-      { value: '1', label: '부산' },
-      { value: '2', label: '인천' },
+      { value: 'ds-1', label: '강남' },
+      { value: 'ds-2', label: '부산' },
+      { value: 'ds-3', label: '인천' },
     ],
   },
   {
@@ -67,4 +60,12 @@ export const SEARCH_FILTER = [
   { value: 'all', label: '전체' },
   { value: 'name', label: '문제명' },
   { value: 'code', label: '코드' },
+]
+
+export const DEFFICULTY_FILTER = [
+  { value: 'veryEasy', label: '매우쉬움' },
+  { value: 'easy', label: '쉬움' },
+  { value: 'normal', label: '보통' },
+  { value: 'hard', label: '어려움' },
+  { value: 'veryHard', label: '매우어려움' },
 ]

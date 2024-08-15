@@ -14,8 +14,12 @@ const Problems = () => {
   const [placeholder, setPlaceholder] = useState({
     academy: true,
     problem: true,
+    difficulty: true,
   })
   const [articleId, setArticleId] = useState(0)
+  const [searchAcademy, setSearchAcademy] = useState([])
+  const [searchProblem, setSearchProblem] = useState([])
+  const [searchDifficulty, setSearchDifficulty] = useState([])
 
   const { getProblemList, getProblemSearch } = useProblemApi()
 
@@ -44,7 +48,7 @@ const Problems = () => {
 
   // 검색한 문제 리스트 불러오는 함수
   const handleSearch = async page => {
-    let res = await getProblemSearch({ page: page - 1 })
+    let res = await getProblemSearch({ page: page - 1, searchAcademy, searchProblem, searchDifficulty })
     setTotalCount(res.list.totalElements)
     setProblemsData(res.list.content)
   }
@@ -56,6 +60,10 @@ const Problems = () => {
     setTotalCount(res.list.totalElements)
     setProblemsData(res.list.content)
   }
+
+  const handleAllProblemBuy = () => {}
+
+  // const handleGet
 
   // 페이지가 최초로 랜더링될때 / page가 변경될때마다 문제를 불러오는 함수 실행
   useEffect(() => {
@@ -88,6 +96,10 @@ const Problems = () => {
         page={page}
         setPage={setPage}
         totalCount={totalCount}
+        handleAllProblemBuy={handleAllProblemBuy}
+        setSearchAcademy={setSearchAcademy}
+        setSearchProblem={setSearchProblem}
+        setSearchDifficulty={setSearchDifficulty}
       />
     </>
   )

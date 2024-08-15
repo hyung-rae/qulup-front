@@ -40,7 +40,7 @@ const ExamProblems = () => {
       <Flex direction="column" m="auto" gap={20}>
         <Group align="flex-start" justify="space-between">
           <Group justify="flex-end" align="flex-end">
-            <MultiSelect
+            {/* <MultiSelect
               miw={200}
               data={ACADEMY_FILTER}
               placeholder={placeholder.academy ? '제외 학원' : ''}
@@ -60,7 +60,7 @@ const ExamProblems = () => {
                 })
               }}
               comboboxProps={{ width: 200, position: 'bottom-end' }}
-            />
+            /> */}
 
             <Group gap={5} align="flex-end">
               <Select

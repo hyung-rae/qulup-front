@@ -8,8 +8,9 @@ import useAuthApi from '@/src/api/auth/useAuthApi'
 // lib
 import { useForm } from '@mantine/form'
 import { useDisclosure } from '@mantine/hooks'
+import { useEffect } from 'react'
 
-const SignUp = ({ opened, onClose }) => {
+const SignUp = ({ opened, onClose, signUpToken, setToken }) => {
   const [termsOpened, { open, close }] = useDisclosure(false)
   const { signUp, verificationEmail, verificationPhone } = useAuthApi()
 
@@ -45,6 +46,7 @@ const SignUp = ({ opened, onClose }) => {
       nickname: values.nickname,
       phone: values.phone,
       emailVerificationCode: values.emailVerificationCode,
+      recaptchaToken: signUpToken,
     }
     await signUp(param)
   }
@@ -64,6 +66,27 @@ const SignUp = ({ opened, onClose }) => {
     }
     verificationPhone(param)
   }
+
+  useEffect(() => {
+    if (!opened) return
+    const script = document.createElement('script')
+    script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
+    script.async = true
+    script.defer = true
+    document.body.appendChild(script)
+
+    script.onload = () => {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'homepage' }).then(token => {
+          setToken(token)
+        })
+      })
+    }
+    return () => {
+      document.body.removeChild(script)
+      setToken('')
+    }
+  }, [opened])
 
   return (
     <>

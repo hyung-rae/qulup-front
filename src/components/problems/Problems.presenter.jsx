@@ -14,7 +14,12 @@ import {
 import { IconSearch } from '@tabler/icons-react'
 import Cards from './cards/Cards.container'
 
-import { ACADEMY_FILTER, PROBLEM_FILTER, SEARCH_FILTER } from '@/src/components/problems/SelectFilter'
+import {
+  ACADEMY_FILTER,
+  PROBLEM_FILTER,
+  SEARCH_FILTER,
+  DEFFICULTY_FILTER,
+} from '@/src/components/problems/SelectFilter'
 
 const ProblemsUI = ({ ...props }) => {
   const {
@@ -33,6 +38,10 @@ const ProblemsUI = ({ ...props }) => {
     page,
     setPage,
     totalCount,
+    handleAllProblemBuy,
+    setSearchAcademy,
+    setSearchProblem,
+    setSearchDifficulty,
   } = props
 
   return (
@@ -44,9 +53,10 @@ const ProblemsUI = ({ ...props }) => {
               miw={200}
               data={ACADEMY_FILTER}
               placeholder={placeholder.academy ? '제외 학원' : ''}
-              onChange={e => {
+              onChange={value => {
+                setSearchAcademy(value)
                 setPlaceholder(prev => {
-                  return { ...prev, academy: !(e.length > 0) }
+                  return { ...prev, academy: !(value.length > 0) }
                 })
               }}
             />
@@ -54,9 +64,22 @@ const ProblemsUI = ({ ...props }) => {
               miw={200}
               placeholder={placeholder.problem ? '제외 단원' : ''}
               data={PROBLEM_FILTER}
-              onChange={e => {
+              onChange={value => {
+                setSearchProblem(value)
                 setPlaceholder(prev => {
-                  return { ...prev, problem: !(e.length > 0) }
+                  return { ...prev, problem: !(value.length > 0) }
+                })
+              }}
+              comboboxProps={{ width: 200, position: 'bottom-end' }}
+            />
+            <MultiSelect
+              miw={200}
+              placeholder={placeholder.difficulty ? '난이도' : ''}
+              data={DEFFICULTY_FILTER}
+              onChange={value => {
+                setSearchDifficulty(value)
+                setPlaceholder(prev => {
+                  return { ...prev, difficulty: !(value.length > 0) }
                 })
               }}
               comboboxProps={{ width: 200, position: 'bottom-end' }}
@@ -74,7 +97,14 @@ const ProblemsUI = ({ ...props }) => {
                 value={searchText}
                 placeholder="검색어를 입력해주세요"
                 onChange={e => setSearchText(e.target.value)}
-                rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
+                rightSection={
+                  <IconSearch
+                    width={16}
+                    height={16}
+                    onClick={() => handleSearch({ page: '', difficulty: '' })}
+                    cursor={'pointer'}
+                  />
+                }
               />
             </Group>
           </Group>
@@ -102,7 +132,7 @@ const ProblemsUI = ({ ...props }) => {
                 구매하기
               </Button>
             )}
-            <Button variant="subtle" size="xs" color="dark">
+            <Button variant="subtle" size="xs" color="dark" onClick={handleAllProblemBuy}>
               전체 상품 구매하기
             </Button>
           </Group>
