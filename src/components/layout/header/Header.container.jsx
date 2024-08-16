@@ -27,6 +27,7 @@ const Header = () => {
 
   const handleLogin = async () => {
     let { memberData } = await signIn({ email, password, recaptchaToken: loginToken })
+    if (!memberData) return
     setUser(memberData)
     setIsLogin(true)
     signInClose()

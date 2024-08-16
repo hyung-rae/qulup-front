@@ -28,7 +28,7 @@ const useAuthApi = () => {
       alert(res.data.message)
       return res.data
     } catch (error) {
-      alert(res.data.message)
+      alert(error?.response?.data?.message)
       return {}
     } finally {
       setIsLoading(false)
