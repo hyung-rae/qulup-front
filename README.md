@@ -13,7 +13,7 @@
 ### 사용 라이브러리
 package.json 참조
 - 기본적으로 `mantine` 라이브러리외에 최소화 했습니다.
-- api 라이브러리는 `axios` `react-query` 사용
+- api 라이브러리는 `axios`사용
 
 ### 프로젝트 구조
 #### 라우터 구조
