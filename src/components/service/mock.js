@@ -1,4 +1,7 @@
 // ## API TODO: faq, inquiry 보내줄 데이터는 아래와 비슷하게 주시면 됩니다.
+import { useState } from 'react'
+import { mock } from '@/src/api/cart/useCartApi'
+
 export const FAQ_DEFAULT = [
   {
     id: 1,
@@ -71,6 +74,7 @@ export const FAQ_DEFAULT = [
     body: <p>asdasd</p>,
   },
 ]
+
 export const INQUIRY_DEFAULT = [
   {
     id: 1,
@@ -183,3 +187,4 @@ export const INQUIRY_DEFAULT = [
     },
   },
 ]
+

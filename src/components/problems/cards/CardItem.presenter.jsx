@@ -64,20 +64,22 @@ const CardItemUI = ({ ...props }) => {
           <Mantine.Badge bg={difficultyOption[article?.difficulty]?.color || 'gray'}>
             {difficultyOption[article.difficulty]?.title || '쉬움'}
           </Mantine.Badge>
-          <Mantine.ActionIcon
-            className={classes.action}
-            onClick={e => {
-              e.stopPropagation()
-            }}
-          >
-            <IconBookmark
-              style={{ width: 16, height: 16 }}
-              color={'gold'}
-              className={`${heartList.includes(article.problemSeq) && classes.active}`}
-              fill={heartList.includes(article.problemSeq) ? 'gold' : ''}
-              onClick={() => handleLikeButton(article.problemSeq)}
-            />
-          </Mantine.ActionIcon>
+          {!detailModal && (
+            <Mantine.ActionIcon
+              className={classes.action}
+              onClick={e => {
+                e.stopPropagation()
+              }}
+            >
+              <IconBookmark
+                style={{ width: 16, height: 16 }}
+                color={'gold'}
+                className={`${heartList.includes(article.problemSeq) && classes.active}`}
+                fill={heartList.includes(article.problemSeq) ? 'gold' : ''}
+                onClick={() => handleLikeButton(article.problemSeq)}
+              />
+            </Mantine.ActionIcon>
+          )}
         </Mantine.Group>
         <Mantine.Group gap={5}>
           {article.tag.split(',').map(tag => (

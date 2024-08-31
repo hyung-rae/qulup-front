@@ -39,6 +39,7 @@ const ProblemsUI = ({ ...props }) => {
     setPage,
     totalCount,
     handleAllProblemBuy,
+    handlePartProblemBuy,
     setSearchAcademy,
     setSearchProblem,
     setSearchDifficulty,
@@ -128,7 +129,7 @@ const ProblemsUI = ({ ...props }) => {
               건
             </Title>
             {checkedList.length > 0 && (
-              <Button size="xs" color="dark">
+              <Button size="xs" color="dark" onClick={handlePartProblemBuy}>
                 구매하기
               </Button>
             )}

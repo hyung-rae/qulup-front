@@ -12,6 +12,7 @@ import {
   TextInput,
 } from '@mantine/core'
 import { IconSearch, IconNote, IconHandClick } from '@tabler/icons-react'
+import { formatDate } from '@/src/js/script'
 
 const ANSWER_TITLE = {
   wait: '대기중',
@@ -31,26 +32,28 @@ const ServiceUI = ({ ...props }) => {
     faq_data = [],
     inquiry_data = [],
     totalCount,
-    handleGetBoardData,
+    page,
+    setPage,
   } = props
 
-  const FAQ_ROWS = faq_data.map(row => {
+  const FAQ_ROWS = faq_data.map((row, i) => {
     return (
-      <Table.Tr className={classes.tr} key={`faq_${row.id}`} onClick={() => handleFaqClick(row)}>
-        <Table.Td align="center">{row.id}</Table.Td>
+      <Table.Tr className={classes.tr} key={`faq_${i}`} onClick={() => handleFaqClick(row)}>
+        <Table.Td align="center">{row.boardSeq}</Table.Td>
+        <Table.Td align="center">{row.category}</Table.Td>
         <Table.Td align="center">{row.title}</Table.Td>
-        <Table.Td>{row.created_at}</Table.Td>
+        <Table.Td align="center">{formatDate(row.createdDate)}</Table.Td>
       </Table.Tr>
     )
   })
-  const INQUIRY_ROWS = inquiry_data.map(row => {
+  const INQUIRY_ROWS = inquiry_data.map((row, i) => {
     return (
       <>
-        <Table.Tr className={classes.tr} key={`inquiry_${row.id}`} onClick={() => handleInquiryClick(row)}>
-          <Table.Td align="center">{row.id}</Table.Td>
-          <Table.Td align="center">{row.writer}</Table.Td>
-          <Table.Td align="center">{ANSWER_TITLE[row.state]}</Table.Td>
-          <Table.Td>{row.created_at}</Table.Td>
+        <Table.Tr className={classes.tr} key={`inquiry_${i}`} onClick={() => handleInquiryClick(row)}>
+          <Table.Td align="center">{row.inquirySeq}</Table.Td>
+          <Table.Td align="center">{row?.nm || '작성자'}</Table.Td>
+          <Table.Td align="center">{row?.responseAt}</Table.Td>
+          <Table.Td align="center">{formatDate(row?.writtenDate)}</Table.Td>
         </Table.Tr>
       </>
     )
@@ -75,7 +78,7 @@ const ServiceUI = ({ ...props }) => {
                 {
                   label: (
                     <Center style={{ gap: 10 }}>
-                      <IconNote sIconHandClick={{ width: 16, height: 16 }} />
+                      <IconNote />
                       <span>FAQ</span>
                     </Center>
                   ),
@@ -84,7 +87,7 @@ const ServiceUI = ({ ...props }) => {
                 {
                   label: (
                     <Center style={{ gap: 10 }}>
-                      <IconHandClick sIconHandClick={{ width: 16, height: 16 }} />
+                      <IconHandClick />
                       <span>1:1 문의</span>
                     </Center>
                   ),
@@ -105,8 +108,7 @@ const ServiceUI = ({ ...props }) => {
                 onChange={e => setSearchText(e.target.value)}
                 rightSection={<IconSearch width={16} height={16} onClick={handleSearch} cursor={'pointer'} />}
               />
-
-              <Pagination total={totalCount / 10} color="dark." onChange={page => handleGetBoardData(page)} />
+              <Pagination total={totalCount / 10 + 1} color="dark." page={page} onChange={setPage} />
             </Group>
           </Group>
           <Paper m="auto" shadow="xs" withBorder p="md" w={'100%'}>
@@ -123,6 +125,11 @@ const ServiceUI = ({ ...props }) => {
                   <Table.Th style={{ textAlign: 'center' }} width={50}>
                     No.
                   </Table.Th>
+                  {tabValue === 'faq' && (
+                    <Table.Th width={100} style={{ textAlign: 'center' }}>
+                      카테고리
+                    </Table.Th>
+                  )}
                   <Table.Th style={{ textAlign: 'center' }}>{tabValue === 'inquiry' ? '작성자' : '제목'}</Table.Th>
                   {tabValue === 'inquiry' && (
                     <Table.Th width={100} style={{ textAlign: 'center' }}>
@@ -134,7 +141,7 @@ const ServiceUI = ({ ...props }) => {
                   </Table.Th>
                 </Table.Tr>
               </Table.Thead>
-              <Table.Tbody>
+              <Table.Tbody key={`table_${tabValue}`}>
                 {tabValue === 'faq' && faq_data.length > 0 && FAQ_ROWS}
                 {tabValue === 'inquiry' && inquiry_data.length > 0 && INQUIRY_ROWS}
               </Table.Tbody>

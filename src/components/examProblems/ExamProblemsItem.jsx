@@ -2,15 +2,24 @@ import { Badge, Button, Card, Flex, Group, Image, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconArrowRight, IconShoppingBag } from '@tabler/icons-react'
 import classes from './ExamProblems.module.css'
-import GemstoneModal from './ExamProblemsModal'
+import ExamProblemsModal from './ExamProblemsModal'
 
-const GemstoneItem = ({ article }) => {
+const ExamProblemsItem = ({ article }) => {
   const [opened, { open, close }] = useDisclosure(false)
+
+  const handleClickAddCart = problemSeqList => {
+    // TODO: problemSeqList 등 리스트를 로컬스토리지에 넣기
+
+    localStorage.setItem('problemList', problemSeqList)
+    if (confirm('장바구니에 상품이 담겼습니다.\n장바구니 페이지로 이동하시겠습니까?')) {
+      router.push('/cart')
+    }
+  }
 
   return (
     <>
       {/* 상세 모달 */}
-      <GemstoneModal opened={opened} onClose={close} />
+      <ExamProblemsModal opened={opened} onClose={close} />
       <Card withBorder radius="md" p={0} className={classes.card}>
         <Group wrap="nowrap" gap={0}>
           <Image src={article.image} height={160} />
@@ -34,7 +43,7 @@ const GemstoneItem = ({ article }) => {
               color="dark"
               leftSection={<IconShoppingBag size={14} />}
               rightSection={<IconArrowRight size={14} />}
-              onClick={() => alert('장바구니')}
+              onClick={() => handleClickAddCart(article.problemSeq)}
             >
               장바구니에 담기
             </Button>
@@ -45,4 +54,4 @@ const GemstoneItem = ({ article }) => {
   )
 }
 
-export default GemstoneItem
+export default ExamProblemsItem

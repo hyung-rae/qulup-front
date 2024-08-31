@@ -58,11 +58,11 @@ const HeaderUI = ({ user, isLogin, onClickSignIn, handleLogOut, moveToSection })
             모의고사
           </Title>
         </Link>
-        <Link href={'/gemstone'} style={{ textDecoration: 'none' }}>
+        {/* <Link href={'/gemstone'} style={{ textDecoration: 'none' }}>
           <Title c={pathname === '/gemstone' ? 'teal' : 'dark.1'} className={classes.title_btn}>
             Math Gemstone
           </Title>
-        </Link>
+        </Link> */}
         <Link href={'/service'} style={{ textDecoration: 'none' }}>
           <Title c={pathname === '/service' ? 'teal' : 'dark.1'} className={classes.title_btn}>
             FAQ

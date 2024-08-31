@@ -5,14 +5,17 @@ import { MantineProvider } from '@mantine/core'
 import { theme } from '@/theme'
 import Layout from '@/src/components/layout/Layout'
 import { RecoilRoot } from 'recoil'
+import AuthProvider from '@/src/provider/AuthProvider'
 
 const App = ({ Component, pageProps }) => {
   return (
     <RecoilRoot>
       <MantineProvider theme={theme} defaultColorScheme="light">
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AuthProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthProvider>
       </MantineProvider>
     </RecoilRoot>
   )

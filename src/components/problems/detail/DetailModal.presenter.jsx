@@ -3,9 +3,7 @@ import Cards from '../cards/Cards.container'
 import { useRouter } from 'next/router'
 
 const DetailModalUI = ({ ...props }) => {
-  const { detailOpened, detailClose, articleId, problemsData, handleRecommendClick } = props
-  const problemData = problemsData.find(el => el.problemSeq === articleId)
-
+  const { recommendList, problemData, detailOpened, detailClose, articleId, problemsData, handleRecommendClick } = props
   if (!problemData) return
   const { basePath } = useRouter()
 
@@ -48,7 +46,7 @@ const DetailModalUI = ({ ...props }) => {
               width={'100%'}
               px="0"
               py="0"
-              problemsData={problemsData}
+              problemsData={recommendList.length > 0 ? recommendList : problemsData}
               detailModal={true}
               onClick={handleRecommendClick}
             />

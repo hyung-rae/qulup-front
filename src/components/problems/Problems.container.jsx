@@ -3,8 +3,11 @@ import { useDisclosure } from '@mantine/hooks'
 import ProblemsUI from './Problems.presenter'
 import DetailModal from './detail/DetailModal.container'
 import useProblemApi from '@/src/api/problem/useProblemApi'
+import { useRouter } from 'next/router'
 
 const Problems = () => {
+  const router = useRouter()
+
   const [page, setPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
   const [heartList, setHeartList] = useState([])
@@ -56,14 +59,23 @@ const Problems = () => {
   // 문제 리스트 불러오는 함수
   const handleGetProblemsData = async page => {
     // ## API TODO: page에 맞는 문제를 보내주시면 됩니다. 추후, 제외학원과 제외단원 등을 추가 입력받으면 됩니다.
-    let res = await getProblemList({ page: page - 1 })
-    setTotalCount(res.list.totalElements)
-    setProblemsData(res.list.content)
+    try {
+      let res = await getProblemList({ page: page - 1 })
+      setTotalCount(res.list.totalElements)
+      setProblemsData(res.list.content)
+    } catch {}
   }
 
   const handleAllProblemBuy = () => {}
-
   // const handleGet
+
+  const handlePartProblemBuy = () => {
+    // TODO: localstorage에 담고, 카트페이지로 보내기
+    localStorage.setItem('problemList', checkedList)
+    if (confirm('장바구니에 상품이 담겼습니다.\n장바구니 페이지로 이동하시겠습니까?')) {
+      router.push('/cart')
+    }
+  }
 
   // 페이지가 최초로 랜더링될때 / page가 변경될때마다 문제를 불러오는 함수 실행
   useEffect(() => {
@@ -77,7 +89,6 @@ const Problems = () => {
         detailClose={detailClose}
         articleId={articleId}
         problemsData={problemsData}
-        recommendData={problemsData}
       />
       <ProblemsUI
         checkedList={checkedList}
@@ -96,6 +107,7 @@ const Problems = () => {
         page={page}
         setPage={setPage}
         totalCount={totalCount}
+        handlePartProblemBuy={handlePartProblemBuy}
         handleAllProblemBuy={handleAllProblemBuy}
         setSearchAcademy={setSearchAcademy}
         setSearchProblem={setSearchProblem}

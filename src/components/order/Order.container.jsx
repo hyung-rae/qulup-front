@@ -23,7 +23,7 @@ const Order = () => {
 
   return (
     <OrderUI
-      orderItems={cartItemList.filter(item => ids?.includes(item.id))}
+      orderItems={cartItemList.filter(item => ids?.includes(item.problemSeq))}
       price={totalPrice}
       discount={totalDiscount}
       payMethod={payMethod}

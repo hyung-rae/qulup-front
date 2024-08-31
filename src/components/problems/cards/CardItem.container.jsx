@@ -8,8 +8,8 @@ const CardItem = ({ ...props }) => {
 
   const { postLike } = useProblemApi()
 
-  const handleLikeButton = async id => {
-    await postLike(id)
+  const handleLikeButton = async problemSeq => {
+    await postLike({ problemSeq })
   }
   useEffect(() => {
     if (checkedList.includes(article.problemSeq)) setIsChecked(true)

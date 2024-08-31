@@ -43,15 +43,14 @@ export const mock = [
 const useCartApi = () => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const getCartItemList = async page => {
+  const getCartItemList = async params => {
     try {
-      //   const res = await instance.post(`QV1/cartItemList.do`, params)
-      return {
-        totalCount: mock.length,
-        list: mock.slice(0, 10),
-      }
+      setIsLoading(true)
+      const { data } = await instance.get(`/QV1/problemCartList.do?problemSeq=${params.problemSeq}`)
+      return data.ProblemCartList
     } catch {
     } finally {
+      setIsLoading(false)
     }
   }
 

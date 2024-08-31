@@ -1,7 +1,7 @@
 import { userState } from '@/src/services/user'
 import { useDisclosure } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import Find from '../../sign/find/Find.container'
 import SignIn from '../../sign/signIn/SignIn.container'
 import SignUp from '../../sign/signUp/SignUp.container'
@@ -18,6 +18,7 @@ const Header = () => {
   const { signIn, logout, refresh } = useAuthApi()
   const [loginToken, setLoginToken] = useState('')
   const [signUpToken, setSignUpToken] = useState('')
+  const resetUserInfo = useResetRecoilState(userState)
 
   const [signInOpened, { open: signInOpen, close: signInClose }] = useDisclosure(false)
   const [signUpOpened, { open: signUpOpen, close: signUpClose }] = useDisclosure(false)
@@ -35,6 +36,7 @@ const Header = () => {
 
   const handleLogOut = async () => {
     await logout()
+    resetUserInfo()
     setIsLogin(false)
     router.push('/')
   }

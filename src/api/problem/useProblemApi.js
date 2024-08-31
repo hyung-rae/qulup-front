@@ -21,7 +21,7 @@ const useProblemApi = () => {
   // 문제 좋아요
   const postLike = async params => {
     try {
-      const res = await instance.post(`QV1/likeProblem.do`, params)
+      const res = await instance.post(`QV1/favoritesAdd.do`, params)
     } catch {
     } finally {
     }
@@ -41,12 +41,44 @@ const useProblemApi = () => {
   }
 
   // 모의고사 문제 리스트
-  const getExamProblemList = () => {}
+  const getExamProblemList = async page => {
+    setIsLoading(true)
+    try {
+      const res = await instance.get(`QV1/mockexamList.do`)
+      // const res = await instance.get(`QV1/mockexamList.do?page=${page}`)
+      return res
+    } catch (error) {
+      return {}
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   // 모의고사 문제 검색
   const getExamProblemSearch = () => {}
 
-  return { isLoading, getProblemList, postLike, getProblemSearch, getExamProblemList, getExamProblemSearch }
+  const getProblemHotList = async code => {
+    //
+    setIsLoading(true)
+    try {
+      const res = await instance.get(`QV1/problemHotList.do?code=${code}`)
+      return res
+    } catch (error) {
+      return {}
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return {
+    isLoading,
+    getProblemList,
+    postLike,
+    getProblemSearch,
+    getExamProblemList,
+    getExamProblemSearch,
+    getProblemHotList,
+  }
 }
 
 export default useProblemApi

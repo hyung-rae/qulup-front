@@ -1,17 +1,25 @@
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
-import { cartItemList } from '../mock'
+
 import CartReceiptUI from './CartReceipt.presenter'
 
-const CartReceipt = ({ checkedIds }) => {
+const CartReceipt = ({ checkedIds, cartItems }) => {
   const { push } = useRouter()
   const totalPrice = useMemo(() => {
-    return cartItemList.filter(item => checkedIds.includes(item.id)).reduce((acc, item) => acc + item.price, 0)
-  }, [checkedIds])
+    return cartItems
+      .filter(item => checkedIds.includes(item.problemSeq))
+      .reduce((acc, item) => acc + item.originalPrice, 0)
+  }, [checkedIds, cartItems])
+
+  const calculatedPrice = useMemo(() => {
+    return cartItems
+      .filter(item => checkedIds.includes(item.problemSeq))
+      .reduce((acc, item) => acc + item.calculatedPrice, 0)
+  }, [checkedIds, cartItems])
 
   const totalDiscount = useMemo(() => {
-    return cartItemList.filter(item => checkedIds.includes(item.id)).reduce((acc, item) => acc + item.discount, 0)
-  }, [checkedIds])
+    return totalPrice - calculatedPrice
+  }, [totalPrice, calculatedPrice])
 
   const moveToOrderPage = () => {
     push(`/order?ids=${checkedIds}&totalPrice=${totalPrice}&totalDiscount=${totalDiscount}`)
@@ -23,6 +31,7 @@ const CartReceipt = ({ checkedIds }) => {
       checkedCount={checkedIds.length}
       totalPrice={totalPrice}
       totalDiscount={totalDiscount}
+      calculatedPrice={calculatedPrice}
     />
   )
 }

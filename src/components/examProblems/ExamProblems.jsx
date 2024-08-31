@@ -26,7 +26,8 @@ const ExamProblems = () => {
 
   const handleGetExamProblemsData = async page => {
     // TODO: 모의고사 문제 리스트 불러오는 로직
-    // let res = await getExamProblemList(page)
+    let res = await getExamProblemList(page)
+    console.log('res: ', res)
     // setExamProblemsList(res.list)
   }
 

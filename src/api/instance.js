@@ -27,8 +27,12 @@ instance.interceptors.response.use(
     return response
   },
   error => {
-    console.log('error :', error)
-    // alert('잠시후 다시 시도해주세요.')
+    const loginMessage = ['로그인한 사용자 정보가 없습니다.', '로그인을 해주세요.']
+    console.log('error?.response?.data?.message:', error?.response?.data?.message)
+    if (loginMessage.includes(error?.response?.data?.message)) {
+      alert('로그인 후 이용이 가능합니다.')
+      window.location.href = '/'
+    }
     return Promise.reject(error)
   },
 )

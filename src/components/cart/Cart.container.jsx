@@ -1,43 +1,93 @@
+import useCartApi from '@/src/api/cart/useCartApi'
 import { useEffect, useState } from 'react'
 import CartUI from './Cart.presenter'
 import CartItem from './item/CartItem.container'
-import { cartItemList } from './mock'
 import CartReceipt from './receipt/CartReceipt.container'
-import useCartApi from '@/src/api/cart/useCartApi'
 
 const Cart = () => {
   const [page, setPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
-
   const [checkedIds, setCheckedIds] = useState([])
-
+  const [totalCartIds, setTotalCartIds] = useState([])
   const [cartItems, setCartItems] = useState([])
 
   const { getCartItemList } = useCartApi()
 
-  const handleGetCartItemlist = async page => {
-    const { totalCount, list } = await getCartItemList(page)
-    setCartItems(list)
-    setTotalCount(totalCount)
-  }
-
   const handleCheckedAll = event => {
-    event.target.checked ? setCheckedIds(new Array(30).fill(1).map((_, i) => i + 1)) : setCheckedIds([])
+    event.target.checked ? setCheckedIds(totalCartIds) : setCheckedIds([])
   }
 
-  const handleChecked = (id, checked) => {
-    checked ? setCheckedIds([...checkedIds, id]) : setCheckedIds(checkedIds.filter(i => i !== id))
+  const handleChecked = id => {
+    if (checkedIds.includes(id)) {
+      setCheckedIds(checkedIds.filter(item => item !== id))
+    } else {
+      setCheckedIds(prev => [...prev, id])
+    }
+  }
+
+  const handleGetCartListIds = async () => {
+    try {
+      if (!localStorage.getItem('problemList')) return
+      let list = localStorage.getItem('problemList').split(',')
+
+      setTotalCartIds(list)
+      setTotalCount(list.length || 0)
+      setCheckedIds(list)
+    } catch {
+      setCheckedIds([])
+      setTotalCount(0)
+    }
+  }
+
+  const handleRemoveItem = problemSeq => {
+    setTotalCartIds(totalCartIds.filter(item => item !== problemSeq))
+    if (totalCartIds.length === 0) {
+      localStorage.removeItem('problemList')
+    } else {
+      localStorage.setItem(
+        'problemList',
+        totalCartIds.filter(item => item !== problemSeq),
+      )
+    }
+  }
+
+  const handleSplitCartIdList = (page, count = 10) => {
+    const startIndex = (page - 1) * count
+    const endIndex = startIndex + count
+    return totalCartIds.slice(startIndex, endIndex)
+  }
+
+  const handleGetCartList = async page => {
+    try {
+      let list = handleSplitCartIdList(page)
+      const data = await getCartItemList({ problemSeq: list })
+      setCartItems(data || [])
+    } catch {
+      setCartItems([])
+    }
   }
 
   useEffect(() => {
-    handleGetCartItemlist()
-  }, [page])
+    handleGetCartListIds()
+  }, [])
+
+  useEffect(() => {
+    if (checkedIds.length === 0) return
+    handleGetCartList(page)
+  }, [page, checkedIds, totalCartIds, totalCartIds.length])
 
   return (
     <CartUI
-      cartReceipt={<CartReceipt checkedIds={checkedIds} />}
+      cartReceipt={<CartReceipt checkedIds={checkedIds} cartItems={cartItems} />}
       cartItem={cartItems.map(item => (
-        <CartItem key={item.id} handleChecked={handleChecked} checkedIds={checkedIds} {...item} />
+        <CartItem
+          key={item.id}
+          handleRemoveItem={handleRemoveItem}
+          handleChecked={handleChecked}
+          checkedIds={checkedIds}
+          problem={item}
+          page={page}
+        />
       ))}
       page={page}
       setPage={setPage}
